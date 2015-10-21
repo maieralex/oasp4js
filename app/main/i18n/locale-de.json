@@ -5,6 +5,8 @@
         "LOG_OFF": "Abmelden",
         "LOG_IN": "Anmelden",
         "userNameNotProvided": "Bitte geben Sie Ihren Benutzernamen ein!",
-        "passwordNotProvided": "Bitte geben Sie Ihr Passwort ein!"
+        "passwordNotProvided": "Bitte geben Sie Ihr Passwort ein!",
+        "PASSWORD": "Passwort",
+        "USERNAME": "Benutzername"
     }
 }

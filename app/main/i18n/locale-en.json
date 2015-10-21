@@ -4,7 +4,9 @@
         "LANGUAGE": "Language",
         "LOG_OFF": "Log off",
         "LOG_IN": "Log in",
-        "userNameNotProvided": "Please enter your user name!",
-        "passwordNotProvided": "Please enter your password!"
+        "userNameNotProvided": "Please enter your username!",
+        "passwordNotProvided": "Please enter your password!",
+        "PASSWORD": "password",
+        "USERNAME": "username"
     }
 }

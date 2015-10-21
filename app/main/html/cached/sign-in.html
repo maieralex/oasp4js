@@ -11,14 +11,14 @@
             <form name="loginForm" novalidate>
                 <p>
                     <span class="label label-danger" data-ng-show="validation.userNameNotProvided()"><label translate>OASP.userNameNotProvided</label></span>
-                    <input type="text" placeholder="User Name" name="userName" class="form-control" data-ng-model="credentials.username" data-ng-required="true">
+                    <input type="text" placeholder="{{'OASP.USERNAME' | translate}}" name="userName" class="form-control" data-ng-model="credentials.username" data-ng-required="true" translate>
                 </p>
                 <p>
                     <span class="label label-danger" data-ng-show="validation.passwordNotProvided()"><label translate>OASP.passwordNotProvided</label></span>
-                    <input type="password" placeholder="Password" name="password" class="form-control" data-ng-model="credentials.password" data-ng-required="true">
+                    <input type="password" placeholder="{{'OASP.PASSWORD' | translate}}" name="password" class="form-control" data-ng-model="credentials.password" data-ng-required="true">
                 </p>
                 <p>
-                    <button type="submit" class="btn btn-success" data-ng-click="signIn()"><label translate>OASP.LOG_IN</label></button>
+                    <button type="submit" class="btn btn-success" data-ng-click="signIn()" translate>OASP.LOG_IN</button>
                 </p>
             </form>
   		</div>
