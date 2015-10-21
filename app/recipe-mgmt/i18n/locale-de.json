@@ -1,0 +1,8 @@
+{
+    "RECIPE_MGMT": {
+        "TITLE": "Titel",
+        "DESCRIPTION": "Beschreibung",
+        "PRICE": "Preis",
+        "SUBMIT": "Rezept hinzufügen"
+    }
+}

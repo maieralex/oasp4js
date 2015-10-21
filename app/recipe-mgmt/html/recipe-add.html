@@ -5,6 +5,24 @@
     <title></title>
 </head>
 <body>
-
+<div class="well" id="recipeForm">
+	<form method="post" action="#">
+		<div class="form-group">
+			<label translate>RECIPE_MGMT.TITLE</label>
+			<input class="form-control" type="text" name="title">
+		</div>
+		<div class="form-group">
+			<label translate>RECIPE_MGMT.DESCRIPTION</label>
+			<textarea class="form-control" name="description"></textarea>
+		</div>
+		<div class="form-group">
+			<label translate>RECIPE_MGMT.PRICE</label>
+			<input class="form-control" type="text" name="price">
+		</div>
+		<button class="btn btn-primary" ng-click="submit()" translate>
+            RECIPE_MGMT.SUBMIT
+        </button>
+	</form>
+</div>
 </body>
 </html>
