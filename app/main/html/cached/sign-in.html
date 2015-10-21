@@ -26,18 +26,25 @@
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" ng-repeat="Gericht in Gerichte" data-slide-to="{{Gericht}}" ng-class="{active: (Gericht === 0)}"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="http://static.chefkoch-cdn.de/ck.de/rezepte/42/42005/23071-960x720-filettopf.jpg" alt="Chania">
-                    </div>
 
-                    <div class="item">
-                        <img src="http://static.chefkoch-cdn.de/ck.de/rezepte/42/42005/23071-960x720-filettopf.jpg" alt="Chania">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item" ng-class="{active:!$index}" ng-repeat="Gericht in Gerichte">
+                        <img src="{{Gericht.bild}}" alt={{Gericht.bezeichnung}}>
+                        <div class="carousel-caption">
+                            <h3>{{Gericht.bezeichnung}}</h3>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    {{Gericht.beschreibung}}
+                                </div>
+                                <div class="col-md-2">
+                                    {{Gericht.preis}}€
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
