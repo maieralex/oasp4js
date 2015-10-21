@@ -3,6 +3,7 @@
         "TITLE": "Titel",
         "DESCRIPTION": "Beschreibung",
         "PRICE": "Preis",
+        "IMAGE": "Bild",
         "SUBMIT": "Rezept hinzufügen"
     }
 }

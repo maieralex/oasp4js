@@ -3,6 +3,7 @@
         "TITLE": "Title",
         "DESCRIPTION": "Description",
         "PRICE": "Price",
+        "IMAGE": "Image",
         "SUBMIT": "Add Recipe"
     }
 }
