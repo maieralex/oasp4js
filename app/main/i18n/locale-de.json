@@ -2,6 +2,9 @@
     "OASP": {
         "LOGGED_IN_AS": "Angemeldet als",
         "LANGUAGE":"Sprache",
-        "LOG_OFF": "Abmelden"
+        "LOG_OFF": "Abmelden",
+        "LOG_IN": "Anmelden",
+        "userNameNotProvided": "Bitte geben Sie Ihren Benutzernamen ein!",
+        "passwordNotProvided": "Bitte geben Sie Ihr Passwort ein!"
     }
 }

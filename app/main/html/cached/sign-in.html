@@ -2,33 +2,57 @@
 <html>
 <body>
 <div class="row">
-		<div class="row">
-  		<div class="col-md-8">
-  			<h1>This is the login to the devonfw restaurant example application as technical showcase for an AngularJS client.</h1>
-      	<p><img src="main/img/login_logo.png" /></p>
+    <div class="row">
+  		<div class="col-md-4">
+  			<!--<h1>This is the login to the devonfw restaurant example application as technical showcase for an AngularJS client.</h1>-->
+            <img src="main/img/login_logo.png" class="center-block"/>
+            <h2><label translate>OASP.LOG_IN</label></h2>
+            <alert data-ng-show="errorMessage.hasOne()" data-close="errorMessage.clear()" data-type="danger"><span data-ng-bind="errorMessage.text"></span></alert>
+            <form name="loginForm" novalidate>
+                <p>
+                    <span class="label label-danger" data-ng-show="validation.userNameNotProvided()"><label translate>OASP.userNameNotProvided</label></span>
+                    <input type="text" placeholder="User Name" name="userName" class="form-control" data-ng-model="credentials.username" data-ng-required="true">
+                </p>
+                <p>
+                    <span class="label label-danger" data-ng-show="validation.passwordNotProvided()"><label translate>OASP.passwordNotProvided</label></span>
+                    <input type="password" placeholder="Password" name="password" class="form-control" data-ng-model="credentials.password" data-ng-required="true">
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-success" data-ng-click="signIn()"><label translate>OASP.LOG_IN</label></button>
+                </p>
+            </form>
   		</div>
-		</div>
-		<div class="row">
-      <div class="col-md-4">
-          <h2>Sign In</h2>
-          <alert data-ng-show="errorMessage.hasOne()" data-close="errorMessage.clear()" data-type="danger"><span data-ng-bind="errorMessage.text"></span></alert>
-          <form name="loginForm" novalidate>
-              <p>
-                  <span class="label label-danger" data-ng-show="validation.userNameNotProvided()">Please enter your user name!</span>
-                  <input type="text" placeholder="User Name" name="userName" class="form-control" data-ng-model="credentials.username" data-ng-required="true">
-              </p>
-              <p>
-                  <span class="label label-danger" data-ng-show="validation.passwordNotProvided()">Please enter your password!</span>
-                  <input type="password" placeholder="Password" name="password" class="form-control" data-ng-model="credentials.password" data-ng-required="true">
-              </p>
-              <p>
-              <button type="submit" class="btn btn-success" data-ng-click="signIn()">Sign In</button>
-              </p>
-          </form>
-      </div>
-      
- 		</div>
+        <div class="col-md-8">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                </ol>
 
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="http://static.chefkoch-cdn.de/ck.de/rezepte/42/42005/23071-960x720-filettopf.jpg" alt="Chania">
+                    </div>
+
+                    <div class="item">
+                        <img src="http://static.chefkoch-cdn.de/ck.de/rezepte/42/42005/23071-960x720-filettopf.jpg" alt="Chania">
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
