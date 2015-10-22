@@ -6,7 +6,8 @@ angular.module('app.main')
                 $location.url(currentUser.getHomeDialogPath());
             });
         });
-        $scope.Gerichte = [
+        //Marc Schwede - bislang nur Dummy Informationen für den Login Screen
+        $scope.gerichteListe = [
             {bild: "http://files.schwedenmut.de/kartoffelsalat.jpg", bezeichnung: "Schwäbischer Kartoffelsalat", beschreibung: "Über Jahrhunderte erlaubten die kargen und steinreichen Bedingungen auf der Schwäbischen Alb kaum Viehzucht in größerem Maße. Fleisch konnten sich daher nur wenige leisten; es galt als \„Herrenessen\“.", preis: "2,50"},
             {bild: "http://files.schwedenmut.de/steak.jpg", bezeichnung: "T-Bone Steak in Rosmarin", beschreibung: "Scharf angebratenes T-Bone Steak (rare/medium bzw. auf Anfrage well-done) garniert mit frischen Rosmarinnadeln und Bratkartoffeln.", preis: "19,90"},
             {bild: "http://files.schwedenmut.de/bandnudeln.jpg", bezeichnung: "Bandnudeln mit Spinat", beschreibung: "Bandnudeln mit blanchiertem Spinat. Garniert mit Coktailtomaten, Parmesan und etwas Nuss-Öl. Sommerliches Gericht, auf Wunsch mit Pinienkernen.", preis: "9,80"},

@@ -10,11 +10,11 @@
             <alert data-ng-show="errorMessage.hasOne()" data-close="errorMessage.clear()" data-type="danger"><span data-ng-bind="errorMessage.text"></span></alert>
             <form name="loginForm" novalidate>
                 <p>
-                    <span class="label label-danger" data-ng-show="validation.userNameNotProvided()"><label translate>OASP.userNameNotProvided</label></span>
+                    <span class="label label-danger" data-ng-show="validation.userNameNotProvided()"><label translate>OASP.USERNAME_NOT_PROVIDED</label></span>
                     <input type="text" placeholder="{{'OASP.USERNAME' | translate}}" name="userName" class="form-control" data-ng-model="credentials.username" data-ng-required="true" translate>
                 </p>
                 <p>
-                    <span class="label label-danger" data-ng-show="validation.passwordNotProvided()"><label translate>OASP.passwordNotProvided</label></span>
+                    <span class="label label-danger" data-ng-show="validation.passwordNotProvided()"><label translate>OASP.PASSWORD_NOT_PROVIDED</label></span>
                     <input type="password" placeholder="{{'OASP.PASSWORD' | translate}}" name="password" class="form-control" data-ng-model="credentials.password" data-ng-required="true">
                 </p>
                 <p>
@@ -26,22 +26,22 @@
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" ng-repeat="Gericht in Gerichte" data-slide-to="{{Gericht}}" ng-class="{active: (Gericht === 0)}"></li>
+                    <li data-target="#myCarousel" ng-repeat="gericht in gerichteListe" data-slide-to="{{gericht}}" ng-class="{active: (gericht === 0)}"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
 
                 <div class="carousel-inner" role="listbox">
-                    <div class="item" ng-class="{active:!$index}" ng-repeat="Gericht in Gerichte">
-                        <img src="{{Gericht.bild}}" alt={{Gericht.bezeichnung}}>
+                    <div class="item" ng-class="{active:!$index}" ng-repeat="gericht in gerichteListe">
+                        <img src={{gericht.bild}} alt={{gericht.bezeichnung}}>
                         <div class="carousel-caption">
-                            <h3>{{Gericht.bezeichnung}}</h3>
+                            <h3>{{gericht.bezeichnung}}</h3>
                             <div class="row">
                                 <div class="col-md-10">
-                                    {{Gericht.beschreibung}}
+                                    {{gericht.beschreibung}}
                                 </div>
                                 <div class="col-md-2">
-                                    {{Gericht.preis}}€
+                                    {{gericht.preis}}€
                                 </div>
                             </div>
                         </div>
@@ -49,13 +49,13 @@
                 </div>
 
                 <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <a class="left carousel-control" href="#myCarousel" data-target="#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                    <span class="sr-only" translate>OASP.PREVIOUS</span>
                 </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <a class="right carousel-control" href="#myCarousel" data-target="#myCarousel" role="button" data-slide="next">
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                    <span class="sr-only" translate>OASP.NEXT</span>
                 </a>
             </div>
         </div>
