@@ -23,40 +23,27 @@
             </form>
   		</div>
         <div class="col-md-8">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" ng-repeat="gericht in gerichteListe" data-slide-to="{{gericht}}" ng-class="{active: (gericht === 0)}"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-
-                <div class="carousel-inner" role="listbox">
-                    <div class="item" ng-class="{active:!$index}" ng-repeat="gericht in gerichteListe">
-                        <img src={{gericht.bild}} alt={{gericht.bezeichnung}}>
-                        <div class="carousel-caption">
-                            <h3>{{gericht.bezeichnung}}</h3>
-                            <div class="row">
-                                <div class="col-md-10">
-                                    {{gericht.beschreibung}}
-                                </div>
-                                <div class="col-md-2">
-                                    {{gericht.preis}}€
+            <div class="row" menu>
+                <div class="col-xs-2 asc" translate>
+                    OASP.TOPSELLER
+                </div>
+                <div class="col-xs-10">
+                    <div ng-repeat="gericht in shuffledGerichteListe | limitTo: quantity" class="row">
+                        <div ng-style="{'background-image':'url('+gericht.bild+')'}" style="background-repeat: no-repeat; background-size: 100% auto; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px" class="col-sm-12" menuitem>
+                            <div class="well gerichteWell">
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <b>{{gericht.bezeichnung}}</b><br>
+                                        {{gericht.beschreibung}}
+                                    </div>
+                                    <div class="col-xs-2 gerichteWell well-sm">
+                                        <b>{{gericht.preis}}€</b>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" data-target="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only" translate>OASP.PREVIOUS</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-target="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only" translate>OASP.NEXT</span>
-                </a>
             </div>
         </div>
     </div>
