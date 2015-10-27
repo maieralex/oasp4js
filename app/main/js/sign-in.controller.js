@@ -36,12 +36,14 @@ angular.module('app.main')
     });
 
 angular.module('app.main').directive('menu', function(){
+        'use strict';
         return function (scope, element, attrs) {
             element.height($(window).height() - $('.navbar-fixed-top').outerHeight() - '75');
         }
     });
 //Change the height of menuItems to fit the screen
 angular.module('app.main').directive('menuitem', function(){
+    'use strict';
     return function (scope, element, attrs) {
         element.height(($(window).height() - $('.navbar-fixed-top').outerHeight() - '75')/ scope.quantity);
     }
