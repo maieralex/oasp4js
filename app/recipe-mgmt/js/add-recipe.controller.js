@@ -5,7 +5,7 @@ angular.module('app.recipe-mgmt')
         $scope.recipeName = '';
         $scope.recipeDescription = '';
         $scope.recipePrice = '';
-        $scope.recipeImage = '';
+        //$scope.recipeImage = '';
 
         $scope.findRecipes = function() {
         	console.log(recipes.loadRecipe(0));
@@ -16,7 +16,7 @@ angular.module('app.recipe-mgmt')
         					"name": $scope.recipeName,
         					"description": $scope.recipeDescription,
         					"price": $scope.recipePrice,
-        					"image": $scope.recipeImage
+        					"image": null //$scope.recipeImage
         				};
         	recipes.saveRecipe(recipe);
         }
