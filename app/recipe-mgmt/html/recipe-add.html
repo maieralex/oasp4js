@@ -9,21 +9,21 @@
 	<form method="post" action="#">
 		<div class="form-group">
 			<label translate>RECIPE_MGMT.TITLE</label>
-			<input class="form-control" type="text" name="title">
+			<input ng-model="recipeName" class="form-control" type="text" name="title">
 		</div>
 		<div class="form-group">
 			<label translate>RECIPE_MGMT.DESCRIPTION</label>
-			<textarea class="form-control" name="description"></textarea>
+			<textarea ng-model="recipeDescription" class="form-control" name="description"></textarea>
 		</div>
 		<div class="form-group">
 			<label translate>RECIPE_MGMT.PRICE</label>
-			<input class="form-control" type="text" name="price">
+			<input ng-model="recipePrice" class="form-control" type="text" name="price">
 		</div>
         <div class="form-group">
             <label translate>RECIPE_MGMT.IMAGE</label>
-            <input type="file" name="image">
+            <input ng-model="recipeImage" type="file" name="image">
         </div>
-		<button class="btn btn-primary" ng-click="submit()" translate>
+		<button type="button" class="btn btn-primary" ng-click="saveRecipe()" translate>
             RECIPE_MGMT.SUBMIT
         </button>
 	</form>
