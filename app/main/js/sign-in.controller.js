@@ -34,17 +34,3 @@ angular.module('app.main')
 
 
     });
-
-angular.module('app.main').directive('menu', function($window){
-        'use strict';
-        return function (scope, element) {
-            element.height($($window).height() - $('.navbar-fixed-top').outerHeight() - '75');
-        };
-    });
-//Change the height of menuItems to fit the screen
-angular.module('app.main').directive('menuitem', function($window){
-    'use strict';
-    return function (scope, element) {
-        element.height(($($window).height() - $('.navbar-fixed-top').outerHeight() - '75')/ scope.quantity);
-    };
-});
