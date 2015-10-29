@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('AddRecipeCntl', function ($scope, recipes, $document) {
+    .controller('RecipeAddCntl', function ($scope, recipes, $window) {
         'use strict';
 
         $scope.recipeName = '';
@@ -10,7 +10,7 @@ angular.module('app.recipe-mgmt')
 
         $scope.imageBusy = false;
 
-        $document.getElementById('recipeImage').addEventListener('change', function(event) {
+        $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
         	var file = event.target.files[0];
         	var reader = new FileReader();
         	reader.onload = function(e) {
