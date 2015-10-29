@@ -1,5 +1,5 @@
 angular.module('app.main')
-    .controller('SignInCntl', function ($scope, $location, appContext, signIn) {
+    .controller('SignInCntl', function ($scope, $location, appContext, signIn, gerichteListe) {
         'use strict';
         signIn($scope, function () {
             appContext.getCurrentUser().then(function (currentUser) {
@@ -32,5 +32,5 @@ angular.module('app.main')
         };
         $scope.shuffledGerichteListe = $scope.shuffleArray($scope.gerichteListe);
 
-
+            gerichteListe.loadGerichteListe($scope.quantity);
     });
