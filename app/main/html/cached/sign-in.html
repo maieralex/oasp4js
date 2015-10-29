@@ -28,16 +28,16 @@
                     OASP.TOPSELLER
                 </div>
                 <div class="col-xs-10">
-                    <div ng-repeat="gericht in shuffledGerichteListe | limitTo: quantity" class="row">
-                        <div ng-style="{'background-image':'url('+gericht.bild+')'}" style="background-repeat: no-repeat; background-size: 100% auto; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px" class="col-sm-12" menuitem>
+                    <div ng-repeat="gericht in gerichteListe | limitTo: quantity" class="row">
+                        <div ng-style="{'background-image':'url('+gericht.imageId+')'}" style="background-repeat: no-repeat; background-size: 100% auto; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px" class="col-sm-12" menuitem>
                             <div class="well gerichteWell">
                                 <div class="row">
                                     <div class="col-xs-10">
-                                        <b>{{gericht.bezeichnung}}</b><br>
-                                        {{gericht.beschreibung}}
+                                        <b>{{gericht.name}}</b><br>
+                                        {{gericht.description}}
                                     </div>
                                     <div class="col-xs-2 gerichteWell well-sm">
-                                        <b>{{gericht.preis}}€</b>
+                                        <b>{{gericht.price}}€</b>
                                     </div>
                                 </div>
                             </div>
