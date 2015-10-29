@@ -27,6 +27,8 @@ angular.module('app.main').factory('gerichteListe', function (gerichteListeRestS
             var returnArray = [];
             for (var i=0; i < (listLength); i++) {
                 gerichteListeRestService.getRecipe(i).then(function(response) {
+                    //dreckiger fallback auf eine fixe URL, sollte imageId null sein.
+                    if (response.data.imageId == null) response.data.imageId = "http://files.schwedenmut.de/fallback.jpg"
                     returnArray.push(response.data);
                 });
             }
