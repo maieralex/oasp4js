@@ -5,7 +5,7 @@
 angular.module('app.main').directive('menu', function($window){
     'use strict';
     return function (scope, element) {
-        element.height($($window).height() - $('.navbar-fixed-top').outerHeight() - '75');
+        element.height($($window).height() - $('.navbar-fixed-top').outerHeight() - '100');
     };
 });
 
@@ -13,6 +13,6 @@ angular.module('app.main').directive('menu', function($window){
 angular.module('app.main').directive('menuitem', function($window){
     'use strict';
     return function (scope, element) {
-        element.height(($($window).height() - $('.navbar-fixed-top').outerHeight() - '75')/ scope.quantity);
+        element.height(($($window).height() - $('.navbar-fixed-top').outerHeight() - '100')/ scope.quantity);
     };
 });
