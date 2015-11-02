@@ -30,6 +30,7 @@ angular.module('app.main').factory('gerichteListe', function (gerichteListeRestS
                     //dreckiger fallback auf eine fixe URL, sollte imageId null sein.
                     if (response.data.imageId == null) response.data.imageId = "http://files.schwedenmut.de/fallback.jpg"
                     returnArray.push(response.data);
+                    //console.log(response.data);
                 });
             }
             return returnArray;
