@@ -94,7 +94,7 @@ body {
 }
 
 .recipe-list {
-    margin-top: 50px;
+    margin-top: @top-padding;
 }
 
 .recipe-list-group-item {
@@ -109,4 +109,21 @@ body {
         color: @list-group-link-hover-color;
         background-color: @list-group-hover-bg;
     }
+}
+
+.recipe-list-topbar-container-sticky {
+    position: sticky;
+    top: @top-padding;
+    width: 100%;
+    min-height: @top-padding * 2;
+    background-color: white;
+    z-index: 999;
+}
+
+.recipe-list-topbar {
+    position: relative;
+    top: @top-padding;
+    width: 100%;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }

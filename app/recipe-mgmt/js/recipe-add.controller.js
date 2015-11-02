@@ -44,7 +44,7 @@ angular.module('app.recipe-mgmt')
         //Recipe Table List
 
 
-        $scope.numPerPage = 3;
+        $scope.numPerPage = 1;
         $scope.currentPage = 1;
         $scope.totalItems = 5; //getTotal ToDo
 
@@ -64,7 +64,6 @@ angular.module('app.recipe-mgmt')
             $scope.reloadRecipes();
         });
 
-
         $scope.selectedRecipes = [];
 
         $scope.selectRecipe = function(id, multisel) {
@@ -80,6 +79,9 @@ angular.module('app.recipe-mgmt')
             return $scope.selectedRecipes.indexOf(id) != -1 ? 'active' : 'inactive';
         };
 
-
+        $scope.setNumPerPage = function (numPerPage) {
+            $scope.numPerPage = numPerPage;
+            $scope.reloadRecipes();
+        };
 
     });
