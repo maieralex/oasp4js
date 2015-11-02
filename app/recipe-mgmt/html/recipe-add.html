@@ -32,16 +32,16 @@
         </div>
     </div>
     <div class="col-md-7">
-        <div class="list-group recipe-list" data-ng-controller="RecipeListCntl">
+        <div class="list-group recipe-list" data-ng-controller="RecipeListCntl" ng-init="reloadRecipes()">
             <div class="row list-group-item recipe-list-group-item"
-                 data-ng-repeat="recipe in recipes"
+                 data-ng-repeat="recipe in recipesList"
                  data-ng-click="selectRecipe(recipe.id, false)"
                  data-ng-class="getState(recipe.id)">
                 <div class="col-md-3" style="padding: 0px;">
-                    <img class="list-group-item-text img-responsive" data-ng-src="{{recipe.image}}" alt="NO IMAGE AVAILABLE">
+                    <img class="list-group-item-text img-responsive" data-ng-src="main/img/pizza.jpg" alt="NO IMAGE AVAILABLE">
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
-                    <h4 class="list-group-item-heading">{{recipe.title}}</h4>
+                    <h4 class="list-group-item-heading">{{recipe.name}}</h4>
                     <p class="list-group-item-text">{{recipe.description}}</p>
                 </div>
                 <div class="col-md-3" style="padding: 15px;">
@@ -49,6 +49,10 @@
                 </div>
             </div>
         </div>
+
+        <!--ToDo:
+        <pagination total-items="totalItems" items-per-page="numPerPage" ng-model="currentPage" num-pages="numPages" class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
+         -->
     </div>
 </div>
 </body>

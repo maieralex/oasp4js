@@ -9,6 +9,16 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         },
         saveRecipe: function (recipe) {
             return $http.post(servicePath + '/recipe', recipe);
+        },
+        getPaginatedRecipes: function (pagenumber, pagesize) {
+            var recipeSearchCriteria = {
+                pagination: {
+                    size: pagesize,
+                    page: pagenumber,
+                    total: true
+                }
+            };
+            return $http.post(servicePath + '/recipe/search', recipeSearchCriteria);
         }
     };
 });
