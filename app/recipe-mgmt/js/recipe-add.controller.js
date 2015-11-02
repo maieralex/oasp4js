@@ -39,4 +39,47 @@ angular.module('app.recipe-mgmt')
         				};
         	recipes.saveRecipe(recipe);
         };
+
+
+        //Recipe Table List
+
+
+        $scope.numPerPage = 3;
+        $scope.currentPage = 1;
+        $scope.totalItems = 5; //getTotal ToDo
+
+
+        $scope.recipesList = [];
+
+        $scope.reloadRecipes = function () {
+            recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
+                return paginatedRecipes;
+            }).then(function (res) {
+                $scope.recipesList = res.result;
+                console.log(res.result);
+            });
+        };
+
+        $scope.$watch('currentPage', function () {
+            $scope.reloadRecipes();
+        });
+
+
+        $scope.selectedRecipes = [];
+
+        $scope.selectRecipe = function(id, multisel) {
+            if(!multisel) {
+                $scope.selectedRecipes.pop();
+            }
+
+            var idx = $scope.selectedRecipes.indexOf(id);
+            idx == -1 ? $scope.selectedRecipes.push(id) : $scope.selectedRecipes.splice(idx, 1);
+        };
+
+        $scope.getState = function(id) {
+            return $scope.selectedRecipes.indexOf(id) != -1 ? 'active' : 'inactive';
+        };
+
+
+
     });
