@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($scope, recipes, $window) {
+    .controller('RecipeAddCntl', function ($scope, $log, offers, recipes, $window) {
         'use strict';
 
         $scope.recipeName = '';
@@ -27,7 +27,9 @@ angular.module('app.recipe-mgmt')
         }, false);
 
         $scope.findRecipes = function() {
-        	console.log(recipes.loadRecipe(0));
+        	recipes.loadRecipe(0).then(function(data) {
+                $log.log(data);
+            });
         };
 
         $scope.saveRecipe = function() {
@@ -39,4 +41,10 @@ angular.module('app.recipe-mgmt')
         				};
         	recipes.saveRecipe(recipe);
         };
+
+        $scope.temporaryGetProduct = function() {
+            offers.getProduct(4).then(function(data) {
+                $log.log(data);
+            });
+        }
     });
