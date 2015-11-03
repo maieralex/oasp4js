@@ -12,9 +12,6 @@ angular.module('app.offer-mgmt').factory('offerManagementRestService', function 
         },
         getProduct: function(id) {
             return $http.get(servicePath + '/product/' + id);
-        },
-        getProductPicture: function(id) {
-            return $http.get(servicePath + '/product/' + id + '/picture');
         }
     };
 });

@@ -19,6 +19,12 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
                 }
             };
             return $http.post(servicePath + '/recipe/search', recipeSearchCriteria);
+        },
+        getRecipePicture: function(id) {
+            return $http.get(servicePath + '/recipe/' + id + '/picture');
+        },
+        getRecipePictureBytes: function(id) {
+            return $http.get(servicePath + '/recipe/' + id + '/pictureBytes');
         }
     };
 });

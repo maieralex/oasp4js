@@ -43,10 +43,14 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.temporaryGetProduct = function() {
+            /*
             offers.getProduct(4).then(function(data) {
                 $log.log(data);
+            });*/
+            recipes.loadRecipe(1).then(function(data) {
+                $log.log(data);
             });
-        }
+        };
 
         //Recipe Table List
 

@@ -5,6 +5,13 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
     return {
         loadRecipe: function (recipeId) {
             return recipeManagementRestService.getRecipe(recipeId).then(function (response) {
+                if(response.data.pictureId !== null) {
+                    return recipeManagementRestService.getRecipePictureBytes(recipeId).then(function(pResponse) {
+                        return pResponse.data;
+                    }).then(function(pictureData) {
+                        console.log(pictureData);
+                    });
+                }
                 return response.data;
             });
         },
@@ -19,6 +26,6 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                 angular.copy(response.data, paginatedRecipes);
                 return paginatedRecipes;
             });
-        }
+        },
     };
 });
