@@ -5,29 +5,89 @@
     <title></title>
 </head>
 <body>
-<div class="well" id="recipeForm">
-	<form method="post" action="#">
-		<div class="form-group">
-			<label translate>RECIPE_MGMT.TITLE</label>
-			<input ng-model="recipeName" class="form-control" type="text" name="title">
-		</div>
-		<div class="form-group">
-			<label translate>RECIPE_MGMT.DESCRIPTION</label>
-			<textarea ng-model="recipeDescription" class="form-control" name="description"></textarea>
-		</div>
-		<div class="form-group">
-			<label translate>RECIPE_MGMT.PRICE</label>
-			<input ng-model="recipePrice" class="form-control" type="text" name="price">
-		</div>
-        <div class="form-group">
-            <label translate>RECIPE_MGMT.IMAGE</label>
-            <input ng-model="recipeImage" type="file" name="image" id="recipeImage">
+<div class="row">
+    <div class="col-md-5">
+        <div class="well" id="recipeForm" style="position: fixed">
+            <form method="post" action="#">
+                <div class="form-group">
+                    <label translate>RECIPE_MGMT.TITLE</label>
+                    <input ng-model="recipeName" class="form-control" type="text" name="title">
+                </div>
+                <div class="form-group">
+                    <label translate>RECIPE_MGMT.DESCRIPTION</label>
+                    <textarea ng-model="recipeDescription" class="form-control" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label translate>RECIPE_MGMT.PRICE</label>
+                    <input ng-model="recipePrice" class="form-control" type="text" name="price">
+                </div>
+                <div class="form-group">
+                    <label translate>RECIPE_MGMT.IMAGE</label>
+                    <input ng-model="recipeImage" type="file" name="image" id="recipeImage">
+                </div>
+                <button type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary" ng-click="saveRecipe()" translate>
+                    RECIPE_MGMT.SUBMIT
+                </button>
+            </form>
         </div>
+<<<<<<< HEAD
 		<button type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary" ng-click="saveRecipe()" translate>
             RECIPE_MGMT.SUBMIT
         </button>
         <button type="button" ng-click="temporaryGetProduct()">asdasd</button>
 	</form>
+=======
+    </div>
+    <div class="col-md-7" style="padding-right: 0; padding-left: 0;">
+        <div class="recipe-list-topbar-container-sticky">
+            <nav class="navbar navbar-default recipe-list-topbar">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <span class="navbar-brand">Recipes</span>
+                    </div>
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown" dropdown>
+                            <a class="dropdown-toggle"
+                               dropdown-toggle
+                               data-toggle="dropdown"
+                               role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">{{numPerPage}} item(s) <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
+                                <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
+                                <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
+                                <!--
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Show all</a></li>
+                                -->
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="list-group">
+            <div class="row list-group-item recipe-list-group-item"
+                 data-ng-repeat="recipe in recipesList"
+                 data-ng-click="selectRecipe(recipe.id, false)"
+                 data-ng-class="getState(recipe.id)">
+                <div class="col-md-3" style="padding: 0px;">
+                    <img class="list-group-item-text img-responsive" data-ng-src="main/img/pizza.jpg" alt="NO IMAGE AVAILABLE">
+                </div>
+                <div class="col-md-6" style="padding: 15px; max-height: 100px;">
+                    <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+                    <p class="list-group-item-text">{{recipe.description}}</p>
+                </div>
+                <div class="col-md-3" style="padding: 15px;">
+                    <h4 class="list-group-item-heading pull-right">{{recipe.price}}</h4>
+                </div>
+            </div>
+        </div>
+        <pagination total-items="totalItems" items-per-page="numPerPage" data-ng-model="currentPage" num-pages="numPages" class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
+    </div>
+>>>>>>> 340a94fbcd5e9dc9db89b2bc8af9b683640e1d1f
 </div>
 </body>
 </html>

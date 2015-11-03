@@ -23,23 +23,16 @@
             </form>
   		</div>
         <div class="col-md-8">
-            <div class="row" menu>
+            <div menu>
                 <div class="col-xs-2 asc" translate>
                     OASP.TOPSELLER
                 </div>
                 <div class="col-xs-10">
-                    <div ng-repeat="gericht in shuffledGerichteListe | limitTo: quantity" class="row">
-                        <div ng-style="{'background-image':'url('+gericht.bild+')'}" style="background-repeat: no-repeat; background-size: 100% auto; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px" class="col-sm-12" menuitem>
-                            <div class="well gerichteWell">
-                                <div class="row">
-                                    <div class="col-xs-10">
-                                        <b>{{gericht.bezeichnung}}</b><br>
-                                        {{gericht.beschreibung}}
-                                    </div>
-                                    <div class="col-xs-2 gerichteWell well-sm">
-                                        <b>{{gericht.preis}}€</b>
-                                    </div>
-                                </div>
+                    <div ng-repeat="gericht in gerichteListe | limitTo: quantity" class="row">
+                        <div ng-style="{'background-image':'url('+gericht.imageId+')'}"  class="col-sm-12 menu-list-group-item" menuitem>
+                            <div class="menu-list-group-item-description">
+                                <h1>{{gericht.name}}</h1>
+                                <p class="description">{{gericht.description}}</p><h2 class="price">{{gericht.price}}</h2>
                             </div>
                         </div>
                     </div>
