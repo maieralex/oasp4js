@@ -9,7 +9,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                     return recipeManagementRestService.getRecipePictureBytes(recipeId).then(function(pResponse) {
                         return pResponse.data;
                     }).then(function(pictureData) {
-                        console.log(pictureData);
+                        var reader = new FileReader();
+                        reader.readAsBinaryString(pictureData);
+                        reader.onloadend = function(picture) {
+                            return picture;
+                        };
                     });
                 }
                 return response.data;
