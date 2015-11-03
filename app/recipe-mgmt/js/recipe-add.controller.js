@@ -47,7 +47,7 @@ angular.module('app.recipe-mgmt')
             offers.getProduct(4).then(function(data) {
                 $log.log(data);
             });*/
-            recipes.loadRecipe(1).then(function(data) {
+            recipes.loadRecipe(4).then(function(data) {
                 $log.log(data);
             });
         };

@@ -28,15 +28,9 @@
                 <button type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary" ng-click="saveRecipe()" translate>
                     RECIPE_MGMT.SUBMIT
                 </button>
+                <button type="button" ng-click="temporaryGetProduct()">asdasd</button>
             </form>
         </div>
-<<<<<<< HEAD
-		<button type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary" ng-click="saveRecipe()" translate>
-            RECIPE_MGMT.SUBMIT
-        </button>
-        <button type="button" ng-click="temporaryGetProduct()">asdasd</button>
-	</form>
-=======
     </div>
     <div class="col-md-7" style="padding-right: 0; padding-left: 0;">
         <div class="recipe-list-topbar-container-sticky">
@@ -78,6 +72,7 @@
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
                     <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+
                     <p class="list-group-item-text">{{recipe.description}}</p>
                 </div>
                 <div class="col-md-3" style="padding: 15px;">
@@ -85,9 +80,9 @@
                 </div>
             </div>
         </div>
-        <pagination total-items="totalItems" items-per-page="numPerPage" data-ng-model="currentPage" num-pages="numPages" class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
+        <pagination total-items="totalItems" items-per-page="numPerPage" data-ng-model="currentPage" num-pages="numPages"
+                    class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
     </div>
->>>>>>> 340a94fbcd5e9dc9db89b2bc8af9b683640e1d1f
 </div>
 </body>
 </html>
