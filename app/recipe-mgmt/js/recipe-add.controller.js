@@ -67,6 +67,7 @@ angular.module('app.recipe-mgmt')
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
+                $scope.totalItems = res.pagination.total;
                 console.log(res.result);
             });
         };
