@@ -8,7 +8,7 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
             return $http.get(servicePath + '/recipe/' + id);
         },
         saveRecipe: function (recipe) {
-            return $http.post(servicePath + '/recipe', recipe);
+            return $http.post(servicePath + '/recipe/', recipe);
         },
         saveRecipePicture: function(id, image) {
             return $http.post(servicePath + '/recipe/' + id + '/picture');

@@ -37,9 +37,10 @@ angular.module('app.recipe-mgmt')
         					'name': $scope.recipeName,
         					'description': $scope.recipeDescription,
         					'price': $scope.recipePrice,
-        					'image': $scope.recipeImage
+        					'imageId': 10 //TODO Pascal: change to image ID.
         				};
-        	recipes.saveRecipe(recipe);
+        	recipes.saveRecipe(recipe).then($scope.reloadRecipes);
+
         };
 
         $scope.temporaryGetProduct = function() {

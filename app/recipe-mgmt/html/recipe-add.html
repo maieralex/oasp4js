@@ -31,7 +31,6 @@
                 <button type="button" ng-click="temporaryGetProduct()">asdasd</button>
             </form>
         </div>
-	</form>
     </div>
     <div class="col-md-7" style="padding-right: 0; padding-left: 0;">
         <div class="recipe-list-topbar-container-sticky">
@@ -73,6 +72,7 @@
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
                     <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+
                     <p class="list-group-item-text">{{recipe.description}}</p>
                 </div>
                 <div class="col-md-3" style="padding: 15px;">
@@ -80,7 +80,8 @@
                 </div>
             </div>
         </div>
-        <pagination total-items="totalItems" items-per-page="numPerPage" data-ng-model="currentPage" num-pages="numPages" class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
+        <pagination total-items="totalItems" items-per-page="numPerPage" data-ng-model="currentPage" num-pages="numPages"
+                    class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
     </div>
 </div>
 </body>
