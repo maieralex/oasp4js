@@ -11,19 +11,7 @@ angular.module('app.recipe-mgmt')
         $scope.imageBusy = false;
 
         $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
-        	var file = event.target.files[0];
-        	var reader = new FileReader();
-        	reader.onload = function(e) {
-        		$scope.recipeImage = e.target.result;
-        	};
-        	reader.onloadstart = function() {
-        		$scope.imageBusy = true;
-        	};
-        	reader.onloadend = function() {
-        		$scope.imageBusy = false;
-        	};
-        	// Convert image to BASE64
-        	reader.readAsDataURL(file);
+            $scope.recipeImage = event.target.files[0];
         }, false);
 
         $scope.findRecipes = function() {
@@ -37,7 +25,8 @@ angular.module('app.recipe-mgmt')
         					'name': $scope.recipeName,
         					'description': $scope.recipeDescription,
         					'price': $scope.recipePrice,
-        					'imageId': 10 //TODO Pascal: change to image ID.
+                            'image': $scope.recipeImage,
+        					//'imageId': 10 //TODO Pascal: change to image ID.
         				};
         	recipes.saveRecipe(recipe).then($scope.reloadRecipes);
 

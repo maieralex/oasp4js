@@ -24,10 +24,16 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
             });
         },
         saveRecipe: function(recipe) {
-            var image = recipe.image;
-            delete recipe.image;
-        	return recipeManagementRestService.saveRecipe(recipe).then(function(response) {
-        		return response.data;
+            var recipeDto = angular.copy(recipe);
+            delete recipeDto.image;
+        	return recipeManagementRestService.saveRecipe(recipeDto).then(function(response) {
+                var newId = response.data.id;
+                if(recipe.image === null)
+                    return response.data;
+                else
+                    return recipeManagementRestService.saveRecipePicture(newId, recipe.image).then(function(pResponse) {
+                        return response.data;
+                    });
         	});
         },
 
