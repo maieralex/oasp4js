@@ -13,21 +13,21 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         saveRecipePicture: function(id, image) {
             var boundary = 'uuid:' + Date.now();
             var header = {
-                'content-type': 'multipart/mixed; charset=utf-8; boundary=' + boundary
+                'content-type': 'multipart/mixed; charset=UTF-8; boundary=' + boundary
             }
             var deferred = $q.defer();
             var reader = new FileReader();
             reader.onloadend = function(event) {
                 var data = '--' + boundary + "\r\n"
-                            + 'Content-Type: application/json' + "\r\n"
+                            + 'Content-Type: application/json;charset=UTF-8' + "\r\n"
                             + 'Content-Transfer-Encoding: binary' + "\r\n"
-                            + 'Content-ID: <binaryObjectEto>' + "\r\n"
-                            + JSON.stringify({'type': image.type, 'size': image.size, 'name': image.name, 'lastModified': image.lastModified}) + "\r\n"
+                            + 'Content-ID: <binaryObjectEto>' + "\r\n\r\n"
+                            + JSON.stringify({'type': image.type, 'size': image.size, 'name': image.name, 'lastModified': image.lastModified}) + "\r\n\r\n"
                          + '--' + boundary + "\r\n"
                             + 'Content-Type: application/octet-stream' + "\r\n"
                             + 'Content-Transfer-Encoding: binary' + "\r\n"
-                            + 'Content-ID: <blob>' + "\r\n"
-                            + "\r\n" + event.target.result
+                            + 'Content-ID: <blob>' + "\r\n\r\n"
+                            + event.target.result
                             + "\r\n\r\n" + '--' + boundary + '--';
                             console.log(data);
                 deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', data, {headers: header}));
