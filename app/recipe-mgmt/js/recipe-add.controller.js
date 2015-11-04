@@ -11,19 +11,7 @@ angular.module('app.recipe-mgmt')
         $scope.imageBusy = false;
 
         $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
-        	var file = event.target.files[0];
-        	var reader = new FileReader();
-        	reader.onload = function(e) {
-        		$scope.recipeImage = e.target.result;
-        	};
-        	reader.onloadstart = function() {
-        		$scope.imageBusy = true;
-        	};
-        	reader.onloadend = function() {
-        		$scope.imageBusy = false;
-        	};
-        	// Convert image to BASE64
-        	reader.readAsDataURL(file);
+            $scope.recipeImage = event.target.files[0];
         }, false);
 
         $scope.findRecipes = function() {
@@ -37,7 +25,8 @@ angular.module('app.recipe-mgmt')
         					'name': $scope.recipeName,
         					'description': $scope.recipeDescription,
         					'price': $scope.recipePrice,
-        					'imageId': 10 //TODO Pascal: change to image ID.
+                            'image': $scope.recipeImage,
+        					//'imageId': 10 //TODO Pascal: change to image ID.
         				};
         	recipes.saveRecipe(recipe).then($scope.reloadRecipes);
 
@@ -49,7 +38,7 @@ angular.module('app.recipe-mgmt')
                 $log.log(data);
             });*/
             recipes.loadRecipe(4).then(function(data) {
-                $log.log(data);
+                console.log(data);
             });
         };
 
@@ -64,12 +53,11 @@ angular.module('app.recipe-mgmt')
         $scope.recipesList = [];
 
         $scope.reloadRecipes = function () {
-            recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
+            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
                 $scope.totalItems = res.pagination.total;
-                console.log(res.result);
             });
         };
 

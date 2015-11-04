@@ -1,7 +1,8 @@
 angular.module('app.main', ['ngRoute', 'oasp.oaspUi', 'oasp.oaspSecurity', 'app.main.templates', 'oasp.oaspI18n', 'ui.bootstrap'])
     .constant('SIGN_IN_DLG_PATH', '/main/sign-in')
-    .config(function (SIGN_IN_DLG_PATH, $routeProvider, oaspTranslationProvider) {
+    .config(function (SIGN_IN_DLG_PATH, $routeProvider, oaspTranslationProvider, $httpProvider) {
         'use strict';
+
         $routeProvider
             .when('/', {
                 templateUrl: 'main/html/blank.html',
@@ -32,4 +33,5 @@ angular.module('app.main', ['ngRoute', 'oasp.oaspUi', 'oasp.oaspSecurity', 'app.
                 }
             ]
         );
+        /*$httpProvider.interceptors.push('sessionInjector');*/
     });

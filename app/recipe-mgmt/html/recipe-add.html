@@ -7,7 +7,7 @@
 <body>
 <div class="row">
     <div class="col-md-5">
-        <div class="well" id="recipeForm" style="position: fixed">
+        <div class="well" id="recipeForm">
             <form method="post" action="#">
                 <div class="form-group">
                     <label translate>RECIPE_MGMT.TITLE</label>
@@ -68,7 +68,7 @@
                  data-ng-click="selectRecipe(recipe.id, false)"
                  data-ng-class="getState(recipe.id)">
                 <div class="col-md-3" style="padding: 0px;">
-                    <img class="list-group-item-text img-responsive" data-ng-src="main/img/pizza.jpg" alt="NO IMAGE AVAILABLE">
+                    <img class="list-group-item-text img-responsive" ng-show="recipe.image" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
                     <h4 class="list-group-item-heading">{{recipe.name}}</h4>
