@@ -37,7 +37,7 @@ angular.module('app.recipe-mgmt')
         					'name': $scope.recipeName,
         					'description': $scope.recipeDescription,
         					'price': $scope.recipePrice,
-        					//'image': $scope.recipeImage
+        					'image': $scope.recipeImage
         				};
         	recipes.saveRecipe(recipe);
         };
@@ -48,7 +48,7 @@ angular.module('app.recipe-mgmt')
                 $log.log(data);
             });*/
             recipes.loadRecipe(4).then(function(data) {
-                $log.log(data);
+                console.log(data);
             });
         };
 
@@ -63,12 +63,11 @@ angular.module('app.recipe-mgmt')
         $scope.recipesList = [];
 
         $scope.reloadRecipes = function () {
-            recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
+            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
                 $scope.totalItems = res.pagination.total;
-                console.log(res.result);
             });
         };
 

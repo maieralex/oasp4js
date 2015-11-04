@@ -10,6 +10,9 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         saveRecipe: function (recipe) {
             return $http.post(servicePath + '/recipe', recipe);
         },
+        saveRecipePicture: function(id, image) {
+            return $http.post(servicePath + '/recipe/' + id + '/picture');
+        },
         getPaginatedRecipes: function (pagenumber, pagesize) {
             var recipeSearchCriteria = {
                 pagination: {
@@ -24,7 +27,12 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
             return $http.get(servicePath + '/recipe/' + id + '/picture');
         },
         getRecipePictureBytes: function(id) {
-            return $http.get(servicePath + '/recipe/' + id + '/pictureBytes');
+            return $http.get(servicePath + '/recipe/' + id + '/pictureBytes', {
+                transformResponse: [function (data) {
+                    return data;
+                }],
+                responseType: 'blob'
+            });
         }
     };
 });
