@@ -6,6 +6,9 @@ angular.module('app.main').factory('gerichteListeRestService', function ($http, 
     return {
         getRecipe: function (id) {
             return $http.get(servicePath + '/recipe/' + id);
+        },
+        getRecipePicture: function (id) {
+            return $http.get(servicePath + '/recipe/' + id + '/picture');
         }
     };
 });
