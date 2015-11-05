@@ -73,11 +73,11 @@ angular.module('app.recipe-mgmt')
             }
 
             var idx = $scope.selectedRecipes.indexOf(id);
-            idx == -1 ? $scope.selectedRecipes.push(id) : $scope.selectedRecipes.splice(idx, 1);
+            idx === -1 ? $scope.selectedRecipes.push(id) : $scope.selectedRecipes.splice(idx, 1);
         };
 
         $scope.getState = function(id) {
-            return $scope.selectedRecipes.indexOf(id) != -1 ? 'active' : 'inactive';
+            return $scope.selectedRecipes.indexOf(id) !== -1 ? 'active' : 'inactive';
         };
 
         $scope.setNumPerPage = function (numPerPage) {

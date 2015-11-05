@@ -13,7 +13,9 @@ angular.module('app.main')
                 gerichteListeRestService.getRecipe(i).then(function(response) {
                     //dreckiger fallback auf eine fixe URL, sollte imageId null sein.
 
-                    if (response.data.imageId == null) response.data.imageId = "http://files.schwedenmut.de/fallback.jpg"
+                    if (response.data.imageId === null) {
+                        response.data.imageId = 'http://files.schwedenmut.de/fallback.jpg';
+                    }
                     returnArray.push(response.data);
                     console.log(response.data);
                 });
@@ -24,9 +26,10 @@ angular.module('app.main')
             }
             return returnArray;
         }
-    }
-})/*
+    };
+})
     .factory('sessionInjector', function($q, oaspUnauthenticatedRequestResender) {
+        'use strict';
         return {
             responseError: function (response) {
                 var originalRequest;
@@ -35,8 +38,9 @@ angular.module('app.main')
                     console.log(response.config);
                     originalRequest = response.config;
                     return oaspUnauthenticatedRequestResender.addRequest(originalRequest);
-                } else
-                return $q.reject(response);
+                } else {
+                    return $q.reject(response);
+                }
             }
         };
-    });*/
+    });
