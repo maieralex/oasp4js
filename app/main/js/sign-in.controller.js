@@ -1,5 +1,5 @@
 angular.module('app.main')
-    .controller('SignInCntl', function ($scope, $location, appContext, signIn, gerichteListe) {
+    .controller('SignInCntl', function ($scope, $location, appContext, signIn, recipeList) {
         'use strict';
         signIn($scope, function () {
             appContext.getCurrentUser().then(function (currentUser) {
@@ -10,6 +10,6 @@ angular.module('app.main')
         //How many Items to display
         $scope.quantity = 3;
 
-        $scope.gerichteListe = gerichteListe.loadGerichteListe($scope.quantity);
-        console.log($scope.gerichteListe);
+        $scope.recipeList = recipeList.loadRecipeList($scope.quantity);
+        console.log($scope.recipeList);
     });

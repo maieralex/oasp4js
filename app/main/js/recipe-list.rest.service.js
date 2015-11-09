@@ -1,4 +1,4 @@
-angular.module('app.main').factory('gerichteListeRestService', function ($http, currentContextPath) {
+angular.module('app.main').factory('recipeListRestService', function ($http, currentContextPath) {
     'use strict';
 
     var servicePath = currentContextPath.get() + 'services/rest/recipemanagement/v1';

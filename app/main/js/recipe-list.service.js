@@ -1,16 +1,16 @@
 angular.module('app.main')
-    .factory('gerichteListe', function (gerichteListeRestService) {
+    .factory('recipeList', function (recipeListRestService) {
     'use strict';
     return {
         loadRecipe: function (recipeId) {
-            return gerichteListeRestService.getRecipe(recipeId).then(function (response) {
+            return recipeListRestService.getRecipe(recipeId).then(function (response) {
                 return response.data;
             });
         },
-        loadGerichteListe : function (listLength) {
+        loadRecipeList : function (listLength) {
             var returnArray = [];
             for (var i=0; i < (listLength); i++) {
-                gerichteListeRestService.getRecipe(i).then(function(response) {
+                recipeListRestService.getRecipe(i).then(function(response) {
                     //dreckiger fallback auf eine fixe URL, sollte imageId null sein.
 
                     if (response.data.imageId === null) {
@@ -19,10 +19,6 @@ angular.module('app.main')
                     returnArray.push(response.data);
                     console.log(response.data);
                 });
-                /*gerichteListeRestService.getRecipePicture(i).then(function(response) {
-                    return response;
-                    //console.log(response);
-                })*/
             }
             return returnArray;
         }

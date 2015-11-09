@@ -28,11 +28,11 @@
                     OASP.TOPSELLER
                 </div>
                 <div class="col-xs-10">
-                    <div ng-repeat="gericht in gerichteListe | limitTo: quantity" class="row">
-                        <div ng-style="{'background-image':'url('+gericht.imageId+')'}"  class="col-sm-12 menu-list-group-item" menuitem>
+                    <div ng-repeat="recipe in recipeList | limitTo: quantity" class="row">
+                        <div ng-style="{'background-image':'url('+recipe.imageId+')'}"  class="col-sm-12 menu-list-group-item" menuitem>
                             <div class="menu-list-group-item-description">
-                                <h1>{{gericht.name}}</h1>
-                                <p class="description">{{gericht.description}}</p><h2 class="price">{{gericht.price}}</h2>
+                                <h1>{{recipe.name}}</h1>
+                                <p class="description">{{recipe.description}}</p><h2 class="price">{{recipe.price}}</h2>
                             </div>
                         </div>
                     </div>
