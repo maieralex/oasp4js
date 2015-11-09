@@ -15,28 +15,12 @@ angular.module('app.main')
 
                     if (response.data.imageId === null) {
                         response.data.imageId = 'http://files.schwedenmut.de/fallback.jpg';
+                        //response.data.imageId = recipeListRestService.getRecipePictureBytes(i);
                     }
                     returnArray.push(response.data);
-                    console.log(response.data);
                 });
             }
             return returnArray;
         }
     };
 })
-    .factory('sessionInjector', function($q, oaspUnauthenticatedRequestResender) {
-        'use strict';
-        return {
-            responseError: function (response) {
-                var originalRequest;
-                console.log(response.status);
-                if (response.status === 403) {
-                    console.log(response.config);
-                    originalRequest = response.config;
-                    return oaspUnauthenticatedRequestResender.addRequest(originalRequest);
-                } else {
-                    return $q.reject(response);
-                }
-            }
-        };
-    });

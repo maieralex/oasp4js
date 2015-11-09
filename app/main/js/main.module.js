@@ -33,5 +33,4 @@ angular.module('app.main', ['ngRoute', 'oasp.oaspUi', 'oasp.oaspSecurity', 'app.
                 }
             ]
         );
-        /*$httpProvider.interceptors.push('sessionInjector');*/
     });

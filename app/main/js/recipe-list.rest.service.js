@@ -7,8 +7,13 @@ angular.module('app.main').factory('recipeListRestService', function ($http, cur
         getRecipe: function (id) {
             return $http.get(servicePath + '/recipe/' + id);
         },
-        getRecipePicture: function (id) {
-            return $http.get(servicePath + '/recipe/' + id + '/picture');
+        getRecipePictureBytes: function(id) {
+            return $http.get(servicePath + '/recipe/' + id + '/pictureBytes', {
+                transformResponse: [function (data) {
+                    return data;
+                }],
+                responseType: 'blob'
+            });
         }
     };
 });
