@@ -73,7 +73,12 @@ angular.module('app.recipe-mgmt')
             }
 
             var idx = $scope.selectedRecipes.indexOf(id);
-            idx === -1 ? $scope.selectedRecipes.push(id) : $scope.selectedRecipes.splice(idx, 1);
+            if(idx === -1) {
+                $scope.selectedRecipes.push(id);
+            }
+            else {
+                $scope.selectedRecipes.splice(idx, 1);
+            }
         };
 
         $scope.getState = function(id) {

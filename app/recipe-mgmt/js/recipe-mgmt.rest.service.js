@@ -1,4 +1,4 @@
-angular.module('app.recipe-mgmt').factory('recipeManagementRestService', function ($http, $q, currentContextPath) {
+angular.module('app.recipe-mgmt').factory('recipeManagementRestService', function ($http, $q, $window, currentContextPath) {
     'use strict';
 
     var servicePath = currentContextPath.get() + 'services/rest/recipemanagement/v1';
@@ -14,24 +14,24 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
             var boundary = 'uuid:' + Date.now();
             var header = {
                 'content-type': 'multipart/mixed; charset=UTF-8; boundary=' + boundary
-            }
+            };
             var deferred = $q.defer();
-            var reader = new FileReader();
+            var reader = new $window.FileReader();
             reader.onloadend = function(event) {
-                var data = '--' + boundary + "\r\n"
-                            + 'Content-Type: application/json;charset=UTF-8' + "\r\n"
-                            + 'Content-Transfer-Encoding: binary' + "\r\n"
-                            + 'Content-ID: <binaryObjectEto>' + "\r\n\r\n"
-                            + JSON.stringify({'type': image.type, 'size': image.size, 'name': image.name, 'lastModified': image.lastModified}) + "\r\n\r\n"
-                         + '--' + boundary + "\r\n"
-                            + 'Content-Type: application/octet-stream' + "\r\n"
-                            + 'Content-Transfer-Encoding: binary' + "\r\n"
-                            + 'Content-ID: <blob>' + "\r\n\r\n"
-                            + event.target.result
-                            + "\r\n\r\n" + '--' + boundary + '--';
+                var data = '--' + boundary + '\r\n' +
+                            'Content-Type: application/json;charset=UTF-8\r\n' + 
+                            'Content-Transfer-Encoding: binary\r\n' + 
+                            'Content-ID: <binaryObjectEto>\r\n\r\n' + 
+                            JSON.stringify({'type': image.type, 'size': image.size, 'name': image.name, 'lastModified': image.lastModified}) + '\r\n\r\n' +
+                         '--' + boundary + '\r\n' + 
+                            'Content-Type: application/octet-stream\r\n' +
+                            'Content-Transfer-Encoding: binary\r\n' + 
+                            'Content-ID: <blob>\r\n\r\n' + 
+                            event.target.result + 
+                            '\r\n\r\n--' + boundary + '--';
                             console.log(data);
                 deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', data, {headers: header}));
-            }
+            };
             reader.readAsText(image);
             return deferred.promise;
         },
