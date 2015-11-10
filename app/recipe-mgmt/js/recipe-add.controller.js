@@ -25,8 +25,7 @@ angular.module('app.recipe-mgmt')
         					'name': $scope.recipeName,
         					'description': $scope.recipeDescription,
         					'price': $scope.recipePrice,
-                            'image': $scope.recipeImage,
-        					//'imageId': 10 //TODO Pascal: change to image ID.
+                            'image': $scope.recipeImage
         				};
         	recipes.saveRecipe(recipe).then($scope.reloadRecipes);
 
