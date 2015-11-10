@@ -37,7 +37,7 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
             return $http.get(servicePath + '/recipe/' + id + '/picture');
         },
         getRecipePictureBytes: function(id) {
-            return $http.get(servicePath + '/recipe/' + id + '/pictureBytes', {
+            return $http.get(servicePath + '/recipe/' + id + '/picture', {
                 transformResponse: [function (data) {
                     return data;
                 }],

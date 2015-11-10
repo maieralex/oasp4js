@@ -1,9 +1,11 @@
 {
     "RECIPE_MGMT": {
+    	"RECIPES": "Rezepte",
         "TITLE": "Titel",
         "DESCRIPTION": "Beschreibung",
         "PRICE": "Preis",
         "IMAGE": "Bild",
-        "SUBMIT": "Rezept hinzufügen"
+        "SUBMIT_RECIPE": "Rezept hinzufügen",
+        "CANCEL": "Abbrechen"
     }
 }
