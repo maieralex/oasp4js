@@ -1,38 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<div class="row">
+
+<div class="row" ng-controller="RecipeListCntl">
     <div class="col-md-12">
         <div class="recipe-list-topbar-container-sticky">
             <nav class="navbar navbar-default recipe-list-topbar">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <span class="navbar-brand">Recipes</span>
+                        <span class="navbar-brand" translate>RECIPE_MGMT.RECIPES</span>
                     </div>
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="dropdown" dropdown>
-                            <a class="dropdown-toggle"
-                               dropdown-toggle
-                               data-toggle="dropdown"
-                               role="button"
-                               aria-haspopup="true"
-                               aria-expanded="false">{{numPerPage}} item(s) <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
-                                <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
-                                <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
-                                <!--
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Show all</a></li>
-                                -->
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown" dropdown>
+                                <a class="dropdown-toggle"
+                                   dropdown-toggle
+                                   data-toggle="dropdown"
+                                   role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">{{numPerPage}} item(s) <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
+                                    <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
+                                    <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
+                                    <!--
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Show all</a></li>
+                                    -->
+                                </ul>
+                            </li>
+                            <li><button type="button" class="btn navbar-btn btn-primary btn-sm" ng-click="openEdit()" translate>RECIPE_MGMT.SUBMIT_RECIPE</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -58,5 +55,3 @@
                     class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
     </div>
 </div>
-</body>
-</html>
