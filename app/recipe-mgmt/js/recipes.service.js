@@ -1,6 +1,6 @@
-angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementRestService, $q) {
+/*jshint -W083 */
+angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementRestService, $window, $q) {
     'use strict';
-    var paginatedRecipes = {};
 
     return {
         getRecipe: function (recipeId) {
@@ -10,17 +10,18 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                         return pResponse.data;
                     }).then(function(pictureData) {
                         var deferred = $q.defer();
-                        var reader = new FileReader();
+                        var reader = new $window.FileReader();
                         reader.onloadend = function(picture) {
                             response.data.image = picture.target.result;
                             deferred.resolve(response.data);
                         };
-                        reader.readAsDataURL(new Blob([pictureData], {type:'image/png'}));
+                        reader.readAsDataURL(new $window.Blob([pictureData], {type:'image/png'}));
                         return deferred.promise;
                     });
                 }
-                else
+                else {
                     return response.data;
+                }
             });
         },
         saveRecipe: function(recipe) {
@@ -28,12 +29,14 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
             delete recipeDto.image;
         	return recipeManagementRestService.saveRecipe(recipeDto).then(function(response) {
                 var newId = response.data.id;
-                if(recipe.image === null)
+                if(recipe.image === null) {
                     return response.data;
-                else
-                    return recipeManagementRestService.saveRecipePicture(newId, recipe.image).then(function(pResponse) {
+                }
+                else {
+                    return recipeManagementRestService.saveRecipePicture(newId, recipe.image).then(function() {
                         return response.data;
                     });
+                }
         	});
         },
 
@@ -48,12 +51,12 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                         recipeManagementRestService.getRecipePictureBytes(response.data.result[i].id).then(function(pResponse) {
                             return pResponse.data;
                         }).then(function(pictureData) {
-                            var reader = new FileReader();
+                            var reader = new $window.FileReader();
                             reader.onloadend = function(picture) {
                                 response.data.result[currentIndex].image = picture.target.result;
                                 deferred.resolve(response.data);
                             };
-                            reader.readAsDataURL(new Blob([pictureData], {type:'image/png'}));
+                            reader.readAsDataURL(new $window.Blob([pictureData], {type:'image/png'}));
                         });
                     }
                     else {

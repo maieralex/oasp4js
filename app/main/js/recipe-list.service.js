@@ -1,3 +1,4 @@
+/*jshint -W083 */
 angular.module('app.main')
     .factory('recipeList', function (recipeListRestService) {
     'use strict';

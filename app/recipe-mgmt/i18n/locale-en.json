@@ -1,9 +1,11 @@
 {
     "RECIPE_MGMT": {
+    	"RECIPES": "Recipes",
         "TITLE": "Title",
         "DESCRIPTION": "Description",
         "PRICE": "Price",
         "IMAGE": "Image",
-        "SUBMIT": "Add Recipe"
+        "SUBMIT_RECIPE": "Add Recipe",
+        "CANCEL": "Cancel"
     }
 }

@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($scope, $log, offers, recipes, $window) {
+    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window) {
         'use strict';
 
         $scope.recipeName = '';
@@ -25,10 +25,12 @@ angular.module('app.recipe-mgmt')
         					'name': $scope.recipeName,
         					'description': $scope.recipeDescription,
         					'price': $scope.recipePrice,
-                            'image': $scope.recipeImage,
-        					//'imageId': 10 //TODO Pascal: change to image ID.
+                            'image': $scope.recipeImage
         				};
-        	recipes.saveRecipe(recipe).then($scope.reloadRecipes);
+        	recipes.saveRecipe(recipe).then(function() {
+                $rootScope.reloadRecipes();
+                $scope.$close();
+            });
 
         };
 
@@ -40,49 +42,6 @@ angular.module('app.recipe-mgmt')
             recipes.loadRecipe(4).then(function(data) {
                 console.log(data);
             });
-        };
-
-        //Recipe Table List
-
-
-        $scope.numPerPage = 1;
-        $scope.currentPage = 1;
-        $scope.totalItems = 5; //getTotal ToDo
-
-
-        $scope.recipesList = [];
-
-        $scope.reloadRecipes = function () {
-            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
-                return paginatedRecipes;
-            }).then(function (res) {
-                $scope.recipesList = res.result;
-                $scope.totalItems = res.pagination.total;
-            });
-        };
-
-        $scope.$watch('currentPage', function () {
-            $scope.reloadRecipes();
-        });
-
-        $scope.selectedRecipes = [];
-
-        $scope.selectRecipe = function(id, multisel) {
-            if(!multisel) {
-                $scope.selectedRecipes.pop();
-            }
-
-            var idx = $scope.selectedRecipes.indexOf(id);
-            idx === -1 ? $scope.selectedRecipes.push(id) : $scope.selectedRecipes.splice(idx, 1);
-        };
-
-        $scope.getState = function(id) {
-            return $scope.selectedRecipes.indexOf(id) !== -1 ? 'active' : 'inactive';
-        };
-
-        $scope.setNumPerPage = function (numPerPage) {
-            $scope.numPerPage = numPerPage;
-            $scope.reloadRecipes();
         };
 
     });
