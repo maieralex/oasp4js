@@ -10,6 +10,7 @@
         "USERNAME": "username",
         "NEXT": "Next",
         "PREVIOUS": "Previous",
-        "TOPSELLER": "Our top sellers"
+        "TOPSELLER": "Our top sellers",
+        "LANDINGPAGE_TEXT": "This is the login to the devonfw restaurant example application as technical showcase for an AngularJS client."
     }
 }

@@ -10,6 +10,7 @@
         "USERNAME": "Benutzername",
         "NEXT": "weiter",
         "PREVIOUS": "zurück",
-        "TOPSELLER": "Unsere Topseller"
+        "TOPSELLER": "Unsere Topseller",
+        "LANDINGPAGE_TEXT": "Dies ist der Login für die devonfw Restaurant Beispielanwendung als technische Plattform für einen Angularjs Client."
     }
 }
