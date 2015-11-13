@@ -1,57 +1,151 @@
 
-<div class="row" ng-controller="RecipeListCntl">
-    <div class="col-md-12">
-        <div class="recipe-list-topbar-container-sticky">
-            <nav class="navbar navbar-default recipe-list-topbar">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <span class="navbar-brand" translate>RECIPE_MGMT.RECIPES</span>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown" dropdown>
-                                <a class="dropdown-toggle"
-                                   dropdown-toggle
-                                   data-toggle="dropdown"
-                                   role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false">{{numPerPage}} item(s) <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
-                                    <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
-                                    <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
-                                    <!--
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Show all</a></li>
-                                    -->
-                                </ul>
-                            </li>
-                            <li><button type="button" class="btn navbar-btn btn-primary btn-sm" ng-click="openEdit()" translate>RECIPE_MGMT.SUBMIT_RECIPE</a></li>
-                        </ul>
-                    </div>
+<!--
+<div class="recipe-list-topbar-container-sticky">
+    <nav class="navbar navbar-default recipe-list-topbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand">Recipes</span>
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default navbar-btn btn-success"  style="margin-right: 5px;" aria-label="Add recipe">Add</button>
+                <div class="btn-group navbar-btn" role="group" aria-label="..." style="margin-right: 5px;">
+                    <button type="button" class="btn btn-default" aria-label="Print recipe(s)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Remove recipe(s)">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </button>
                 </div>
-            </nav>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown" dropdown>
+                        <a class="dropdown-toggle"
+                           dropdown-toggle
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">{{numPerPage}} item(s) <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
+                            <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
+                            <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a data-ng-click="setNumPerPage(totalItems);">Show all</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="list-group">
+    </nav>
+</div>
+-->
+
+<div class="spacer-top" id="spacerTop"></div>
+
+<div class="row recipe-list-main-row">
+    <div data-ng-class="sidebarIsVisible ? 'col-md-9' : 'col-md-12'" style="padding: 0px; transition: width 0.1s ease;">
+        <nav class="navbar navbar-default recipe-list-toolbar" id="recipeListToolbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Recipes</span>
+                </div>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search ...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true" aria-label="Search ..."></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default navbar-btn btn-success"  style="margin-right: 5px;" aria-label="Add recipe" ng-click="openEdit();">Add</button>
+                    <div class="btn-group navbar-btn" role="group" aria-label="..." style="margin-right: 5px;">
+                        <button type="button" class="btn btn-default" aria-label="Print recipe(s)">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" aria-label="Remove recipe(s)">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown" dropdown>
+                            <a class="dropdown-toggle"
+                               dropdown-toggle
+                               data-toggle="dropdown"
+                               role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">{{numPerPage == totalItems ? 'Show all' : numPerPage + ' item(s)'}} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
+                                <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
+                                <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a data-ng-click="setNumPerPage(totalItems);">Show all</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="list-group panel panel-default recipe-list-container" recipe-list-max-height>
             <div class="row list-group-item recipe-list-group-item"
                  data-ng-repeat="recipe in recipesList"
                  data-ng-click="selectRecipe(recipe.id, false)"
-                 data-ng-class="getState(recipe.id)">
-                <div class="col-md-3" style="padding: 0px;">
-                    <img class="list-group-item-text img-responsive" ng-show="recipe.image" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">
+                 data-ng-class="selectedRecipes.indexOf(recipe.id) != -1 ? 'active' : 'inactive'">
+                <div class="col-md-2" style="padding: 0px;">
+                    <!--<img class="list-group-item-text img-responsive" ng-show="recipe.image" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">-->
+                    <img class="list-group-item-text img-responsive" data-ng-src="/main/img/pizza.jpg">
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
                     <h4 class="list-group-item-heading">{{recipe.name}}</h4>
-
                     <p class="list-group-item-text">{{recipe.description}}</p>
                 </div>
-                <div class="col-md-3" style="padding: 15px;">
+                <div class="col-md-4" style="padding: 15px;">
                     <h4 class="list-group-item-heading pull-right">{{recipe.price}}</h4>
                 </div>
             </div>
         </div>
-        <pagination total-items="totalItems" items-per-page="numPerPage" data-ng-model="currentPage" num-pages="numPages"
-                    class="pagination-sm" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
+        <div id="recipeListPagination">
+            <pagination total-items="totalItems" items-per-page="numPerPage" data-ng-model="currentPage" num-pages="numPages"
+                        class="pagination-sm pull-right" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
+        </div>
+    </div>
+    <div data-ng-class="sidebarIsVisible ? 'col-md-3' : 'col-md-0'" style="padding: 0px; transition: width 0.1s ease;">
+        <div class="panel panel-default recipe-list-sidebar" data-ng-show="sidebarIsVisible" sidebar-max-height>
+            <div style="position: relative;">
+                <img class="img-responsive" data-ng-src="/main/img/pizza.jpg">
+                <div class="form-group btn-group pull-right" role="group" aria-label="..." style="position: absolute; right: 15px; top: 15px;">
+                    <button type="button" class="btn btn-default" aria-label="Edit recipe(s)">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" aria-label="Close sidebar" ng-click="sidebarIsVisible = false">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <form class="panel-body form-horizontal" method="post" action="#">
+                <div class="form-group">
+                    <label ng-class="isExpanded ? 'col-md-0' : 'col-md-4'" ng-show="!isExpanded" class="control-label">Title:</label>
+                    <div ng-class="isExpanded ? 'col-md-12' : 'col-md-8'">
+                        <input class="form-control" ng-model="srname" type="text" name="title" placeholder="Title" ng-focus="isExpanded = !isExpanded">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Description:</label>
+                    <div class="col-md-8">
+                        <textarea ng-model="srdesc" class="form-control" name="description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Price:</label>
+                    <div class="col-md-8">
+                        <input ng-model="srprice" class="form-control" type="text" name="price" placeholder="Price">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

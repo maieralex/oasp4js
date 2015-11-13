@@ -89,15 +89,47 @@ body {
     content: " €";
 }
 
-.recipe-list {
-    margin-top: @top-padding;
+// Alexander Wecker - RecipeList
+.spacer-top {
+    height: 50px;
+}
+
+.recipe-list-main-row {
+    margin: 0px;
+    padding: 0px;
+}
+
+.recipe-list-toolbar {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 100%;
+    margin: 0px;
+}
+
+.recipe-list-container {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: -1px !important;
+    overflow-y: auto !important;
+    overflow-y: scroll;
+    padding: 0px;
+    margin: 0px;
 }
 
 .recipe-list-group-item {
     margin-left: 0px !important;
     margin-right: 0px !important;
     margin-top: -1px !important;
+    margin-bottom: 0px !important;
     padding: 0px !important;
+
+    border-left-width: 0px !important;
+    border-right-width: 0px !important;
+
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
 
     &:hover,
     &:focus {
@@ -107,6 +139,17 @@ body {
     }
 }
 
+.recipe-list-sidebar {
+    margin-left: 15px;
+    width: 100%;
+    overflow-y: auto !important;
+    overflow-y: scroll;
+}
+
+// Not used
+/*.recipe-list {
+    margin-top: @top-padding;
+}
 .recipe-list-topbar-container-sticky {
     position: sticky;
     top: @top-padding;
@@ -115,11 +158,10 @@ body {
     background-color: white;
     z-index: 999;
 }
-
 .recipe-list-topbar {
     position: relative;
     top: @top-padding;
     width: 100%;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-}
+}*/
