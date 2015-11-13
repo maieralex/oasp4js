@@ -56,6 +56,4 @@ angular.module('app.recipe-mgmt')
                 templateUrl: 'recipe-mgmt/html/recipe-add.html'
             });
         };
-
-        $rootScope.reloadRecipes();
     });
