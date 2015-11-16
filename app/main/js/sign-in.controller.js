@@ -10,6 +10,14 @@ angular.module('app.main')
         //How many Items to display
         $scope.quantity = 3;
 
-        $scope.recipeList = recipeList.loadRecipeList($scope.quantity);
-        console.log($scope.recipeList);
+
+        $scope.loadRandomRecipes = function () {
+            recipeList.getAllRandomRecipes($scope.quantity).then(function (randomList){
+                return randomList;
+            }).then(function (res){
+                $scope.recipeRandomList = res;
+            });
+        };
+
+        $scope.loadRandomRecipes();
     });
