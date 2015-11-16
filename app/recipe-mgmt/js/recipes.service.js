@@ -63,6 +63,7 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                         deferred.resolve();
                     }
                 }
+                return response.data;
                 return $q.all(promises).then(function() {
                     return response.data;
                 });

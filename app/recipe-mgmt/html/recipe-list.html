@@ -130,7 +130,7 @@
                 <div class="form-group">
                     <label ng-class="isExpanded ? 'col-md-0' : 'col-md-4'" ng-show="!isExpanded" class="control-label">Title:</label>
                     <div ng-class="isExpanded ? 'col-md-12' : 'col-md-8'">
-                        <input class="form-control" ng-model="srname" type="text" name="title" placeholder="Title" ng-focus="isExpanded = !isExpanded">
+                        <input class="form-control" ng-model="srname" type="text" name="title" placeholder="Title" ng-blur="isExpanded = false;" ng-focus="isExpanded = true;">
                     </div>
                 </div>
                 <div class="form-group">

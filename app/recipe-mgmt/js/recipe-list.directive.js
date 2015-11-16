@@ -6,7 +6,6 @@ angular.module('app.recipe-mgmt').directive('recipeListMaxHeight', function ($wi
     return function (scope, element) {
         var w = angular.element($window);
 
-        var windowHeight = w.height();
         var navbarHeight = $('.navbar-fixed-top').outerHeight(true);
         var spaceholderHeight = angular.element($document[0].querySelector('#spacerTop')).outerHeight();
         var toolbarHeight = angular.element($document[0].querySelector('#recipeListToolbar')).outerHeight(true);
@@ -16,7 +15,7 @@ angular.module('app.recipe-mgmt').directive('recipeListMaxHeight', function ($wi
         var correction = 10; // extra
 
         var changeHeight = function() {
-            element.css('height', (windowHeight - navbarHeight - spaceholderHeight - toolbarHeight - paginationHeight -
+            element.css('height', (w.height() - navbarHeight - spaceholderHeight - toolbarHeight - paginationHeight -
                 oaspFooterHrHeight - oaspFooterHeight - correction) + 'px' );
         };
 
@@ -32,8 +31,7 @@ angular.module('app.recipe-mgmt').directive('recipeListMaxHeight', function ($wi
 angular.module('app.recipe-mgmt').directive('sidebarMaxHeight', function ($window, $document) {
     return function (scope, element) {
         var w = angular.element($window);
-
-        var windowHeight = w.height();
+        
         var navbarHeight = $('.navbar-fixed-top').outerHeight(true);
         var spaceholderHeight = angular.element($document[0].querySelector('#spacerTop')).outerHeight();
         var oaspFooterHrHeight = angular.element($document[0].querySelector('#oaspFooterHr')).outerHeight(true);
@@ -41,7 +39,7 @@ angular.module('app.recipe-mgmt').directive('sidebarMaxHeight', function ($windo
         var correction = 30; // 20 margin-bottom (pagination) + 10 extra
 
         var changeHeight = function() {
-            element.css('height', (windowHeight - navbarHeight - spaceholderHeight - oaspFooterHrHeight -
+            element.css('height', (w.height() - navbarHeight - spaceholderHeight - oaspFooterHrHeight -
                 oaspFooterHeight - correction) + 'px' );
         };
 
