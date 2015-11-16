@@ -97,6 +97,7 @@ body {
 .recipe-list-main-row {
     margin: 0px;
     padding: 0px;
+    overflow-x: hidden; // important for sidebar slide
 }
 
 .recipe-list-toolbar {
@@ -142,7 +143,7 @@ body {
 }
 
 .recipe-list-sidebar {
-    margin-left: 15px;
+    //margin-left: 15px;
     width: 100%;
     overflow-y: auto !important;
     overflow-y: scroll;
@@ -152,6 +153,18 @@ body {
 .sidebar-control-label {
     text-align: left !important;
 }
+
+.collapsed {
+    display: none; // hide it for small displays
+}
+
+@media (min-width: 992px) {
+    .collapsed {
+        display: block;
+        margin-right: -34%; // min width = sidebar
+    }
+}
+
 // Not used
 /*.recipe-list {
     margin-top: @top-padding;

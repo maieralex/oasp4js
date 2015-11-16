@@ -39,10 +39,29 @@
     </nav>
 </div>
 -->
-
+<!--
+<button type="button" class="btn btn-default btn-primary" aria-label="Add recipe" ng-click="isSbVisible = !isSbVisible;">Tgl</button>
+<br><br>
+<div class="row" style="overflow-x: hidden;">
+    <div ng-class="isSbVisible ? 'col-md-9' : 'col-md-12'" style="transition: width 0.3s ease;">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                Blubb
+            </div>
+        </div>
+    </div>
+    <div ng-class="isSbVisible ? 'col-md-3' : 'col-md-3 collapsed'" style="transition: margin 0.3s ease;">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                Blubb
+            </div>
+        </div>
+    </div>
+</div>
+-->
 <div class="spacer-top" id="spacerTop"></div>
 <div class="row recipe-list-main-row">
-    <div data-ng-class="sidebarIsVisible ? 'col-md-8' : 'col-md-12'" style="padding: 0px; transition: width 0.1s ease;">
+    <div data-ng-class="sidebarIsVisible ? 'col-md-8' : 'col-md-12'" style="padding: 0px; padding-right: 15px; transition: width 0.2s ease;">
         <nav class="navbar navbar-default recipe-list-toolbar" id="recipeListToolbar">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -112,8 +131,8 @@
                         class="pagination-sm pull-right" boundary-links="true" rotate="false" max-size="maxSize"></pagination>
         </div>
     </div>
-    <div data-ng-class="sidebarIsVisible ? 'col-md-4' : 'col-md-0'" style="padding: 0px; transition: width 0.1s ease;">
-        <div class="panel panel-default recipe-list-sidebar" data-ng-show="sidebarIsVisible" sidebar-max-height>
+    <div data-ng-class="sidebarIsVisible ? 'col-md-4' : 'col-md-4 collapsed'" style="padding: 0px; transition: margin 0.2s ease;">
+        <div class="panel panel-default recipe-list-sidebar" sidebar-max-height>
             <div style="position: relative;">
                 <img class="img-responsive" data-ng-src="/main/img/pizza.jpg">
                 <div class="form-group btn-group pull-right" role="group" aria-label="..." style="position: absolute; right: 15px; top: 15px;">
