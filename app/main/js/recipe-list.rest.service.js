@@ -14,6 +14,17 @@ angular.module('app.main').factory('recipeListRestService', function ($http, cur
                 }],
                 responseType: 'blob'
             });
+        },
+        getRandomRecipes: function (numberOfEntities) {
+            var recipeSearchRandomCriteria = {
+                pagination: {
+                    size: numberOfEntities,
+                    page: 1,
+                    total: true
+                }
+            };
+            return $http.post(servicePath + '/recipe/random', recipeSearchRandomCriteria);
         }
+
     };
 });

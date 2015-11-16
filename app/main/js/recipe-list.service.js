@@ -2,6 +2,7 @@
 angular.module('app.main')
     .factory('recipeList', function (recipeListRestService) {
     'use strict';
+        var randomRecipes = {};
     return {
         loadRecipe: function (recipeId) {
             return recipeListRestService.getRecipe(recipeId).then(function (response) {
@@ -22,6 +23,14 @@ angular.module('app.main')
                 });
             }
             return returnArray;
+        },
+        getRandomRecipes: function (numberOfEntities) {
+            return recipeListRestService.getRandomRecipes(numberOfEntities).then(function (response) {
+              //  angular.copy(response.data, randomRecipes);
+                var returnArray = response.data.result.toArray;
+
+                return returnArray;
+            });
         }
     };
 })
