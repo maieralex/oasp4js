@@ -9,6 +9,7 @@ angular.module('app.recipe-mgmt')
 
         $rootScope.reloadRecipes = function () {
             $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
+                console.log(paginatedRecipes);
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
@@ -26,6 +27,7 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.selectedRecipes = [];
+        $scope.selectedItem = null;
 
         $scope.selectRecipe = function(id, multisel) {
             if(!multisel) {
@@ -40,11 +42,9 @@ angular.module('app.recipe-mgmt')
                 $scope.selectedRecipes.splice(idx, 1);
             }
 
-            // for sidebar
+            // sidebar
             var idxn = $scope.recipesList.map(function(e) { return e.id }).indexOf(id);
-            $scope.srname = $scope.recipesList[idxn].name;
-            $scope.srdesc = $scope.recipesList[idxn].description;
-            $scope.srprice = $scope.recipesList[idxn].price;
+            $scope.selectedItem = $scope.recipesList[idxn];
 
             if(!$scope.sidebarIsVisible) {
                 $scope.sidebarIsVisible = true;

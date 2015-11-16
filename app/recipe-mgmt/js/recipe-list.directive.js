@@ -27,7 +27,6 @@ angular.module('app.recipe-mgmt').directive('recipeListMaxHeight', function ($wi
     }
 });
 
-
 angular.module('app.recipe-mgmt').directive('sidebarMaxHeight', function ($window, $document) {
     return function (scope, element) {
         var w = angular.element($window);
