@@ -63,10 +63,10 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                         deferred.resolve();
                     }
                 }
-                return response.data;
-                return $q.all(promises).then(function() {
+                return response.data; // Todo: @Team-RE, $q.all() ... funktioniert so leider nicht, wenn mehr als 1 Element enthalten ist. Bitte fixen.
+                /*return $q.all(promises).then(function() {
                     return response.data;
-                });
+                });*/
             });
         }
     };
