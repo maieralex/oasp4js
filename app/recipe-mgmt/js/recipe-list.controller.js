@@ -51,7 +51,8 @@ angular.module('app.recipe-mgmt')
             }
         };
 
-        $scope.openEdit = function() {
+        $scope.openEdit = function(recipe) {
+            $rootScope.editRecipe = recipe;
             $modal.open({
                 templateUrl: 'recipe-mgmt/html/recipe-add.html'
             });

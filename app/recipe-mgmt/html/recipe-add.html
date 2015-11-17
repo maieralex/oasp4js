@@ -5,22 +5,96 @@
         <h4 class="modal-title" id="addRecipeModalLabel" translate>RECIPE_MGMT.SUBMIT_RECIPE</h4>
     </div>
     <div class="modal-body" id="recipeForm">
-        <form method="post" action="#">
+        <form method="post" class="form-horizontal recipe-add-pop-up" action="#">
             <div class="form-group">
-                <label translate>RECIPE_MGMT.TITLE</label>
-                <input ng-model="recipeName" class="form-control" type="text" name="title">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.TITLE</label>
+                <div class="col-md-9">
+                    <input ng-model="recipe.name" class="form-control" type="text" name="title">
+                </div>
             </div>
             <div class="form-group">
-                <label translate>RECIPE_MGMT.DESCRIPTION</label>
-                <textarea ng-model="recipeDescription" class="form-control" name="description"></textarea>
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.DESCRIPTION</label>
+                <div class="col-md-9">
+                    <textarea ng-model="recipe.description" class="form-control" name="description"></textarea>
+                </div>
             </div>
             <div class="form-group">
-                <label translate>RECIPE_MGMT.PRICE</label>
-                <input ng-model="recipePrice" class="form-control" type="text" name="price">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.PRICE</label>
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <input ng-model="recipe.price" class="form-control" type="text" name="price" aria-describedby="basic-addon2">
+                        <span class="input-group-addon" id="basic-addon2">€</span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label translate>RECIPE_MGMT.IMAGE</label>
-                <input ng-model="recipeImage" type="file" name="image" id="recipeImage">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
+                <div class="col-md-9">
+                    <input ng-model="recipe.ingredients" class="form-control" type="text" name="ingredients">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.COOKINGINSTRUCTIONS</label>
+                <div class="col-md-9">
+                    <textarea ng-model="recipe.cookingInstructions" class="form-control" type="text" name="cookingInstructions"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.PORTIONS</label>
+                <div class="col-md-9">
+                    <input ng-model="recipe.portions" class="form-control" type="number" name="portions" min="1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.COOKTIMEMINUTES</label>
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <input ng-model="recipe.cookTimeMinutes" class="form-control" type="text" name="cookTimeMinutes" aria-describedby="basic-addon3">
+                        <span class="input-group-addon" id="basic-addon3">min(s)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.PREPTIMEMINUTES</label>
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <input ng-model="recipe.prepTimeMinutes" class="form-control" type="text" name="prepTimeMinutes" aria-describedby="basic-addon5">
+                        <span class="input-group-addon" id="basic-addon5">min(s)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.DIFFICULTY</label>
+                <div class="col-md-9">
+                    <select ng-model="recipe.difficulty" class="form-control" name="difficulty">
+                    <option value="very easy" translate>RECIPE_MGMT.DIFFICULTY_VERY_EASY</option>
+                    <option value="easy" translate>RECIPE_MGMT.DIFFICULTY_EASY</option>
+                    <option value="medium" translate>RECIPE_MGMT.DIFFICULTY_MEDIUM</option>
+                    <option value="hard" translate>RECIPE_MGMT.DIFFICULTY_HARD</option>
+                    <option value="very hard" translate>RECIPE_MGMT.DIFFICULTY_VERY_HARD</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.CALORIES</label>
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <input ng-model="recipe.calories" class="form-control" type="number" name="calories" aria-describedby="basic-addon4" min="1">
+                        <span class="input-group-addon" id="basic-addon4">Cal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" >
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORIES</label>
+                <div class="col-md-9">
+                    <input ng-model="recipe.categories" class="form-control" type="text" name="categories">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" translate>RECIPE_MGMT.IMAGE</label>
+                <div class="col-md-9">
+                    <input ng-model="recipe.image" type="file" name="image" id="recipeImage">
+                </div>
             </div>
         </form>
     </div>
