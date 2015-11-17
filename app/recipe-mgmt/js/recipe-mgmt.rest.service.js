@@ -12,19 +12,22 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         saveRecipePicture: function (id, image) {
             var deferred = $q.defer();
             var header = {
-                'Content-Type': "multipart/form-data"
+                'Content-Type': "multipart/mixed"
             };
+
+            //TODO read mimetype from image
+            var eto = {
+                'mimeType': 'image/jpeg'
+            }
+
+            var content = JSON.stringify(eto); // the body of the new file...
+            var blob = new Blob([content], { type: "application/json"});
+
             var formData = new FormData();
-            formData.append("file", image);
-            //deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture2',formData, {headers:header}));
-            deferred.resolve($http.post(servicePath + '/uploadFile', formData, {headers:header}));
-            /*
-             var reader = new $window.FileReader();
-             reader.onloadend = function(event) {
-             var file = new $window.Blob([event.target.result], {type: image.type});
-             deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', file, {headers:header}));
-             };
-             reader.readAsArrayBuffer(image);*/
+            formData.append("blob", image);
+            formData.append("binaryObjectEto", blob);
+            deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', formData, {headers:header}));
+
             return deferred.promise;
         },
         getPaginatedRecipes: function (pagenumber, pagesize) {
