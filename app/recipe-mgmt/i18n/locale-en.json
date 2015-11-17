@@ -22,6 +22,8 @@
         "CANCEL": "Cancel",
         "AUTHOR": "Author",
         "ITEMS": "Item(s)",
-        "ITEMS_ALL": "Show all"
+        "ITEMS_ALL": "Show all",
+        "SEARCH": "Search ...",
+        "ADD": "Add"
     }
 }

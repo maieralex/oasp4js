@@ -68,17 +68,17 @@
                     <span class="navbar-brand" translate>RECIPE_MGMT.RECIPES</span>
                 </div>
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search ...">
+                    <div class="input-group" translate>
+                        <input type="text" class="form-control" placeholder="{{'RECIPE_MGMT.SEARCH' | translate}}">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search" aria-hidden="true" aria-label="Search ..."></span>
+                                <span class="glyphicon glyphicon-search" aria-hidden="true" aria-label="{{'RECIPE_MGMT.SEARCH' | translate}}"></span>
                             </button>
                         </span>
                     </div>
                 </form>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-default navbar-btn btn-primary"  style="margin-right: 5px;" aria-label="Add recipe" ng-click="openEdit(null);">Add</button>
+                    <button type="button" class="btn btn-default navbar-btn btn-primary"  style="margin-right: 5px;" aria-label="Add recipe" ng-click="openEdit(null);" translate>RECIPE_MGMT.ADD</button>
                     <div class="btn-group navbar-btn" role="group" aria-label="..." style="margin-right: 5px;">
                         <button type="button" class="btn btn-default" aria-label="Print recipe(s)">
                             <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
@@ -148,20 +148,20 @@
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.TITLE</label>
                     <div class="col-md-8">
-                        <input class="form-control" ng-model="selectedItem.name" type="text" name="title" placeholder="Title">
+                        <input class="form-control" ng-model="selectedItem.name" type="text" name="title" placeholder="{{'RECIPE_MGMT.TITLE' | translate}}">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.DESCRIPTION</label>
                     <div class="col-md-8">
-                        <textarea ng-model="selectedItem.description" class="form-control" name="description" placeholder="Description"></textarea>
+                        <textarea ng-model="selectedItem.description" class="form-control" name="description" placeholder="{{'RECIPE_MGMT.DESCRIPTION' | translate}}"></textarea>
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.PRICE</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
-                            <input ng-model="selectedItem.price" class="form-control" type="text" name="price" placeholder="Price" aria-describedby="basic-addon2">
+                            <input ng-model="selectedItem.price" class="form-control" type="text" name="price" placeholder="{{'RECIPE_MGMT.PRICE' | translate}}" aria-describedby="basic-addon2">
                             <span class="input-group-addon" id="basic-addon2">€</span>
                         </div>
                     </div>
@@ -169,26 +169,26 @@
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                     <div class="col-md-8">
-                        <input ng-model="selectedItem.ingredients" class="form-control" type="text" name="ingredients" placeholder="Ingredients">
+                        <input ng-model="selectedItem.ingredients" class="form-control" type="text" name="ingredients" placeholder="{{'RECIPE_MGMT.INGREDIENTS' | translate}}">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.COOKINGINSTRUCTIONS</label>
                     <div class="col-md-8">
-                        <textarea ng-model="selectedItem.cookingInstructions" class="form-control" type="text" name="cookingInstructions" placeholder="Instructions"></textarea>
+                        <textarea ng-model="selectedItem.cookingInstructions" class="form-control" type="text" name="cookingInstructions" placeholder="{{'RECIPE_MGMT.COOKINGINSTRUCTIONS' | translate}}"></textarea>
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.PORTIONS</label>
                     <div class="col-md-8">
-                        <input ng-model="selectedItem.portions" class="form-control" type="number" name="portions" placeholder="Portions" min="1">
+                        <input ng-model="selectedItem.portions" class="form-control" type="number" name="portions" placeholder="{{'RECIPE_MGMT.PORTIONS' | translate}}" min="1">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.COOKTIMEMINUTES</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
-                            <input ng-model="selectedItem.cookTimeMinutes" class="form-control" type="text" name="cookTimeMinutes" placeholder="Cook time" aria-describedby="basic-addon3">
+                            <input ng-model="selectedItem.cookTimeMinutes" class="form-control" type="text" name="cookTimeMinutes" placeholder="{{'RECIPE_MGMT.COOKTIMEMINUTES' | translate}}" aria-describedby="basic-addon3">
                             <span class="input-group-addon" id="basic-addon3">min(s)</span>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.PREPTIMEMINUTES</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
-                            <input ng-model="selectedItem.prepTimeMinutes" class="form-control" type="text" name="prepTimeMinutes" placeholder="Prep. time" aria-describedby="basic-addon5">
+                            <input ng-model="selectedItem.prepTimeMinutes" class="form-control" type="text" name="prepTimeMinutes" placeholder="{{'RECIPE_MGMT.PREPTIMEMINUTES' | translate}}" aria-describedby="basic-addon5">
                             <span class="input-group-addon" id="basic-addon5">min(s)</span>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.DIFFICULTY</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
-                            <input ng-model="selectedItem.difficulty" class="form-control" type="text" name="difficulty" placeholder="Difficulty">
+                            <input ng-model="selectedItem.difficulty" class="form-control" type="text" name="difficulty" placeholder="{{'RECIPE_MGMT.DIFFICULTY' | translate}}">
                             <div class="input-group-btn" dropdown>
                                 <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -224,7 +224,7 @@
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.CALORIES</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
-                            <input ng-model="selectedItem.calories" class="form-control" type="number" name="calories" placeholder="Calories" aria-describedby="basic-addon4" min="1">
+                            <input ng-model="selectedItem.calories" class="form-control" type="number" name="calories" placeholder="{{'RECIPE_MGMT.CALORIES' | translate}}" aria-describedby="basic-addon4" min="1">
                             <span class="input-group-addon" id="basic-addon4">Cal</span>
                         </div>
                     </div>
@@ -232,13 +232,13 @@
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.CATEGORIES</label>
                     <div class="col-md-8">
-                        <input ng-model="selectedItem.categories" class="form-control" type="text" name="categories" placeholder="Categories">
+                        <input ng-model="selectedItem.categories" class="form-control" type="text" name="categories" placeholder="{{'RECIPE_MGMT.CATEGORIES' | translate}}">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
                     <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.AUTHOR</label>
                     <div class="col-md-8">
-                        <input ng-model="selectedItem.author" class="form-control" type="text" name="author" placeholder="Author" disabled>
+                        <input ng-model="selectedItem.author" class="form-control" type="text" name="author" placeholder="{{'RECIPE_MGMT.AUTHOR' | translate}}" disabled>
                     </div>
                 </div>
             </form>
