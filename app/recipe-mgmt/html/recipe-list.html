@@ -114,8 +114,8 @@
                  data-ng-click="selectRecipe(recipe.id, false)"
                  data-ng-class="selectedRecipes.indexOf(recipe.id) != -1 ? 'active' : 'inactive'">
                 <div class="col-md-2" style="padding: 0px;">
-                    <!--<img class="list-group-item-text img-responsive" ng-show="recipe.image" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">-->
-                    <img class="list-group-item-text img-responsive" data-ng-src="/main/img/pizza.jpg">
+                    <img class="list-group-item-text img-responsive" ng-show="recipe.image" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">
+                    <!--<img class="list-group-item-text img-responsive" data-ng-src="/main/img/pizza.jpg">-->
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
                     <h4 class="list-group-item-heading">{{recipe.name}}</h4>

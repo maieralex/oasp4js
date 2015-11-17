@@ -18,7 +18,7 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
             var reader = new $window.FileReader();
             reader.onloadend = function(event) {
                 var file = new $window.Blob([event.target.result], {type: image.type});
-                deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', file, {headers: header}));
+                deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', file));
             };
             reader.readAsArrayBuffer(image);
             return deferred.promise;
