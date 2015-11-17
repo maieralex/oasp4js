@@ -6,24 +6,22 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
         allOffersMock = {},
         recipesMock = {},
         $window,
-
-        /*
-        mockRecipes = {
-            saveRecipes: function(){
-                return 'OK';
-            }
-        },*/
         $scope;
+
+
 
     beforeEach(inject(function($rootScope, $controller){
             $scope = $rootScope.$new();
-            //recipes =  mockRecipes;
 
             $window = {
-                location: jasmine.createSpyObj('location', ['href', 'reload'])
+                location: jasmine.createSpyObj('location', ['href', 'reload']),
+                document:jasmine.createSpyObj('document',['getElementById'])
             };
 
-            $controller('RecipeAddCntl',{
+            var mockHtmlElement = window.document.createElement('div');
+            $window.document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
+
+            addRecipeController = $controller('RecipeAddCntl',{
                 $scope: $scope, offers: allOffersMock, recipes: recipesMock, $window: $window
             });
         }
@@ -63,30 +61,11 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipePrice).toBe('6.5');
         });
 
-        it('should only contain one id', function () {
-            $scope.selectRecipe(22, false);
-            expect($scope.selectedRecipes).toContain(22);
-            $scope.selectRecipe(44, false);
-            expect($scope.selectedRecipes).not.toContain(22);
-            expect($scope.selectedRecipes).toContain(44);
-        });
-        it('should return "inactive"', function () {
-            var result = $scope.getState(99);
-            expect(result).not.toBeNull();
-            expect(result).toBe('inactive');
-        });
-        it('should check the set numPerPage', function () {
-            $scope.setNumPerPage(5);
-            expect($scope.numPerPage).not.toBeNull();
-            expect($scope.numPerPage).toBe(5);
-        });
-
-        /*
          it('should check the set recipe image', function() {
-         expect(scope.recipeImage).not.toBeNull();
-         expect(scope.recipeImage).toBe('');
+             $scope.recipeImage = '/setImagePath';
+         expect($scope.recipeImage).not.toBeNull();
+         expect($scope.recipeImage).toBe('/setImagePath');
          });
-         */
 
         it('should check the existence and execution of adding a recipe functionality', function () {
             expect($scope.saveRecipe).not.toBe(null);

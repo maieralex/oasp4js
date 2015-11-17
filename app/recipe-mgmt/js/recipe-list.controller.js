@@ -43,7 +43,7 @@ angular.module('app.recipe-mgmt')
             }
 
             // sidebar
-            var idxn = $scope.recipesList.map(function(e) { return e.id }).indexOf(id);
+            var idxn = $scope.recipesList.map(function(e) { return e.id; }).indexOf(id);
             $scope.selectedItem = $scope.recipesList[idxn];
 
             if(!$scope.sidebarIsVisible) {
