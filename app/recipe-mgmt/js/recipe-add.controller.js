@@ -3,15 +3,31 @@ angular.module('app.recipe-mgmt')
     .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window) {
         'use strict';
 
-        $scope.recipeName = '';
-        $scope.recipeDescription = '';
-        $scope.recipePrice = '';
-        $scope.recipeImage = null;
+        $scope.recipe = {
+            id: null,
+            name: null,
+            description: null,
+            price: null,
+            ingredients: null,
+            cookingInstructions: null,
+            portions: null,
+            cookTimeMinutes: null,
+            prepTimeMinutes: null,
+            difficulty: null,
+            calories: null,
+            categories: null,
+            image: null
+        }
+
 
         $scope.imageBusy = false;
 
+        if($rootScope.editRecipe !== null) {
+            $scope.recipe = $rootScope.editRecipe;
+        }
+
         $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
-            $scope.recipeImage = event.target.files[0];
+            $scope.recipe.image = event.target.files[0];
         }, false);
 
         $scope.findRecipes = function() {
@@ -21,13 +37,7 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.saveRecipe = function() {
-        	var recipe = {
-        					'name': $scope.recipeName,
-        					'description': $scope.recipeDescription,
-        					'price': $scope.recipePrice,
-                            'image': $scope.recipeImage
-        				};
-        	recipes.saveRecipe(recipe).then(function() {
+        	recipes.saveRecipe($scope.recipe).then(function() {
                 $rootScope.reloadRecipes();
                 $scope.$close();
             });
