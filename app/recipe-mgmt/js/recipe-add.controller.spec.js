@@ -7,23 +7,32 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
         recipesMock = {},
         $window,
 
-        /*
-        mockRecipes = {
-            saveRecipes: function(){
-                return 'OK';
-            }
-        },*/
+    /*
+     mockRecipes = {
+     saveRecipes: function(){
+     return 'OK';
+     }
+     },*/
         $scope;
+
+
 
     beforeEach(inject(function($rootScope, $controller){
             $scope = $rootScope.$new();
             //recipes =  mockRecipes;
 
             $window = {
-                location: jasmine.createSpyObj('location', ['href', 'reload'])
+                location: jasmine.createSpyObj('location', ['href', 'reload']),
+                document:jasmine.createSpyObj('document',['getElementById'])
             };
+/*            spyOn($window,'createElement').and.callFake(function(str){
+                return
+            })*/
 
-            $controller('RecipeAddCntl',{
+            var mockHtmlElement = window.document.createElement('div');
+            $window.document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
+
+            addRecipeController = $controller('RecipeAddCntl',{
                 $scope: $scope, offers: allOffersMock, recipes: recipesMock, $window: $window
             });
         }
@@ -62,24 +71,24 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipePrice).not.toBeNull();
             expect($scope.recipePrice).toBe('6.5');
         });
-
-        it('should only contain one id', function () {
-            $scope.selectRecipe(22, false);
-            expect($scope.selectedRecipes).toContain(22);
-            $scope.selectRecipe(44, false);
-            expect($scope.selectedRecipes).not.toContain(22);
-            expect($scope.selectedRecipes).toContain(44);
-        });
-        it('should return "inactive"', function () {
-            var result = $scope.getState(99);
-            expect(result).not.toBeNull();
-            expect(result).toBe('inactive');
-        });
-        it('should check the set numPerPage', function () {
-            $scope.setNumPerPage(5);
-            expect($scope.numPerPage).not.toBeNull();
-            expect($scope.numPerPage).toBe(5);
-        });
+        /*
+         it('should only contain one id', function () {
+         $scope.selectRecipe(22, false);
+         expect($scope.selectedRecipes).toContain(22);
+         $scope.selectRecipe(44, false);
+         expect($scope.selectedRecipes).not.toContain(22);
+         expect($scope.selectedRecipes).toContain(44);
+         });*/
+        /*        it('should return "inactive"', function () {
+         var result = $scope.getState(99);
+         expect(result).not.toBeNull();
+         expect(result).toBe('inactive');
+         });*/
+        /*        it('should check the set numPerPage', function () {
+         $scope.setNumPerPage(5);
+         expect($scope.numPerPage).not.toBeNull();
+         expect($scope.numPerPage).toBe(5);
+         });*/
 
         /*
          it('should check the set recipe image', function() {
