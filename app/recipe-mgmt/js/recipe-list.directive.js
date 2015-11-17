@@ -3,6 +3,7 @@
  */
 
 angular.module('app.recipe-mgmt').directive('recipeListMaxHeight', function ($window, $document) {
+    'use strict';
     return function (scope, element) {
         var w = angular.element($window);
 
@@ -24,10 +25,11 @@ angular.module('app.recipe-mgmt').directive('recipeListMaxHeight', function ($wi
         });
 
         changeHeight(); // when page loads
-    }
+    };
 });
 
 angular.module('app.recipe-mgmt').directive('sidebarMaxHeight', function ($window, $document) {
+    'use strict';
     return function (scope, element) {
         var w = angular.element($window);
         
@@ -47,5 +49,5 @@ angular.module('app.recipe-mgmt').directive('sidebarMaxHeight', function ($windo
         });
 
         changeHeight(); // when page loads
-    }
+    };
 });

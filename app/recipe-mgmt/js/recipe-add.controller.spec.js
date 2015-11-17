@@ -26,7 +26,7 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
                 document:jasmine.createSpyObj('document',['getElementById'])
             };
 
-            var mockHtmlElement = window.document.createElement('div');
+            var mockHtmlElement = $window.document.createElement('div');
             $window.document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
 
             addRecipeController = $controller('RecipeAddCntl',{

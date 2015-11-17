@@ -1,4 +1,4 @@
-angular.module('app.recipe-mgmt').factory('recipeManagementRestService', function ($http, $q, $window, currentContextPath) {
+angular.module('app.recipe-mgmt').factory('recipeManagementRestService', function ($http, $q, $window, currentContextPath, $document) {
     'use strict';
 
     var servicePath = currentContextPath.get() + 'services/rest/recipemanagement/v1';
@@ -15,8 +15,9 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
             /*var header = {
                 'Content-Type': 
             };*/
-            var formData = new FormData();
-            formData.append("picture", image);
+
+            var formData = new $document.FormData();
+            formData.append('picture', image);
             deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture2', formData));
             /*
             var reader = new $window.FileReader();
