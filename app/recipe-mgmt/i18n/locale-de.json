@@ -19,6 +19,9 @@
         "CALORIES" : "Kalorien",
         "CATEGORIES" : "Kategorie",
         "SUBMIT_RECIPE": "Rezept hinzufügen",
-        "CANCEL": "Abbrechen"
+        "CANCEL": "Abbrechen",
+        "AUTHOR": "Autor",
+        "ITEMS": "Element(e)",
+        "ITEMS_ALL": "Alle anzeigen"
     }
 }

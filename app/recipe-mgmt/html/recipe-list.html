@@ -65,7 +65,7 @@
         <nav class="navbar navbar-default recipe-list-toolbar" id="recipeListToolbar">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <span class="navbar-brand">Recipes</span>
+                    <span class="navbar-brand" translate>RECIPE_MGMT.RECIPES</span>
                 </div>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="input-group">
@@ -94,14 +94,14 @@
                                data-toggle="dropdown"
                                role="button"
                                aria-haspopup="true"
-                               aria-expanded="false">{{numPerPage == totalItems ? 'Show all' : numPerPage + ' item(s)'}} <span class="caret"></span>
+                               aria-expanded="false">{{numPerPage == totalItems ? '' : numPerPage}} <span translate>{{numPerPage == totalItems ? 'RECIPE_MGMT.ITEMS_ALL' : 'RECIPE_MGMT.ITEMS'}}</span> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
-                                <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
-                                <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
+                                <li><a data-ng-click="setNumPerPage(1);">1 <span translate>RECIPE_MGMT.ITEMS</span></a></li>
+                                <li><a data-ng-click="setNumPerPage(3);">3 <span translate>RECIPE_MGMT.ITEMS</span></a></li>
+                                <li><a data-ng-click="setNumPerPage(5);">5 <span translate>RECIPE_MGMT.ITEMS</span></a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a data-ng-click="setNumPerPage(totalItems);">Show all</a></li>
+                                <li><a data-ng-click="setNumPerPage(totalItems);" translate>RECIPE_MGMT.ITEMS_ALL</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -146,19 +146,19 @@
             </div>
             <form class="panel-body form-horizontal" method="post" action="#">
                 <div class="form-group form-group-sm">
-                    <label ng-class="isExpanded ? 'col-md-0' : 'col-md-4'" class="control-label sidebar-control-label" ng-show="!isExpanded">Title:</label>
-                    <div ng-class="isExpanded ? 'col-md-12' : 'col-md-8'">
-                        <input class="form-control" ng-model="selectedItem.name" type="text" name="title" placeholder="Title" ng-blur="isExpanded = false;" ng-focus="isExpanded = true;">
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.TITLE</label>
+                    <div class="col-md-8">
+                        <input class="form-control" ng-model="selectedItem.name" type="text" name="title" placeholder="Title">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Description:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.DESCRIPTION</label>
                     <div class="col-md-8">
                         <textarea ng-model="selectedItem.description" class="form-control" name="description" placeholder="Description"></textarea>
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Price:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.PRICE</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
                             <input ng-model="selectedItem.price" class="form-control" type="text" name="price" placeholder="Price" aria-describedby="basic-addon2">
@@ -167,46 +167,34 @@
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Ingredients:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                     <div class="col-md-8">
                         <input ng-model="selectedItem.ingredients" class="form-control" type="text" name="ingredients" placeholder="Ingredients">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Instructions:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.COOKINGINSTRUCTIONS</label>
                     <div class="col-md-8">
                         <textarea ng-model="selectedItem.cookingInstructions" class="form-control" type="text" name="cookingInstructions" placeholder="Instructions"></textarea>
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Portions:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.PORTIONS</label>
                     <div class="col-md-8">
                         <input ng-model="selectedItem.portions" class="form-control" type="number" name="portions" placeholder="Portions" min="1">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Cook time:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.COOKTIMEMINUTES</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
                             <input ng-model="selectedItem.cookTimeMinutes" class="form-control" type="text" name="cookTimeMinutes" placeholder="Cook time" aria-describedby="basic-addon3">
                             <span class="input-group-addon" id="basic-addon3">min(s)</span>
                         </div>
-                        <!--
-                        <div class="input-group input-group-sm">
-                            <input ng-model="val" ng-value="" class="form-control" type="text" name="cooktimeMinutes" placeholder="Cook time">
-                            <div class="input-group-btn" dropdown>
-                                <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">min(s) <span class="caret"></span></button>
-                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <li><a ng-click="">min(s)</a></li>
-                                    <li><a ng-click="">hr(s)</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        -->
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Prep. time:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.PREPTIMEMINUTES</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
                             <input ng-model="selectedItem.prepTimeMinutes" class="form-control" type="text" name="prepTimeMinutes" placeholder="Prep. time" aria-describedby="basic-addon5">
@@ -215,43 +203,40 @@
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Difficulty:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.DIFFICULTY</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
                             <input ng-model="selectedItem.difficulty" class="form-control" type="text" name="difficulty" placeholder="Difficulty">
                             <div class="input-group-btn" dropdown>
                                 <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
                                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <li><a ng-click="selectedItem.difficulty = 'very easy'">very easy</a></li>
-                                    <li><a ng-click="selectedItem.difficulty = 'easy'">easy</a></li>
-                                    <li><a ng-click="selectedItem.difficulty = 'medium'">medium</a></li>
-                                    <li><a ng-click="selectedItem.difficulty = 'hard'">hard</a></li>
-                                    <li><a ng-click="selectedItem.difficulty = 'very hard'">very hard</a></li>
+                                    <li><a ng-click="selectedItem.difficulty = 'very easy'" translate>RECIPE_MGMT.DIFFICULTY_VERY_EASY</a></li>
+                                    <li><a ng-click="selectedItem.difficulty = 'easy'" translate>RECIPE_MGMT.DIFFICULTY_EASY</a></li>
+                                    <li><a ng-click="selectedItem.difficulty = 'medium'" translate>RECIPE_MGMT.DIFFICULTY_MEDIUM</a></li>
+                                    <li><a ng-click="selectedItem.difficulty = 'hard'" translate>RECIPE_MGMT.DIFFICULTY_HARD</a></li>
+                                    <li><a ng-click="selectedItem.difficulty = 'very hard'" translate>RECIPE_MGMT.DIFFICULTY_VERY_HARD</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Calories:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.CALORIES</label>
                     <div class="col-md-8">
                         <div class="input-group input-group-sm">
                             <input ng-model="selectedItem.calories" class="form-control" type="number" name="calories" placeholder="Calories" aria-describedby="basic-addon4" min="1">
                             <span class="input-group-addon" id="basic-addon4">Cal</span>
                         </div>
-                        <!--
-                        <input ng-model="selectedItem.calories" class="form-control" type="number" name="calories" placeholder="Calories">
-                        -->
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Categories:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.CATEGORIES</label>
                     <div class="col-md-8">
                         <input ng-model="selectedItem.categories" class="form-control" type="text" name="categories" placeholder="Categories">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
-                    <label class="col-md-4 control-label sidebar-control-label">Author:</label>
+                    <label class="col-md-4 control-label sidebar-control-label" translate>RECIPE_MGMT.AUTHOR</label>
                     <div class="col-md-8">
                         <input ng-model="selectedItem.author" class="form-control" type="text" name="author" placeholder="Author" disabled>
                     </div>
