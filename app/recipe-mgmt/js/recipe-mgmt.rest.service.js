@@ -12,15 +12,19 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         },
         saveRecipePicture: function(id, image) {
             var deferred = $q.defer();
-            var header = {
-                'Content-Type': image.type
-            };
+            /*var header = {
+                'Content-Type': 
+            };*/
+            var formData = new FormData();
+            formData.append("picture", image);
+            deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture2', formData));
+            /*
             var reader = new $window.FileReader();
             reader.onloadend = function(event) {
                 var file = new $window.Blob([event.target.result], {type: image.type});
                 deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', file));
             };
-            reader.readAsArrayBuffer(image);
+            reader.readAsArrayBuffer(image);*/
             return deferred.promise;
         },
         getPaginatedRecipes: function (pagenumber, pagesize) {
