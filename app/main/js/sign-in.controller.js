@@ -16,6 +16,7 @@ angular.module('app.main')
                 return randomList;
             }).then(function (res){
                 $scope.recipeRandomList = res;
+                console.log(res);
             });
         };
 

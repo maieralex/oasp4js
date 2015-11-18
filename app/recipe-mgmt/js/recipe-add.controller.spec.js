@@ -29,6 +29,7 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
                 id: null,
                 name: null,
                 description: null,
+                language: null,
                 price: null,
                 ingredients: null,
                 cookingInstructions: null,
@@ -48,6 +49,7 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipe.id).toBeNull();
             expect($scope.recipe.name).toBeNull();
             expect($scope.recipe.description).toBeNull();
+            expect($scope.recipe.language).toBeNull();
             expect($scope.recipe.price).toBeNull();
             expect($scope.recipe.ingredients).toBeNull();
             expect($scope.recipe.cookingInstructions).toBeNull();
@@ -64,6 +66,7 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
                 id: 2,
                 name: 'MyRecipe',
                 description: 'My fancy description',
+                language: 'en',
                 price: 12.5,
                 ingredients: 'Some ingredients',
                 cookingInstructions: 'just cook it',
@@ -79,6 +82,7 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipe.id).toBe(2);
             expect($scope.recipe.name).toBe('MyRecipe');
             expect($scope.recipe.description).toBe('My fancy description');
+            expect($scope.recipe.language).toBe('en');
             expect($scope.recipe.price).toBe(12.5);
             expect($scope.recipe.ingredients).toBe('Some ingredients');
             expect($scope.recipe.cookingInstructions).toBe('just cook it');
