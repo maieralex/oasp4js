@@ -20,6 +20,7 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.imageBusy = false;
+        $scope.imageDirty = false;
 
         if($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
@@ -27,9 +28,13 @@ angular.module('app.recipe-mgmt')
 
         $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
             $scope.recipe.image = event.target.files[0];
+            $scope.imageDirty = true;
         }, false);
 
         $scope.saveRecipe = function() {
+            if(!$scope.imageDirty) {
+                $scope.recipe.image = null;
+            }
         	recipes.saveRecipe($scope.recipe).then(function() {
                 $rootScope.reloadRecipes();
                 $scope.image = null;
