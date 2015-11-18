@@ -19,6 +19,7 @@
         "CALORIES" : "Calories",
         "CATEGORIES" : "Categories",
         "SUBMIT_RECIPE": "Add Recipe",
+        "EDIT_RECIPE": "Update Recipe",
         "CANCEL": "Cancel",
         "AUTHOR": "Author",
         "ITEMS": "Item(s)",

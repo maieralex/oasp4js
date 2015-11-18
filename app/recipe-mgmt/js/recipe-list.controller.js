@@ -9,10 +9,18 @@ angular.module('app.recipe-mgmt')
 
         $rootScope.reloadRecipes = function () {
             $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
-                console.log(paginatedRecipes);
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
+                for(var i = 0; i < $scope.selectedRecipes.length; i++) {
+                    for(var j = 0; j < $scope.recipesList.length; j++) {
+                        if($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
+                            $scope.selectedRecipes[i] = $scope.recipesList[j];
+                            console.log('yay');
+                            break;
+                        }
+                    }
+                }
                 $scope.totalItems = res.pagination.total;
             });
         };
@@ -27,13 +35,18 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.selectedRecipes = [];
-        $scope.selectedItem = null;
 
-        $scope.selectRecipe = function(id, multisel) {
+        $rootScope.updateSelectedRecipe = function() {
+            $scope.selectRecipe($scope.selectedRecipes[0]);
+        };
+
+        $scope.selectRecipe = function(recipe, multisel) {
             if(!multisel) {
                 $scope.selectedRecipes.pop();
             }
 
+            $scope.selectedRecipes.push(recipe);
+            /*
             var idx = $scope.selectedRecipes.indexOf(id);
             if(idx === -1) {
                 $scope.selectedRecipes.push(id);
@@ -45,6 +58,7 @@ angular.module('app.recipe-mgmt')
             // sidebar
             var idxn = $scope.recipesList.map(function(e) { return e.id; }).indexOf(id);
             $scope.selectedItem = $scope.recipesList[idxn];
+            */
 
             if(!$scope.sidebarIsVisible) {
                 $scope.sidebarIsVisible = true;

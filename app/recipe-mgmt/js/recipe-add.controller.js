@@ -17,8 +17,7 @@ angular.module('app.recipe-mgmt')
             calories: null,
             categories: null,
             image: null
-        }
-
+        };
 
         $scope.imageBusy = false;
 
@@ -30,28 +29,14 @@ angular.module('app.recipe-mgmt')
             $scope.recipe.image = event.target.files[0];
         }, false);
 
-        $scope.findRecipes = function() {
-        	recipes.loadRecipe(0).then(function(data) {
-                $log.log(data);
-            });
-        };
-
         $scope.saveRecipe = function() {
         	recipes.saveRecipe($scope.recipe).then(function() {
                 $rootScope.reloadRecipes();
+                $scope.image = null;
+                $rootScope.updateSelectedRecipe();
                 $scope.$close();
             });
 
-        };
-
-        $scope.temporaryGetProduct = function() {
-            /*
-            offers.getProduct(4).then(function(data) {
-                $log.log(data);
-            });*/
-            recipes.loadRecipe(4).then(function(data) {
-                console.log(data);
-            });
         };
 
     });

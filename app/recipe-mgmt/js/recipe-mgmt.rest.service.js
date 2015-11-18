@@ -12,20 +12,19 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         saveRecipePicture: function (id, image) {
             var deferred = $q.defer();
             var header = {
-                'Content-Type': "multipart/mixed"
+                'Content-Type': 'multipart/mixed'
             };
 
-            //TODO read mimetype from image
             var eto = {
-                'mimeType': 'image/jpeg'
-            }
+                'mimeType': image.type
+            };
 
-            var content = JSON.stringify(eto); // the body of the new file...
-            var blob = new Blob([content], { type: "application/json"});
+            var content = JSON.stringify(eto); // the body of the new file
+            var blob = new $window.Blob([content], { type: 'application/json'});
 
-            var formData = new FormData();
-            formData.append("blob", image);
-            formData.append("binaryObjectEto", blob);
+            var formData = new $window.FormData();
+            formData.append('blob', image);
+            formData.append('binaryObjectEto', blob);
             deferred.resolve($http.post(servicePath + '/recipe/' + id + '/picture', formData, {headers:header}));
 
             return deferred.promise;
