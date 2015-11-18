@@ -25,6 +25,7 @@
         "ITEMS": "Element(e)",
         "ITEMS_ALL": "Alle anzeigen",
         "SEARCH": "Suchen ...",
-        "ADD": "Hinzufügen"
+        "ADD": "Hinzufügen",
+        "LANGUAGE": "Sprache"
     }
 }

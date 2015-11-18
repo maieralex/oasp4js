@@ -7,6 +7,7 @@ angular.module('app.recipe-mgmt')
             id: null,
             name: null,
             description: null,
+            language: null,
             price: null,
             ingredients: null,
             cookingInstructions: null,
