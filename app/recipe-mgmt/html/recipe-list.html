@@ -113,7 +113,7 @@
                  data-ng-repeat="recipe in recipesList"
                  data-ng-click="selectRecipe(recipe, false)"
                  data-ng-dblclick="openEdit(recipe)"
-                 data-ng-class="selectedRecipes.indexOf(recipe.id) != -1 ? 'active' : 'inactive'">
+                 data-ng-class="selectedRecipes.indexOf(recipe) != -1 ? 'active' : 'inactive'">
                 <div class="col-md-2" style="padding: 0px;">
                     <img class="list-group-item-text img-responsive" ng-show="{{recipe.image}}" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">
                 </div>
