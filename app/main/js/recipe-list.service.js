@@ -23,8 +23,8 @@ angular.module('app.main')
             }
             return returnArray;
         },
-        getAllRandomRecipes: function (numberOfEntities) {
-            return recipeListRestService.getRandomRecipes(numberOfEntities).then(function (response) {
+        getAllRandomRecipes: function (numberOfEntities, languageFlag) {
+            return recipeListRestService.getRandomRecipes(numberOfEntities, languageFlag).then(function (response) {
                 var promises = [];
                 angular.forEach(response.data, function(recipe) {
                     var deferred = $q.defer();

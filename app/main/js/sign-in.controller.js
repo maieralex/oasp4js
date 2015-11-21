@@ -12,8 +12,12 @@ angular.module('app.main')
 
 
         $scope.loadRandomRecipes = function () {
-            recipeList.getAllRandomRecipes($scope.quantity).then(function (recipeRandomList) {
-                $scope.recipeRandomList = recipeRandomList;
+            var languageFlag = "en";
+
+            recipeList.getAllRandomRecipes($scope.quantity, languageFlag).then(function (randomList){
+                return randomList;
+            }).then(function (res){
+                $scope.recipeRandomList = res;
             });
         };
 

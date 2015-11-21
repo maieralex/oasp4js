@@ -15,9 +15,8 @@ angular.module('app.main').factory('recipeListRestService', function ($http, cur
                 responseType: 'blob'
             });
         },
-        getRandomRecipes: function (numberOfEntities) {
-            return $http.get(servicePath + '/recipe/randomList/' + numberOfEntities);
+        getRandomRecipes: function (numberOfEntities, languageFlag) {
+            return $http.get(servicePath + '/recipe/randomList/' + numberOfEntities + '/' + languageFlag);
         }
-
     };
 });
