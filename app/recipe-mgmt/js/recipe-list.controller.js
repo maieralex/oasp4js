@@ -55,6 +55,11 @@ angular.module('app.recipe-mgmt')
             // disable sidebar if more than 1 item is selected or no item is selected
             $scope.sidebarIsVisible = $scope.selectedRecipes.length === 1;
         };
+        
+        $scope.disbaleSidebar = function () {
+            $scope.sidebarIsVisible = false;
+            $scope.selectedRecipes = [];
+        }
 
         $scope.openEdit = function(recipe) {
             $rootScope.editRecipe = recipe;
