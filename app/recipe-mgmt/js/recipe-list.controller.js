@@ -52,8 +52,8 @@ angular.module('app.recipe-mgmt')
                 $scope.selectedRecipes.splice(idx, 1);
             }
 
-            // disable sidebar if more than 1 item is selected
-            $scope.sidebarIsVisible = $scope.selectedRecipes.length > 1 ? false : true;
+            // disable sidebar if more than 1 item is selected or no item is selected
+            $scope.sidebarIsVisible = $scope.selectedRecipes.length === 1;
         };
 
         $scope.openEdit = function(recipe) {
