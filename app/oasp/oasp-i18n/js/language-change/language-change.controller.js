@@ -4,6 +4,9 @@ angular.module('oasp.oaspI18n').controller('LanguageChangeCntl', function ($scop
 
     $scope.changeLanguage = function (lang) {
         $translate.use(lang);
+        //Landingpage RecipeList refresh
+        $scope.$emit("loadRandomRecipesParent", lang);
+
     };
     $scope.getCurrentLanguage = function () {
         return $translate.use();

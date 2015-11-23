@@ -9,5 +9,9 @@
             <directory>../dist</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
-    </fileSets>
+	<fileSet>
+	    <directory>../app/bower_components/bootstrap/dist</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet> 
+   </fileSets>
 </assembly>
