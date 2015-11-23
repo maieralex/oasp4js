@@ -13,7 +13,7 @@ angular.module('app.main')
 
         $scope.loadRandomRecipes = function (languageFlag) {
             if(languageFlag == "start"){
-                languageFlag = $translate.proposedLanguage();
+                languageFlag = $translate.proposedLanguage() || $translate.use();
             }
             recipeList.getAllRandomRecipes($scope.quantity, languageFlag).then(function (randomList){
                 return randomList;
