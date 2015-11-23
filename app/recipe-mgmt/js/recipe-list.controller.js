@@ -45,6 +45,13 @@ angular.module('app.recipe-mgmt')
                 $scope.selectedRecipes.pop();
             }
 
+            var idx = $scope.selectedRecipes.indexOf(recipe);
+            if(idx != -1) {
+                $scope.sidebarIsVisible = false;
+            } else {
+                $scope.sidebarIsVisible = true;
+            }
+
             // Bitte nicht mehr auskommentieren! Notwendig für spätere Multi-Selection!
             var idx = $scope.selectedRecipes.indexOf(recipe);
             if(idx === -1) {
@@ -52,10 +59,6 @@ angular.module('app.recipe-mgmt')
             }
             else {
                 $scope.selectedRecipes.splice(idx, 1);
-            }
-
-            if(!$scope.sidebarIsVisible) {
-                $scope.sidebarIsVisible = true;
             }
         };
 
