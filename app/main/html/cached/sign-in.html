@@ -29,12 +29,10 @@
                 </div>
                 <div class="col-xs-10">
                     <div ng-repeat="recipe in recipeRandomList" class="row">
-                        <div ng-style="{'background-image':'url('+recipe.imageId+')'}"  class="col-sm-12 menu-list-group-item" menuitem>
+                        <div ng-style="{'background-image':'url('+recipe.image+')'}"  class="col-sm-12 menu-list-group-item" menuitem>
                             <div class="menu-list-group-item-description">
                                 <h1>
                                     {{recipe.name}}
-                                    <img class="icon icon-en-24" ng-if="recipe.language == 'en'"></img>
-                                    <img class="icon icon-de-24" ng-if="recipe.language == 'de'"></img>
                                 </h1>
                                 <p class="description">{{recipe.description}}</p><h2 class="price">{{recipe.price}}</h2>
                             </div>

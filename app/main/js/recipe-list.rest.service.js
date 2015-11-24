@@ -7,17 +7,16 @@ angular.module('app.main').factory('recipeListRestService', function ($http, cur
         getRecipe: function (id) {
             return $http.get(servicePath + '/recipe/' + id);
         },
-        getRecipePictureBytes: function(id) {
-            return $http.get(servicePath + '/recipe/' + id + '/pictureBytes', {
+        getRecipePictureBytes: function (id) {
+            return $http.get(servicePath + '/recipe/' + id + '/picture', {
                 transformResponse: [function (data) {
                     return data;
                 }],
                 responseType: 'blob'
             });
         },
-        getRandomRecipes: function (numberOfEntities) {
-            return $http.get(servicePath + '/recipe/randomList/' + numberOfEntities);
+        getRandomRecipes: function (numberOfEntities, languageFlag) {
+            return $http.get(servicePath + '/recipe/randomList/' + numberOfEntities + '/' + languageFlag);
         }
-
     };
 });

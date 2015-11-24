@@ -25,6 +25,7 @@
         "ITEMS": "Item(s)",
         "ITEMS_ALL": "Show all",
         "SEARCH": "Search ...",
-        "ADD": "Add"
+        "ADD": "Add",
+        "LANGUAGE": "Language"
     }
 }

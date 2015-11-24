@@ -1,5 +1,5 @@
 angular.module('app.main')
-    .controller('SignInCntl', function ($scope, $location, appContext, signIn, recipeList) {
+    .controller('SignInCntl', function ($scope, $location, appContext, signIn, recipeList, $rootScope, $translate) {
         'use strict';
         signIn($scope, function () {
             appContext.getCurrentUser().then(function (currentUser) {
@@ -11,13 +11,20 @@ angular.module('app.main')
         $scope.quantity = 3;
 
 
-        $scope.loadRandomRecipes = function () {
-            recipeList.getAllRandomRecipes($scope.quantity).then(function (randomList){
+        $scope.loadRandomRecipes = function (languageFlag) {
+            if(languageFlag == "start"){
+                languageFlag = $translate.proposedLanguage() || $translate.use();
+            }
+            recipeList.getAllRandomRecipes($scope.quantity, languageFlag).then(function (randomList){
                 return randomList;
             }).then(function (res){
                 $scope.recipeRandomList = res;
             });
         };
 
-        $scope.loadRandomRecipes();
+        $scope.loadRandomRecipes("start");
+
+        $rootScope.$on("loadRandomRecipesParent", function(event, message){
+            $scope.loadRandomRecipes(message);
+        });
     });

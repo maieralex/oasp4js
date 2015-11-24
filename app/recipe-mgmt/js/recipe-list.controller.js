@@ -41,28 +41,24 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.selectRecipe = function(recipe, multisel) {
-            if(!multisel) {
-                $scope.selectedRecipes.pop();
-            }
-
-            $scope.selectedRecipes.push(recipe);
-            /*
-            var idx = $scope.selectedRecipes.indexOf(id);
+            var idx = $scope.selectedRecipes.indexOf(recipe);
             if(idx === -1) {
-                $scope.selectedRecipes.push(id);
+                if(!multisel) {
+                    $scope.selectedRecipes.pop();
+                }
+                $scope.selectedRecipes.push(recipe);
             }
             else {
                 $scope.selectedRecipes.splice(idx, 1);
             }
 
-            // sidebar
-            var idxn = $scope.recipesList.map(function(e) { return e.id; }).indexOf(id);
-            $scope.selectedItem = $scope.recipesList[idxn];
-            */
-
-            if(!$scope.sidebarIsVisible) {
-                $scope.sidebarIsVisible = true;
-            }
+            // disable sidebar if more than 1 item is selected or no item is selected
+            $scope.sidebarIsVisible = $scope.selectedRecipes.length === 1;
+        };
+        
+        $scope.disbaleSidebar = function () {
+            $scope.sidebarIsVisible = false;
+            $scope.selectedRecipes = [];
         };
 
         $scope.openEdit = function(recipe) {
