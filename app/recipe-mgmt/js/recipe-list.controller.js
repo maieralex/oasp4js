@@ -59,7 +59,7 @@ angular.module('app.recipe-mgmt')
         $scope.disbaleSidebar = function () {
             $scope.sidebarIsVisible = false;
             $scope.selectedRecipes = [];
-        }
+        };
 
         $scope.openEdit = function(recipe) {
             $rootScope.editRecipe = recipe;

@@ -45,7 +45,7 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
     ));
 
     describe('testing $scope variables and functions', function () {
-        it('should check the init recipe object and its properites', function () {
+        it('should check the init recipe object and its properties', function () {
             expect($scope.recipe.id).toBeNull();
             expect($scope.recipe.name).toBeNull();
             expect($scope.recipe.description).toBeNull();

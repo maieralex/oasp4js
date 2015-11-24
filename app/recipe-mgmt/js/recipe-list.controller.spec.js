@@ -1,4 +1,4 @@
-describe('Modul:recipe-mgmt, Controller: recipe-list',function() {
+describe('Module:recipe-mgmt, Controller: recipe-list',function() {
     'use strict';
     beforeEach(module('app.recipe-mgmt'));
 
@@ -13,7 +13,6 @@ describe('Modul:recipe-mgmt, Controller: recipe-list',function() {
             $scope = $rootScope.$new();
 
             $window = {
-                //location: jasmine.createSpyObj('location', ['href', 'reload']),
                 document:jasmine.createSpyObj('document',['getElementById'])
             };
 
@@ -47,7 +46,7 @@ describe('Modul:recipe-mgmt, Controller: recipe-list',function() {
     ));
 
     describe('testing $scope variables and functions', function () {
-        it('should check the init recipe object and its properites', function () {
+        it('should check the init recipe object and its properties', function () {
             expect($scope.recipe.id).toBeNull();
             expect($scope.recipe.name).toBeNull();
             expect($scope.recipe.description).toBeNull();
@@ -159,13 +158,53 @@ describe('Modul:recipe-mgmt, Controller: recipe-list',function() {
         });
     });
 
-    /*it('should check the existence and execution of adding a recipe functionality', function () {
-        expect($scope.saveRecipe).not.toBe(null);
-        expect($scope.saveRecipe).toBeDefined();
+    it('Should get the default number per page',function(){
+       expect($scope.numPerPage).toBe(5);
+    });
+    it('Should set the number per page',function(){
+        $scope.numPerPage = 3;
+       expect($scope.numPerPage).toBe(3);
+    });
 
-        spyOn($scope, 'saveRecipe');
-        expect($scope.saveRecipe).not.toHaveBeenCalled();
-        $scope.saveRecipe(null);
-        expect($scope.saveRecipe).toHaveBeenCalled();
-    });*/
+    it('Should get the default current page value',function(){
+        expect($scope.currentPage).toBe(1);
+    });
+    it('Should set the current page value',function(){
+        $scope.currentPage = 4;
+        expect($scope.currentPage).toBe(4);
+    });
+
+    it('Should get the default totalItems value', function(){
+        expect($scope.totalItems).toBe(5);
+    });
+    it('Should set the totalItems value', function(){
+        $scope.totalItems = 42;
+        expect($scope.totalItems).toBe(42);
+    });
+
+    it('Should check the default recipe list size and entry',function(){
+        expect($scope.recipesList.length).toBe(0);
+    });
+    it('Should add a recipe to the recipe list',function(){
+        $scope.recipe = {
+            id: 2,
+            name: 'MyRecipe',
+            description: 'My fancy description',
+            language: 'en',
+            price: 12.5,
+            ingredients: 'Some ingredients',
+            cookingInstructions: 'just cook it',
+            portions: 3,
+            cookTimeMinutes: 20,
+            prepTimeMinutes: 10,
+            difficulty: 'easy',
+            calories: 250,
+            categories: 'default categories',
+            image: '/imagePath'
+        };
+        $scope.recipesList.push($scope.recipe);
+        expect($scope.recipesList.length).toBe(1);
+        expect($scope.recipesList[0]).toBe($scope.recipe);
+    });
+
 });
