@@ -73,8 +73,6 @@ describe('Service: recipes', function () {
                 }
             );
         },
-
-
     mockgetRecipePicture = function () {
         $httpBackend.whenGET(contextPath + 'services/rest/recipemanagement/v1/recipe/0/picture').respond(
             'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQSURBVBhXY/iPCijj//8PAK09SrZrfO6mAAAAAElFTkSuQmCC'
