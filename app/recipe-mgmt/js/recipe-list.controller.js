@@ -41,25 +41,24 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.selectRecipe = function(recipe, multisel) {
-            if(!multisel) {
-                $scope.selectedRecipes.pop();
-            }
-
-            var idx = $scope.selectedRecipes.indexOf(recipe);
-            if(idx != -1) {
-                $scope.sidebarIsVisible = false;
-            } else {
-                $scope.sidebarIsVisible = true;
-            }
-
-            // Bitte nicht mehr auskommentieren! Notwendig für spätere Multi-Selection!
             var idx = $scope.selectedRecipes.indexOf(recipe);
             if(idx === -1) {
+                if(!multisel) {
+                    $scope.selectedRecipes.pop();
+                }
                 $scope.selectedRecipes.push(recipe);
             }
             else {
                 $scope.selectedRecipes.splice(idx, 1);
             }
+
+            // disable sidebar if more than 1 item is selected or no item is selected
+            $scope.sidebarIsVisible = $scope.selectedRecipes.length === 1;
+        };
+        
+        $scope.disbaleSidebar = function () {
+            $scope.sidebarIsVisible = false;
+            $scope.selectedRecipes = [];
         };
 
         $scope.openEdit = function(recipe) {
