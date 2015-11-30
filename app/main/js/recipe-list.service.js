@@ -1,6 +1,6 @@
 /*jshint -W083 */
 angular.module('app.main')
-    .factory('recipeList', function (recipeListRestService, recipeManagementRestService, $window, $q) {
+    .factory('recipeList', function (recipeListRestService, $window, $q) {
     'use strict';
     return {
         loadRecipe: function (recipeId) {

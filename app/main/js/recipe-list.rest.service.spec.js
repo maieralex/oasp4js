@@ -20,10 +20,17 @@ describe('Module: app.main, Service: recipeListRestService', function () {
         expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/'+params);
     }));
 
-    it('should call $http.get when recipeListRestService.getRecipePicture is called', inject(function ($http) {
+    it('should call $http.get when recipeListRestService.getRecipePictureBytes is called', inject(function ($http) {
         var params = {id: '0'};
+        var transformResponse = {
+            transformResponse: [function (data) {
+                return data;
+            }],
+            responseType: 'blob'
+        };
+
         spyOn($http, 'get');
-        recipeListRestService.getRecipePicture(params);
-        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/'+params+'/picture');
+        recipeListRestService.getRecipePictureBytes(params);
+            expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/'+params+'/picture', transformResponse)
     }));
 });
