@@ -35,7 +35,8 @@ describe('Module: recipeMgmt, Service: recipeManagementRestService', function ()
                     size: 3,
                     page: 1,
                     total: true
-                }
+                },
+                searchString: undefined
             });
     }));
 
