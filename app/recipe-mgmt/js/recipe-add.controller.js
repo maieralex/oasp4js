@@ -9,7 +9,7 @@ angular.module('app.recipe-mgmt')
             description: null,
             language: null,
             price: null,
-            ingredients: null,
+            ingredients: [],
             cookingInstructions: null,
             portions: null,
             cookTimeMinutes: null,
@@ -18,6 +18,26 @@ angular.module('app.recipe-mgmt')
             calories: null,
             categories: null,
             image: null
+        };
+
+        $scope.setupExampleIngredients = function() {
+            $scope.recipe.ingredients = [];
+            $scope.recipe.ingredients.push({
+                name: 'Flour',
+                unit: 'g',
+                amount: 200
+            });
+            $scope.recipe.ingredients.push({
+                name: 'Eggs',
+                unit: 'piece',
+                amount: 2
+            });
+            $scope.recipe.ingredients.push({
+                name: 'Water',
+                unit: 'g',
+                amount: 300
+            });
+            console.log($scope.recipe);
         };
 
         $scope.imageBusy = false;
@@ -45,4 +65,5 @@ angular.module('app.recipe-mgmt')
 
         };
 
+        $scope.setupExampleIngredients();
     });
