@@ -14,16 +14,29 @@ describe('Module: app.main, Service: recipeListRestService', function () {
         }));
 
     it('should call $http.get when recipeListRestService.getRecipe is called', inject(function ($http) {
-        var params = {id: '0'};
+        var id = 0;
         spyOn($http, 'get');
-        recipeListRestService.getRecipe(params);
-        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/'+params);
+        recipeListRestService.getRecipe(id);
+        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/'+ id);
     }));
 
-    it('should call $http.get when recipeListRestService.getRecipePicture is called', inject(function ($http) {
+    it('should call $http.get when recipeListRestService.getRecipePictureBytes is called', inject(function ($http) {
         var params = {id: '0'};
         spyOn($http, 'get');
-        recipeListRestService.getRecipePicture(params);
-        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/'+params+'/picture');
+        recipeListRestService.getRecipePictureBytes(params);
+        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/'+params+'/picture', {
+            transformResponse: [function (data) {
+                return data;
+            }],
+            responseType: 'blob'
+        });
+    }));
+
+    it('should call $http.get when recipeListRestService.getRandomRecipe is called', inject(function ($http) {
+        var params;
+        params = {numberOfEntities: '3', languageFlag: 'EN'};
+        spyOn($http, 'get');
+        recipeListRestService.getRandomRecipes(params.numberOfEntities, params.languageFlag);
+        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/randomList/'+ params.numberOfEntities + '/' + params.languageFlag);
     }));
 });

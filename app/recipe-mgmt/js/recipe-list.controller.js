@@ -7,8 +7,13 @@ angular.module('app.recipe-mgmt')
         $scope.totalItems = 5; //getTotal ToDo
         $scope.recipesList = [];
 
+        $scope.search = {};  //only do this if $scope.course has not already been declared
+        $scope.search.searchString = "";
+
+
         $rootScope.reloadRecipes = function () {
-            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage).then(function (paginatedRecipes) {
+            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search.searchString).then(function (paginatedRecipes) {
+                console.log($scope.search.searchString);
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
@@ -67,4 +72,9 @@ angular.module('app.recipe-mgmt')
                 templateUrl: 'recipe-mgmt/html/recipe-add.html'
             });
         };
+
+        $scope.searchEnter = function(keyEvent) {
+            if (keyEvent.which === 13)
+                $rootScope.reloadRecipes();
+        }
     });

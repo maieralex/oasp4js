@@ -64,6 +64,7 @@ describe('Module: main, Controller: sign-in', function () {
         $scope.$apply();
         // then
         expect($location.path()).toEqual(userHomeDialogPath);
+        expect()
 
     }));
     it('exposes signIn() on $scope which adds an error message and clears the form on failure', inject(function ($q) {
