@@ -104,9 +104,10 @@
     box-shadow: 0 0 6px #999;
 }
 
-#addRecipeModal input,
-#addRecipeModal textarea,
-#addRecipeModal select {
+
+#addRecipeModal.edit input,
+#addRecipeModal.edit textarea,
+#addRecipeModal.edit select {
     border: 1px solid transparent;
     box-shadow: none;
     background-color: transparent;
@@ -114,9 +115,9 @@
     font-weight: normal;
     font-size: 0.9em;
 }
-#addRecipeModal input:focus,
-#addRecipeModal textarea:focus,
-#addRecipeModal select:focus {
+#addRecipeModal.edit input:focus,
+#addRecipeModal.edit textarea:focus,
+#addRecipeModal.edit select:focus {
     border: 1px solid #ccc;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     background-color: #fff;
@@ -127,13 +128,13 @@
 #addRecipeModal textarea {
     min-height: 100px;
 }
-.input-group-addon {
+#addRecipeModal.edit .input-group-addon {
     border: 1px solid transparent;
     background-color: transparent;
     color: #000;
     font-size: 0.8em;
 }
-#addRecipeModal input:focus ~ .input-group-addon {
+#addRecipeModal.edit input:focus ~ .input-group-addon {
     border: 1px solid #ccc;
     background-color: #eeeeee;
     color: #555555;
@@ -148,14 +149,25 @@
 #ingredientTable td + td + td input {
     text-align: left;
 }
-#ingredientTable td {
-    width: 60%;
+#ingredientTable td,
+#ingredientInput input {
+    width: 50%;
 }
-#ingredientTable td + td {
+#ingredientTable td + td,
+#ingredientInput input + input {
     width: 20%;
 }
-#ingredientTable td + td + td {
-    width: 20%;
+#ingredientTable td + td + td,
+#ingredientInput input + input + input {
+    width: 15%;
+}
+#ingredientTable td + td + td + td,
+#ingredientInput input + input + input + span {
+    width: 15%;
+    padding-right: 8px;
+}
+#ingredientInput button.btn-success {
+    transform: translateX(-3px);
 }
 
 //Inline

@@ -20,46 +20,20 @@ angular.module('app.recipe-mgmt')
             image: null
         };
 
-        $scope.setupExampleIngredients = function() {
-            $scope.recipe.ingredients = [];
-            $scope.recipe.ingredients.push({
-                name: 'Flour',
-                unit: 'g',
-                amount: 200
-            });
-            $scope.recipe.ingredients.push({
-                name: 'Eggs',
-                unit: 'piece',
-                amount: 2
-            });
-            $scope.recipe.ingredients.push({
-                name: 'Water',
-                unit: 'g',
-                amount: 300
-            });
-        };
 
         $scope.imageBusy = false;
         $scope.imageDirty = false;
 
         if($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
+            $scope.recipe.ingredients = [] // ToDo: Remove once ingredients are fully implemented
+            $scope.editmode = 'edit';
         }
 
         $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
             $scope.recipe.image = event.target.files[0];
             $scope.imageDirty = true;
         }, false);
-
-        $scope.addIngredient = function() {
-            if(!$scope.emptyIngredientExists()) {
-                $scope.recipe.ingredients.push({
-                    name: '',
-                    unit: '',
-                    amount: '',
-                });
-            }
-        };
 
         $scope.emptyIngredientExists = function() {
             var emptyIngredient = false;
@@ -72,34 +46,45 @@ angular.module('app.recipe-mgmt')
                 }
             }
             return emptyIngredient;
-        }
+        };
 
-        $scope.ingredientControls = function(e, element) {
-            var isFirstIngredient = element.ingredient === $scope.recipe.ingredients[0];
-            var isLastIngredient = element.ingredient === $scope.recipe.ingredients[$scope.recipe.ingredients.length-1]
-            // keyCode 9 = TAB
-            if(e.keyCode === 9 && isLastIngredient && !$scope.emptyIngredientExists()) {
-                $scope.recipe.ingredients.push({
-                    name: '',
-                    unit: '',
-                    amount: '',
-                });
+        $scope.newIngredient = {};
+        $scope.addIngredient = function() {
+            $scope.recipe.ingredients.push($scope.newIngredient);
+            $scope.newIngredient = {};
+            $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
+        };
+        $scope.ingredientAddControls = function(e) {
+            // keyCode 13 = Enter key
+            if(e.keyCode === 13) {
+                $scope.addIngredient();
             }
+        };
+        $scope.ingredientControls = function(e, ingredient) {
+            var isFirstIngredient = ingredient === $scope.recipe.ingredients[0];
+            var isLastIngredient = ingredient === $scope.recipe.ingredients[$scope.recipe.ingredients.length-1]
+
             if(e.keyCode === 38 && !isFirstIngredient) {
-                var index = $scope.recipe.ingredients.indexOf(element.ingredient);
+                var index = $scope.recipe.ingredients.indexOf(ingredient);
                 var tmp = $scope.recipe.ingredients[index];
                 $scope.recipe.ingredients[index] = $scope.recipe.ingredients[index-1];
                 $scope.recipe.ingredients[index-1] = tmp;
-                document.getElementById('ingredientTable').getElementsByTagName('tr')[index-1].getElementsByTagName('input')[0].focus();
+                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[index-1].getElementsByTagName('input')[0].focus();
             }
             if(e.keyCode === 40 && !isLastIngredient) {
-                var index = $scope.recipe.ingredients.indexOf(element.ingredient);
+                var index = $scope.recipe.ingredients.indexOf(ingredient);
                 var tmp = $scope.recipe.ingredients[index];
                 $scope.recipe.ingredients[index] = $scope.recipe.ingredients[index+1];
                 $scope.recipe.ingredients[index+1] = tmp;
-                document.getElementById('ingredientTable').getElementsByTagName('tr')[index+1].getElementsByTagName('input')[0].focus();
+                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[index+1].getElementsByTagName('input')[0].focus();
             }
         };
+        $scope.removeIngredient = function(ingredient) {
+            var removeIndex = $scope.recipe.ingredients.indexOf(ingredient);
+            if(removeIndex > -1) {
+                $scope.recipe.ingredients.splice(removeIndex, 1);
+            }
+        }
 
         $scope.saveRecipe = function() {
             if(!$scope.imageDirty) {
@@ -115,5 +100,4 @@ angular.module('app.recipe-mgmt')
 
         };
 
-        $scope.setupExampleIngredients();
     });
