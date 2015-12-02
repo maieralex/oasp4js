@@ -1,5 +1,4 @@
 /*globals oasp*/
-git add.
 describe('Service: recipes', function () {
     'use strict';
     var recipeSearchCriteria = {
