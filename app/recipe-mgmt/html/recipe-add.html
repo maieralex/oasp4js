@@ -1,117 +1,142 @@
-
 <div ng-controller="RecipeAddCntl" id="addRecipeModal" role="modal">
     <div class="modal-header">
-        <button type="button" class="close" ng-click="$close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" ng-click="$close()" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="addRecipeModalLabel" translate>RECIPE_MGMT.SUBMIT_RECIPE</h4>
     </div>
     <div class="modal-body" id="recipeForm">
         <form method="post" class="form-horizontal recipe-add-pop-up" action="#">
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.TITLE</label>
+
                 <div class="col-md-9">
                     <input ng-model="recipe.name" class="form-control" type="text" name="title">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.DESCRIPTION</label>
+
                 <div class="col-md-9">
                     <textarea ng-model="recipe.description" class="form-control" name="description"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.LANGUAGE</label>
+
                 <div class="col-md-9">
-                    <label class="radio-inline"><input type="radio" ng-model="recipe.language" name="language" value="en"><img class="icon icon-en-24"></label>
-                    <label class="radio-inline"><input type="radio" ng-model="recipe.language" name="language" value="de"><img class="icon icon-de-24"></label>
+                    <label class="radio-inline"><input type="radio" ng-model="recipe.language" name="language"
+                                                       value="en"><img class="icon icon-en-24"></label>
+                    <label class="radio-inline"><input type="radio" ng-model="recipe.language" name="language"
+                                                       value="de"><img class="icon icon-de-24"></label>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.PRICE</label>
+
                 <div class="col-md-9">
                     <div class="input-group">
-                        <input ng-model="recipe.price" class="form-control" type="text" name="price" aria-describedby="basic-addon2">
+                        <input ng-model="recipe.price" class="form-control" type="text" name="price"
+                               aria-describedby="basic-addon2">
                         <span class="input-group-addon" id="basic-addon2">€</span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
+
                 <div class="col-md-9">
                     <input ng-model="recipe.ingredients" class="form-control" type="text" name="ingredients">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.COOKINGINSTRUCTIONS</label>
+
                 <div class="col-md-9">
-                    <textarea ng-model="recipe.cookingInstructions" class="form-control" type="text" name="cookingInstructions"></textarea>
+                    <textarea ng-model="recipe.cookingInstructions" class="form-control" type="text"
+                              name="cookingInstructions"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.PORTIONS</label>
+
                 <div class="col-md-9">
                     <input ng-model="recipe.portions" class="form-control" type="number" name="portions" min="1">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.COOKTIMEMINUTES</label>
+
                 <div class="col-md-9">
                     <div class="input-group">
-                        <input ng-model="recipe.cookTimeMinutes" class="form-control" type="text" name="cookTimeMinutes" aria-describedby="basic-addon3">
+                        <input ng-model="recipe.cookTimeMinutes" class="form-control" type="text" name="cookTimeMinutes"
+                               aria-describedby="basic-addon3">
                         <span class="input-group-addon" id="basic-addon3">min(s)</span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.PREPTIMEMINUTES</label>
+
                 <div class="col-md-9">
                     <div class="input-group">
-                        <input ng-model="recipe.prepTimeMinutes" class="form-control" type="text" name="prepTimeMinutes" aria-describedby="basic-addon5">
+                        <input ng-model="recipe.prepTimeMinutes" class="form-control" type="text" name="prepTimeMinutes"
+                               aria-describedby="basic-addon5">
                         <span class="input-group-addon" id="basic-addon5">min(s)</span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.DIFFICULTY</label>
+
                 <div class="col-md-9">
                     <select ng-model="recipe.difficulty" class="form-control" name="difficulty">
-                    <option value="very easy" translate>RECIPE_MGMT.DIFFICULTY_VERY_EASY</option>
-                    <option value="easy" translate>RECIPE_MGMT.DIFFICULTY_EASY</option>
-                    <option value="medium" translate>RECIPE_MGMT.DIFFICULTY_MEDIUM</option>
-                    <option value="hard" translate>RECIPE_MGMT.DIFFICULTY_HARD</option>
-                    <option value="very hard" translate>RECIPE_MGMT.DIFFICULTY_VERY_HARD</option>
-                </select>
+                        <option value="very easy" translate>RECIPE_MGMT.DIFFICULTY_VERY_EASY</option>
+                        <option value="easy" translate>RECIPE_MGMT.DIFFICULTY_EASY</option>
+                        <option value="medium" translate>RECIPE_MGMT.DIFFICULTY_MEDIUM</option>
+                        <option value="hard" translate>RECIPE_MGMT.DIFFICULTY_HARD</option>
+                        <option value="very hard" translate>RECIPE_MGMT.DIFFICULTY_VERY_HARD</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.CALORIES</label>
+
                 <div class="col-md-9">
                     <div class="input-group">
-                        <input ng-model="recipe.calories" class="form-control" type="number" name="calories" aria-describedby="basic-addon4" min="1">
+                        <input ng-model="recipe.calories" class="form-control" type="number" name="calories"
+                               aria-describedby="basic-addon4" min="1">
                         <span class="input-group-addon" id="basic-addon4">Cal</span>
                     </div>
                 </div>
             </div>
-            <div class="form-group" >
-                <label class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORIES</label>
+            <div class="form-group">
+                <label for="categories" class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORIE</label>
+
                 <div class="col-md-9">
-                    <input ng-model="recipe.categories" class="form-control" type="text" name="categories">
+                    <select ng-model="recipe.categories" ng-options="categorie as categorie.name for categorie in categories track by categorie.name"
+                            class="form-control" name="categories" id="categories">
+                    </select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.IMAGE</label>
+
                 <div class="col-md-9">
                     <input ng-model="recipe.image" type="file" name="image" id="recipeImage">
-                    <img id="imagepreview" ng-hide="recipe.id === null" ng-src="{{recipe.image}}" alt="{{recipe.name}}">
+                    <img id="imagepreview" ng-hide="recipe.id === null" ng-src="{{recipe.image}}"
+                         alt="{{recipe.name}}">
                 </div>
             </div>
         </form>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="$close()" translate>RECIPE_MGMT.CANCEL</button>
-        <button ng-hide="recipe.id === null" type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary" ng-click="saveRecipe()" translate>
+        <button ng-hide="recipe.id === null" type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary"
+                ng-click="saveRecipe()" translate>
             RECIPE_MGMT.EDIT_RECIPE
         </button>
-        <button ng-show="recipe.id === null" type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary" ng-click="saveRecipe()" translate>
+        <button ng-show="recipe.id === null" type="button" ng-disabled="{{imageBusy}}" class="btn btn-primary"
+                ng-click="saveRecipe()" translate>
             RECIPE_MGMT.SUBMIT_RECIPE
         </button>
     </div>

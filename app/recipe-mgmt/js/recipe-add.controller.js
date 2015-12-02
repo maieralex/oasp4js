@@ -20,23 +20,27 @@ angular.module('app.recipe-mgmt')
             image: null
         };
 
+        $scope.categories = [{
+            name: "vegan"
+        }, {name: "main dish"}];
+
         $scope.imageBusy = false;
         $scope.imageDirty = false;
 
-        if($rootScope.editRecipe !== null) {
+        if ($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
         }
 
-        $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
+        $window.document.getElementById('recipeImage').addEventListener('change', function (event) {
             $scope.recipe.image = event.target.files[0];
             $scope.imageDirty = true;
         }, false);
 
-        $scope.saveRecipe = function() {
-            if(!$scope.imageDirty) {
+        $scope.saveRecipe = function () {
+            if (!$scope.imageDirty) {
                 $scope.recipe.image = null;
             }
-        	recipes.saveRecipe($scope.recipe).then(function() {
+            recipes.saveRecipe($scope.recipe).then(function () {
                 $rootScope.reloadRecipes();
                 $scope.image = null;
                 $rootScope.updateSelectedRecipe();
