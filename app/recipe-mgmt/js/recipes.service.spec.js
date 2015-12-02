@@ -168,6 +168,7 @@ describe('Service: recipes', function () {
     it('uses getRecipe service to receive a recipe from Server', function () {
         expect(receivedrecipe.id).toBe(0);
         expect(receivedrecipe.name).toBe('Wienerschnitzel');
+        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/0/picture');
     });
 
 });

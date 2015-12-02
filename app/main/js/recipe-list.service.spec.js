@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 describe('Module: \'app.main\', Service: \'recipeList\'', function() {
     'use strict';
