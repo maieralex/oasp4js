@@ -13,7 +13,6 @@ angular.module('app.recipe-mgmt')
 
         $rootScope.reloadRecipes = function () {
             $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search.searchString).then(function (paginatedRecipes) {
-                console.log($scope.search.searchString);
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;

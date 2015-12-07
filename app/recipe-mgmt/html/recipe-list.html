@@ -69,7 +69,7 @@
                 </div>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="input-group" translate>
-                        <input type="text" class="form-control" placeholder="{{'RECIPE_MGMT.SEARCH' | translate}}" ng-model="search.searchString" ng-keypress="searchEnter($event)">
+                        <input type="text" class="form-control" placeholder="{{'RECIPE_MGMT.SEARCH' | translate}}" ng-model="search.searchString" ng-keypress="searchEnter($event)" ng-change="reloadRecipes()">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" ng-click="reloadRecipes()">
                                 <span class="glyphicon glyphicon-search" aria-hidden="true" aria-label="{{'RECIPE_MGMT.SEARCH' | translate}}"></span>
@@ -115,7 +115,7 @@
                  data-ng-dblclick="openEdit(recipe)"
                  data-ng-class="selectedRecipes.indexOf(recipe) != -1 ? 'active' : 'inactive'">
                 <div class="col-md-2" style="padding: 0px;">
-                    <img class="list-group-item-text img-responsive" ng-show="{{recipe.image}}" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">
+                    <img class="list-group-item-text img-responsive" ng-show="{{recipe.image.length > 0}}" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
                     <h4 class="list-group-item-heading">{{recipe.name}}</h4>
