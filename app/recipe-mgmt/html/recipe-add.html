@@ -46,7 +46,7 @@
                         <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
                         </span>
                     </div>
-                    <table class="table table-striped" id="ingredientTable">
+                    <table class="table table-striped" id="ingredientTable" navigatable>
                         <tbody ui-sortable ng:model="recipe.ingredients">
                         <tr ng-repeat="ingredient in recipe.ingredients track by $index">
                             <td>
