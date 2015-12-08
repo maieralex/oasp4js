@@ -47,7 +47,11 @@
                         </span>
                     </div>
                     <table class="table table-striped" id="ingredientTable" navigatable>
+                        <tbody ui-sortable ng:model="recipe.ingredients">
                         <tr ng-repeat="ingredient in recipe.ingredients track by $index">
+                            <td>
+                                <span class="glyphicon glyphicon-option-vertical" style="cursor:pointer">&nbsp;</span>
+                            </td>
                             <td>
                                 <input type="text" ng-model="ingredient.name" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
@@ -61,6 +65,7 @@
                                 <button type="button" class="btn btn-danger btn-xs" ng-click="removeIngredient(ingredient)"><i class="glyphicon glyphicon-remove"></i></button>
                             </td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -124,7 +129,9 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.IMAGE</label>
                 <div class="col-md-9">
-                    <input ng-model="recipe.image" type="file" name="image" id="recipeImage">
+                    <span class="btn btn-default btn-file"><span style="cursor:pointer" translate>RECIPE_MGMT.SELECT_IMAGE</span><input ng-model="recipe.image" type="file" accept="image/*" name="image" id="recipeImage"></span>
+                    <span class="label label-warning" ng-show="recipe.image.size > maxImgSize" translate>RECIPE_MGMT.MAXIMGSIZE_WARNING</span>
+                    <span class="label label-default" ng-hide="recipe.image.size > maxImgSize">{{recipe.image.name}}</span>
                     <img id="imagepreview" ng-hide="recipe.id === null" ng-src="{{recipe.image}}" alt="{{recipe.name}}">
                 </div>
             </div>

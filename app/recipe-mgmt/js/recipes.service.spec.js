@@ -1,5 +1,5 @@
 /*globals oasp*/
-describe('Service: recipes', function () {
+describe('Service: recipes', function ($http) {
     'use strict';
     var recipeSearchCriteria = {
             pagination: {
@@ -9,23 +9,23 @@ describe('Service: recipes', function () {
             }
         },
         recipe = {
-            "id":10000000,
-            "modificationCounter":0,
-            "revision":null,
-            "name":"Test",
-            "description":"Test",
-            "language":null,
-            "price":"15.40",
-            "imageId":null,
-            "author":null,
-            "categories":"Test",
-            "portions":5,
-            "ingredients":"Test",
-            "difficulty":"medium",
-            "prepTimeMinutes":15,
-            "cookTimeMinutes":15,
-            "calories":51000,
-            "cookingInstructions":"Test"
+            'id':10000000,
+            'modificationCounter':0,
+            'revision':null,
+            'name':'Test',
+            'description':'Test',
+            'language':null,
+            'price':'15.40',
+            'imageId':null,
+            'author':null,
+            'categories':'Test',
+            'portions':5,
+            'ingredients':'Test',
+            'difficulty':'medium',
+            'prepTimeMinutes':15,
+            'cookTimeMinutes':15,
+            'calories':51000,
+            'cookingInstructions':'Test'
         },
         recipes,
         receivedrecipe,
@@ -73,32 +73,32 @@ describe('Service: recipes', function () {
                 }
             );
         },
-    mockgetRecipePicture = function () {
+    /*mockgetRecipePicture = function () {
         $httpBackend.whenGET(contextPath + 'services/rest/recipemanagement/v1/recipe/0/picture').respond(
             'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQSURBVBhXY/iPCijj//8PAK09SrZrfO6mAAAAAElFTkSuQmCC'
         );
-    },
+    },*/
 
     mockSaveRecipe = function () {
         $httpBackend.whenPOST(contextPath + 'services/rest/recipemanagement/v1/recipe/', recipe).respond(
             {
-                "id":10000000,
-                "modificationCounter":0,
-                "revision":null,
-                "name":"Test",
-                "description":"Test",
-                "language":null,
-                "price":"15.40",
-                "imageId":null,
-                "author":null,
-                "categories":"Test",
-                "portions":5,
-                "ingredients":"Test",
-                "difficulty":"medium",
-                "prepTimeMinutes":15,
-                "cookTimeMinutes":15,
-                "calories":51000,
-                "cookingInstructions":"Test"
+                'id':10000000,
+                'modificationCounter':0,
+                'revision':null,
+                'name':'Test',
+                'description':'Test',
+                'language':null,
+                'price':'15.40',
+                'imageId':null,
+                'author':null,
+                'categories':'Test',
+                'portions':5,
+                'ingredients':'Test',
+                'difficulty':'medium',
+                'prepTimeMinutes':15,
+                'cookTimeMinutes':15,
+                'calories':51000,
+                'cookingInstructions':'Test'
             }
         );
     },
