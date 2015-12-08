@@ -24,26 +24,10 @@ angular.module('app.recipe-mgmt')
             image: null
         };
 
-        $scope.existingIngredients = [
-            'Eggs',
-            'Flour',
-            'Water',
-            'Salt',
-            'Beef',
-            'Bacon',
-            'Cheese',
-            'Avocado',
-            'Dough',
-            'Garlic',
-            'Tuna',
-            'Vinegar',
-            'Chili',
-            'Macadamia',
-            'Nutella',
-            'Oranges',
-            'Pickles'
-        ];
-
+        $scope.existingIngredients = [];
+        recipes.getIngredients().then(function(ings) {
+            $scope.existingIngredients = ings;
+        })
 
         $scope.imageBusy = false;
         $scope.imageDirty = false;

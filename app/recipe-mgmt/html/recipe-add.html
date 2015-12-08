@@ -46,7 +46,7 @@
                             <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
                         </span>
                         <datalist id="existingIngredients">
-                            <option ng-repeat="eIng in existingIngredients" value="{{eIng}}">
+                            <option ng-repeat="eIng in existingIngredients" value="{{eIng.name}}">
                         </datalist>
                     </div>
                     <table class="table table-striped" id="ingredientTable" navigatable>
