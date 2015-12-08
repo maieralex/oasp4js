@@ -1,6 +1,4 @@
-/**
- *
- */
+/*globals oasp*/
 describe('Module: \'app.main\', Service: \'recipeList\'', function() {
     'use strict';
     var recipeList, $httpBackend, contextPath = '/contextPath/';
