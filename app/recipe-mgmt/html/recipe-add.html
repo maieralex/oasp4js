@@ -39,12 +39,15 @@
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                 <div class="col-md-9">
                     <div id="ingredientInput">
-                        <input type="text" placeholder="Ingredient" ng-model="newIngredient.name" ng-keydown="ingredientAddControls($event)">
-                        <input type="text" placeholder="Amount" ng-model="newIngredient.amount" ng-keydown="ingredientAddControls($event)">
+                        <input type="text" placeholder="Ingredient" ng-model="newIngredient.name" ng-keydown="ingredientAddControls($event)" list="existingIngredients">
+                        <input type="text" placeholder="Amount" ng-pattern="/^[0-9]+(.[0-9]+)?$/" ng-model="newIngredient.amount" ng-keydown="ingredientAddControls($event)">
                         <input type="text" placeholder="Unit" ng-model="newIngredient.unit" ng-keydown="ingredientAddControls($event)">
                         <span>
-                        <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
                         </span>
+                        <datalist id="existingIngredients">
+                            <option ng-repeat="eIng in existingIngredients" value="{{eIng}}">
+                        </datalist>
                     </div>
                     <table class="table table-striped" id="ingredientTable">
                         <tr ng-repeat="ingredient in recipe.ingredients track by $index">

@@ -24,12 +24,33 @@ angular.module('app.recipe-mgmt')
             image: null
         };
 
+        $scope.existingIngredients = [
+            'Eggs',
+            'Flour',
+            'Water',
+            'Salt',
+            'Beef',
+            'Bacon',
+            'Cheese',
+            'Avocado',
+            'Dough',
+            'Garlic',
+            'Tuna',
+            'Vinegar',
+            'Chili',
+            'Macadamia',
+            'Nutella',
+            'Oranges',
+            'Pickles'
+        ];
+
 
         $scope.imageBusy = false;
         $scope.imageDirty = false;
 
         if($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
+            console.log($scope.recipe);
             $scope.recipe.ingredients = []; // ToDo: Remove once ingredients are fully implemented
             $scope.editmode = 'edit';
         }
@@ -38,7 +59,6 @@ angular.module('app.recipe-mgmt')
             $scope.$apply(function(){
                 $scope.recipe.image = event.target.files[0];
                 if ($scope.recipe.image.size < $scope.maxImgSize) {
-                    $log.log('yop!');
                     $scope.imageDirty = true;
                 }
             });
@@ -64,6 +84,7 @@ angular.module('app.recipe-mgmt')
             $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
         };
         $scope.ingredientAddControls = function(e) {
+            console.log(e.keyCode);
             // keyCode 13 = Enter key
             if(e.keyCode === 13) {
                 $scope.addIngredient();

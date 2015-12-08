@@ -20,7 +20,6 @@ angular.module('app.recipe-mgmt')
                     for(var j = 0; j < $scope.recipesList.length; j++) {
                         if($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
                             $scope.selectedRecipes[i] = $scope.recipesList[j];
-                            console.log('yay');
                             break;
                         }
                     }
