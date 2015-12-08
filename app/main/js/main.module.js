@@ -1,4 +1,4 @@
-angular.module('app.main', ['ngRoute', 'oasp.oaspUi', 'oasp.oaspSecurity', 'app.main.templates', 'oasp.oaspI18n', 'ui.bootstrap'])
+angular.module('app.main', ['ngRoute', 'oasp.oaspUi', 'oasp.oaspSecurity', 'app.main.templates', 'oasp.oaspI18n', 'ui.bootstrap', 'ui.sortable'])
     .constant('SIGN_IN_DLG_PATH', '/main/sign-in')
     .config(function (SIGN_IN_DLG_PATH, $routeProvider, oaspTranslationProvider) {
         'use strict';

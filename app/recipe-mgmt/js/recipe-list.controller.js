@@ -8,7 +8,7 @@ angular.module('app.recipe-mgmt')
         $scope.recipesList = [];
 
         $scope.search = {};  //only do this if $scope.course has not already been declared
-        $scope.search.searchString = "";
+        $scope.search.searchString = '';
 
 
         $rootScope.reloadRecipes = function () {
@@ -73,7 +73,8 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.searchEnter = function(keyEvent) {
-            if (keyEvent.which === 13)
+            if (keyEvent.which === 13){
                 $rootScope.reloadRecipes();
-        }
+            }
+        };
     });

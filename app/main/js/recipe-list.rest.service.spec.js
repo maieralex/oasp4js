@@ -1,3 +1,4 @@
+/*globals oasp*/
 /**
  * Created by mschwede on 02.11.15.
  */
