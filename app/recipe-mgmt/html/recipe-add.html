@@ -1,8 +1,9 @@
 
-<div ng-controller="RecipeAddCntl" id="addRecipeModal" role="modal">
+<div ng-controller="RecipeAddCntl" class="{{editmode}}" id="addRecipeModal" role="modal">
     <div class="modal-header">
         <button type="button" class="close" ng-click="$close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addRecipeModalLabel" translate>RECIPE_MGMT.SUBMIT_RECIPE</h4>
+        <h4 ng-hide="{{editmode == 'edit'}}" class="modal-title" id="addRecipeModalLabel" translate>RECIPE_MGMT.SUBMIT_RECIPE</h4>
+        <h4 ng-show="{{editmode == 'edit'}}" class="modal-title" id="addRecipeModalLabel" translate>RECIPE_MGMT.EDIT_RECIPE</h4>
     </div>
     <div class="modal-body" id="recipeForm">
         <form method="post" class="form-horizontal recipe-add-pop-up" action="#">
@@ -37,16 +38,27 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                 <div class="col-md-9">
+                    <div id="ingredientInput">
+                        <input type="text" placeholder="Ingredient" ng-model="newIngredient.name" ng-keydown="ingredientAddControls($event)">
+                        <input type="text" placeholder="Amount" ng-model="newIngredient.amount" ng-keydown="ingredientAddControls($event)">
+                        <input type="text" placeholder="Unit" ng-model="newIngredient.unit" ng-keydown="ingredientAddControls($event)">
+                        <span>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
+                        </span>
+                    </div>
                     <table class="table table-striped" id="ingredientTable">
                         <tr ng-repeat="ingredient in recipe.ingredients track by $index">
                             <td>
-                                <input type="text" ng-model="ingredient.name">
+                                <input type="text" ng-model="ingredient.name" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
                             <td>
-                                <input type="text" ng-model="ingredient.amount">
+                                <input type="text" ng-model="ingredient.amount" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
                             <td>
-                                <input type="text" ng-model="ingredient.unit">
+                                <input type="text" ng-model="ingredient.unit" ng-keydown="ingredientControls($event, ingredient)">
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-xs" ng-click="removeIngredient(ingredient)"><i class="glyphicon glyphicon-remove"></i></button>
                             </td>
                         </tr>
                     </table>
