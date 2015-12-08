@@ -1,3 +1,24 @@
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: pointer;
+    display: block;
+}
+
 .recipe-add-pop-up .control-label{
     text-align: left !important;
 }
@@ -149,21 +170,24 @@
 #ingredientTable td + td + td input {
     text-align: left;
 }
-#ingredientTable td,
+#ingredientTable td {
+    width: 5%
+}
+#ingredientTable td + td,
 #ingredientInput input {
     width: 50%;
 }
-#ingredientTable td + td,
+#ingredientTable td + td + td,
 #ingredientInput input + input {
     width: 20%;
 }
-#ingredientTable td + td + td,
+#ingredientTable td + td + td + td,
 #ingredientInput input + input + input {
     width: 15%;
 }
-#ingredientTable td + td + td + td,
+#ingredientTable td + td + td + td + td,
 #ingredientInput input + input + input + span {
-    width: 15%;
+    width: 10%;
     padding-right: 8px;
 }
 #ingredientInput button.btn-success {
