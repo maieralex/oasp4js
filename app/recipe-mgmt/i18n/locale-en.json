@@ -26,6 +26,8 @@
         "ITEMS_ALL": "Show all",
         "SEARCH": "Search ...",
         "ADD": "Add",
-        "LANGUAGE": "Language"
+        "LANGUAGE": "Language",
+        "MAXIMGSIZE_WARNING":"The image file size may not exceed 5 MB.",
+        "SELECT_IMAGE":"Select picture..."
     }
 }
