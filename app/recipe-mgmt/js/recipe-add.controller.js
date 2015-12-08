@@ -3,6 +3,10 @@ angular.module('app.recipe-mgmt')
     .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window) {
         'use strict';
 
+        //maximum image size to upload in bytes
+        $scope.maxImgSize = 5000000;
+        $scope.showMaxImgSizeWarning = false;
+
         $scope.recipe = {
             id: null,
             name: null,
@@ -31,8 +35,13 @@ angular.module('app.recipe-mgmt')
         }
 
         $window.document.getElementById('recipeImage').addEventListener('change', function(event) {
-            $scope.recipe.image = event.target.files[0];
-            $scope.imageDirty = true;
+            $scope.$apply(function(){
+                $scope.recipe.image = event.target.files[0];
+                if ($scope.recipe.image.size < $scope.maxImgSize) {
+                    $log.log('yop!');
+                    $scope.imageDirty = true;
+                }
+            });
         }, false);
 
         $scope.emptyIngredientExists = function() {
