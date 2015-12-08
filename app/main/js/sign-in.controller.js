@@ -12,7 +12,7 @@ angular.module('app.main')
 
 
         $scope.loadRandomRecipes = function (languageFlag) {
-            if(languageFlag == "start"){
+            if(languageFlag === 'start'){
                 languageFlag = $translate.proposedLanguage() || $translate.use();
             }
             recipeList.getAllRandomRecipes($scope.quantity, languageFlag).then(function (randomList){
@@ -22,9 +22,9 @@ angular.module('app.main')
             });
         };
 
-        $scope.loadRandomRecipes("start");
+        $scope.loadRandomRecipes('start');
 
-        $rootScope.$on("loadRandomRecipesParent", function(event, message){
+        $rootScope.$on('loadRandomRecipesParent', function(event, message){
             $scope.loadRandomRecipes(message);
         });
     });
