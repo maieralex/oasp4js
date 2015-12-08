@@ -64,14 +64,14 @@ angular.module('app.recipe-mgmt')
             var isFirstIngredient = ingredient === $scope.recipe.ingredients[0];
             var isLastIngredient = ingredient === $scope.recipe.ingredients[$scope.recipe.ingredients.length-1]
 
-            if(e.keyCode === 38 && !isFirstIngredient) {
+            if(e.keyCode === 38 && e.shiftKey && !isFirstIngredient) {
                 var index = $scope.recipe.ingredients.indexOf(ingredient);
                 var tmp = $scope.recipe.ingredients[index];
                 $scope.recipe.ingredients[index] = $scope.recipe.ingredients[index-1];
                 $scope.recipe.ingredients[index-1] = tmp;
                 $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[index-1].getElementsByTagName('input')[0].focus();
             }
-            if(e.keyCode === 40 && !isLastIngredient) {
+            if(e.keyCode === 40 && e.shiftKey && !isLastIngredient) {
                 var index = $scope.recipe.ingredients.indexOf(ingredient);
                 var tmp = $scope.recipe.ingredients[index];
                 $scope.recipe.ingredients[index] = $scope.recipe.ingredients[index+1];
