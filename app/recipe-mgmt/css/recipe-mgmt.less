@@ -268,7 +268,7 @@
     }
 }
 
-.form-control-hover(@color: @input-border-focus) {
+.form-control-hover(@color: @input-border) {
     @color-rgba: rgba(red(@color), green(@color), blue(@color), .6);
     @border-color-rgba: rgba(red(@color), green(@color), blue(@color), .4);
     &:hover {
@@ -279,7 +279,18 @@
     }
 }
 .inline-form.title{
-    font-size: larger;
-    font-style: italic;
+    font-size: x-large;
     font-weight: bold;
+}
+.price {
+    font-size: x-large;
+}
+.radio-inline:first-child {
+    padding-left: 35px;
+}
+.badge:hover {
+    background-color: @input-border;
+}
+.badge:focus {
+
 }
