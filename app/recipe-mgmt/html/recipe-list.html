@@ -69,7 +69,7 @@
                 </div>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="input-group" translate>
-                        <input type="text" class="form-control" placeholder="{{'RECIPE_MGMT.SEARCH' | translate}}" ng-model="search.searchString" ng-keypress="searchEnter($event)" ng-change="reloadRecipes()">
+                        <input type="text" class="form-control" placeholder="{{'RECIPE_MGMT.SEARCH' | translate}}" ng-model="search.searchString">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" ng-click="reloadRecipes()">
                                 <span class="glyphicon glyphicon-search" aria-hidden="true" aria-label="{{'RECIPE_MGMT.SEARCH' | translate}}"></span>
