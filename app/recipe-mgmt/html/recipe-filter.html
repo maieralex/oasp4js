@@ -1,0 +1,46 @@
+<div class="panel panel-default recipe-list-sidebar" sidebar-max-height>
+    <div class="panel-heading" translate>
+        RECIPE_MGMT.FILTEROPTS
+    </div>
+    <div class="panel-body">
+        <h4 translate>RECIPE_MGMT.CATEGORIES</h4>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Vorspeisen</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Für den kleinen Hunger</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Vom Grill</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Fisch</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Pasta</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Pizza</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Nachspeisen</label>
+        </div>
+        <br>
+        <h4 translate>RECIPE_MGMT.PRICE</h4>
+        <div class="row">
+            <div class="col-md-2">{{priceMin}} €</div>
+            <div class="col-md-8">
+                <div range-slider min="0" max="30" model-min="priceMin" model-max="priceMax" attach-handle-values="true"></div>
+            </div>
+            <div class="col-md-2">{{priceMax}} €</div>
+        </div>
+        <h4 translate>RECIPE_MGMT.RATING</h4>
+        <div class="row">
+            <div class="col-md-2">{{ratingMin}}</div>
+            <div class="col-md-8">
+                <div range-slider min="1" max="5" model-min="ratingMin" model-max="ratingMax" attach-handle-values="true"></div>
+            </div>
+            <div class="col-md-2">{{ratingMax}}</div>
+        </div>
+    </div>
+</div>
