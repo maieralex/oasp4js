@@ -72,9 +72,19 @@ angular.module('app.recipe-mgmt')
             });
         };
 
-        $scope.searchEnter = function(keyEvent) {
-            if (keyEvent.which === 13){
-                $rootScope.reloadRecipes();
+        $scope.$watch("search.searchString", function(newValue, oldValue) {
+            if(newValue != oldValue) {
+                $scope.delay(function () {
+                    $rootScope.reloadRecipes();
+                }, 1000);
             }
-        };
+        });
+
+        $scope.delay = (function(){
+            var timer = 0;
+            return function(callback, ms){
+                clearTimeout (timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
     });
