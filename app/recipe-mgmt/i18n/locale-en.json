@@ -17,7 +17,7 @@
         "DIFFICULTY_HARD" : "hard",
         "DIFFICULTY_VERY_HARD" : "very hard",
         "CALORIES" : "Calories",
-        "CATEGORIES" : "Categories",
+        "CATEGORY" : "Categorie",
         "SUBMIT_RECIPE": "Add Recipe",
         "EDIT_RECIPE": "Update Recipe",
         "CANCEL": "Cancel",

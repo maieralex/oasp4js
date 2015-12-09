@@ -1,4 +1,3 @@
-<form class="panel-body form-horizontal" method="post" action="#">
 <div class="panel panel-default recipe-list-sidebar" sidebar-max-height>
     <div style="position: relative;">
         <img class="img-responsive" ng-src="{{selectedRecipes[0].image}}" ng-show="selectedRecipes[0].image">
@@ -10,25 +9,50 @@
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
         </div>
-        <div class="recipe-description">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-8">
-                        <input class="inline-form title" ng-model="selectedRecipes[0].name" type="text" name="title" placeholder="{{'RECIPE_MGMT.TITLE' | translate}}">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="input-group input-group-sm">
-                            <input ng-model="selectedRecipes[0].price" class="inline-form title" type="text" name="price" placeholder="{{'RECIPE_MGMT.PRICE' | translate}}" area-described-by="basic-addon2">
-                            <span class="input-group-addon inline-form" id="basic-addon2">€</span>
-                        </div>
-                    </div>
-                </div>
+    <form class="panel-body form-horizontal" method="post" action="#">
+        <div class="form-group form-group-sm">
+            <div class="col-md-8">
+                <input class="inline-form title" ng-model="selectedRecipes[0].name" type="text" name="title" placeholder="{{'RECIPE_MGMT.TITLE' | translate}}">
+            </div>
+            <div class="col-md-4">
+                <span class="badge price">{{selectedRecipes[0].price}}</span>
             </div>
             <div class="col-md-12">
-                <textarea ng-model="selectedRecipes[0].description" class="inline-form col-md-12" name="description" placeholder="{{'RECIPE_MGMT.DESCRIPTION' | translate}}"></textarea>
+                <textarea ng-model="selectedRecipes[0].description" class="inline-form" name="description" placeholder="{{'RECIPE_MGMT.DESCRIPTION' | translate}}" rows="4"></textarea>
+            </div>
+            <div class="col-md-12">
+                <hr class="separator">
+            </div>
+            <div class="col-md-12">
+                <label class="radio-inline sidebar"><input type="radio" ng-model="selectedRecipes[0].language" name="language" value="en"><div class="icon icon-en-24"></div></label>
+                <label class="radio-inline"><input type="radio" ng-model="selectedRecipes[0].language" name="language" value="de"><div class="icon icon-de-24"></div></label>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.PORTIONS</label>
+                <span class="badge">{{selectedRecipes[0].portions}}</span>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.COOKTIMEMINUTES</label>
+                <span class="badge">{{selectedRecipes[0].cookTimeMinutes}}</span>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.PREPTIMEMINUTES</label>
+                <span class="badge">{{selectedRecipes[0].prepTimeMinutes  }}</span>
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.CALORIES</label>
+                <span class="badge">{{selectedRecipes[0].calories}}</span>
+            </div>
+            <div class="col-md-12">
+                <hr class="separator">
+            </div>
+            <div class="col-md-12">
+                <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.AUTHOR</label>
+                {{selectedRecipes[0].author}}
             </div>
         </div>
+
+    </form>
     </div>
 </div>
-    </div>
-</form>
+
