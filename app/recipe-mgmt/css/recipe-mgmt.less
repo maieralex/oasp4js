@@ -99,6 +99,17 @@
     }
 }
 
+.collapsed-left {
+    display: none; // hide it for small displays
+}
+
+@media (min-width: 992px) {
+    .collapsed-left {
+        display: block;
+        margin-left: -34%; // min width = sidebar!!!
+    }
+}
+
 // Not used currently
 /*.recipe-list {
     margin-top: @top-padding;

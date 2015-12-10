@@ -58,12 +58,24 @@ angular.module('app.recipe-mgmt')
 
             // disable sidebar if more than 1 item is selected or no item is selected
             $scope.sidebarIsVisible = $scope.selectedRecipes.length === 1;
+
+            // disable filter if item is selected
+            if($scope.sidebarIsVisible) {
+                $scope.filterIsVisible = false;
+            }
         };
         
         $scope.disbaleSidebar = function () {
             $scope.sidebarIsVisible = false;
             $scope.selectedRecipes = [];
         };
+
+        $scope.toggleFilterbar = function () {
+            $scope.filterIsVisible = !$scope.filterIsVisible;
+            if($scope.filterIsVisible) {
+                $scope.disbaleSidebar();
+            }
+        }
 
         $scope.openEdit = function(recipe) {
             $rootScope.editRecipe = recipe;
@@ -79,6 +91,12 @@ angular.module('app.recipe-mgmt')
                 }, 1000);
             }
         });
+
+        $scope.priceMin = 10;
+        $scope.priceMax = 20;
+
+        $scope.ratingMin = 1;
+        $scope.ratingMax = 5;
 
         $scope.delay = (function(){
             var timer = 0;
