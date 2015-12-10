@@ -12,13 +12,13 @@
     <form class="panel-body form-horizontal" method="post" action="#">
         <div class="form-group form-group-sm">
             <div class="col-md-8">
-                <input class="inline-form title" ng-model="selectedRecipes[0].name" type="text" name="title" placeholder="{{'RECIPE_MGMT.TITLE' | translate}}">
+                <text class="title" ng-model="selectedRecipes[0].name" type="text" contenteditable="true" name="title" placeholder="{{'RECIPE_MGMT.TITLE' | translate}}">{{selectedRecipes[0].name}}</text>
             </div>
             <div class="col-md-4">
-                <span class="badge price">{{selectedRecipes[0].price}}</span>
+                <span class="badge price" ng-model="selectedRecipes[0].price" contenteditable="true">{{selectedRecipes[0].price}}</span>
             </div>
             <div class="col-md-12">
-                <textarea ng-model="selectedRecipes[0].description" class="inline-form" name="description" placeholder="{{'RECIPE_MGMT.DESCRIPTION' | translate}}" rows="4"></textarea>
+                <text class="text" ng-model="selectedRecipes[0].description" contenteditable="true" name="description">{{selectedRecipes[0].description}}</text>
             </div>
             <div class="col-md-12">
                 <hr class="separator">
@@ -29,19 +29,19 @@
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.PORTIONS</label>
-                <span class="badge">{{selectedRecipes[0].portions}}</span>
+                <span class="badge" ng-model="selectedRecipes[0].portions"  contenteditable="true">{{selectedRecipes[0].portions}}</span>
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.COOKTIMEMINUTES</label>
-                <span class="badge">{{selectedRecipes[0].cookTimeMinutes}}</span>
+                <span class="badge" ng-model="selectedRecipes[0].cookTimeMinutes"  contenteditable="true">{{selectedRecipes[0].cookTimeMinutes}}</span>
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.PREPTIMEMINUTES</label>
-                <span class="badge">{{selectedRecipes[0].prepTimeMinutes  }}</span>
+                <span class="badge" ng-model="selectedRecipes[0].prepTimeMinutes"  contenteditable="true">{{selectedRecipes[0].prepTimeMinutes  }}</span>
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.CALORIES</label>
-                <span class="badge">{{selectedRecipes[0].calories}}</span>
+                <span class="badge" ng-model="selectedRecipes[0].calories"  contenteditable="true">{{selectedRecipes[0].calories}}</span>
             </div>
             <div class="col-md-12">
                 <hr class="separator">
