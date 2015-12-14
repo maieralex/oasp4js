@@ -16,9 +16,9 @@ angular.module('app.recipe-mgmt')
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
-                for(var i = 0; i < $scope.selectedRecipes.length; i++) {
-                    for(var j = 0; j < $scope.recipesList.length; j++) {
-                        if($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
+                for (var i = 0; i < $scope.selectedRecipes.length; i++) {
+                    for (var j = 0; j < $scope.recipesList.length; j++) {
+                        if ($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
                             $scope.selectedRecipes[i] = $scope.recipesList[j];
                             console.log('yay');
                             break;
@@ -40,14 +40,14 @@ angular.module('app.recipe-mgmt')
 
         $scope.selectedRecipes = [];
 
-        $rootScope.updateSelectedRecipe = function() {
+        $rootScope.updateSelectedRecipe = function () {
             $scope.selectRecipe($scope.selectedRecipes[0]);
         };
 
-        $scope.selectRecipe = function(recipe, multisel) {
+        $scope.selectRecipe = function (recipe, multisel) {
             var idx = $scope.selectedRecipes.indexOf(recipe);
-            if(idx === -1) {
-                if(!multisel) {
+            if (idx === -1) {
+                if (!multisel) {
                     $scope.selectedRecipes.pop();
                 }
                 $scope.selectedRecipes.push(recipe);
@@ -58,23 +58,51 @@ angular.module('app.recipe-mgmt')
 
             // disable sidebar if more than 1 item is selected or no item is selected
             $scope.sidebarIsVisible = $scope.selectedRecipes.length === 1;
+
+            // disable filter if item is selected
+            if ($scope.sidebarIsVisible) {
+                $scope.filterIsVisible = false;
+            }
         };
-        
+
         $scope.disbaleSidebar = function () {
             $scope.sidebarIsVisible = false;
             $scope.selectedRecipes = [];
         };
 
-        $scope.openEdit = function(recipe) {
+        $scope.toggleFilterbar = function () {
+            $scope.filterIsVisible = !$scope.filterIsVisible;
+            if ($scope.filterIsVisible) {
+                $scope.disbaleSidebar();
+            }
+        }
+
+        $scope.openEdit = function (recipe) {
             $rootScope.editRecipe = recipe;
             $modal.open({
                 templateUrl: 'recipe-mgmt/html/recipe-add.html'
             });
         };
 
-        $scope.searchEnter = function(keyEvent) {
-            if (keyEvent.which === 13){
-                $rootScope.reloadRecipes();
+        $scope.$watch("search.searchString", function (newValue, oldValue) {
+            if (newValue != oldValue) {
+                $scope.delay(function () {
+                    $rootScope.reloadRecipes();
+                }, 1000);
             }
-        };
+        });
+
+        $scope.priceMin = 10;
+        $scope.priceMax = 20;
+
+        $scope.ratingMin = 1;
+        $scope.ratingMax = 5;
+
+        $scope.delay = (function () {
+            var timer = 0;
+            return function (callback, ms) {
+                clearTimeout(timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
     });

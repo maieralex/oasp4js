@@ -63,3 +63,24 @@ angular.module('app.recipe-mgmt').directive('sidebarMaxHeight', function ($windo
         changeHeight(); // when page loads
     };
 });
+//compare to https://docs.angularjs.org/guide/forms
+angular
+    .module('app.recipe-mgmt')
+    .directive(
+        'contenteditable',
+        function() {
+            'use strict';
+            return {
+                require: 'ngModel',
+                link: function($scope, elm, attrs, ctrl) {
+                  elm.on('blur', function() {
+                      ctrl.$setViewValue(elm.html());
+                  });
+                  ctrl.$render = function () {
+                      elm.html(ctrl.$viewValue);
+                  };
+                  ctrl.$setViewValue(elm.html());
+                }
+            };
+        }
+    );

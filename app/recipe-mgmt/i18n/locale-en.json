@@ -29,6 +29,9 @@
         "ADD": "Add",
         "LANGUAGE": "Language",
         "MAXIMGSIZE_WARNING":"The image file size may not exceed 5 MB.",
-        "SELECT_IMAGE":"Select picture..."
+        "SELECT_IMAGE":"Select picture...",
+        "FILTEROPTS": "Filter Options",
+        "CATEGORIES": "Categories",
+        "RATING": "Rating"
     }
 }

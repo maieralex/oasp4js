@@ -27,12 +27,13 @@ angular.module('app.recipe-mgmt')
 
         // ToDo: Remove once categories are fully implemented
         $scope.categories = [
-            {name: "beef"},
-            {name: "Lamm"},
-            {name: "meat"},
-            {name: "pizza"},
-            {name: "vegan"},
-            {name: "saisonal"}
+            {name: "Vorspeisen"},
+            {name: "Für den kleinen Hunger"},
+            {name: "Vom Grill"},
+            {name: "Fisch"},
+            {name: "Pasta"},
+            {name: "Pizza"},
+            {name: "Nachspeisen"}
         ];
 
         $scope.imageBusy = false;

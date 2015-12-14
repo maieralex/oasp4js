@@ -29,6 +29,9 @@
         "ADD": "Hinzufügen",
         "LANGUAGE": "Sprache",
         "MAXIMGSIZE_WARNING":"Die Bilddateigröße darf 5 MB nicht überschreiten.",
-        "SELECT_IMAGE":"Bild auswählen..."
+        "SELECT_IMAGE":"Bild auswählen...",
+        "FILTEROPTS": "Filteroptionen",
+        "CATEGORIES": "Kategorien",
+        "RATING": "Bewertung"
     }
 }

@@ -1,5 +1,5 @@
 angular.module('app',
-    ['ui.select', 'ngRoute', 'app.main', 'app.table-mgmt', 'app.offer-mgmt', 'app.sales-mgmt', 'app.recipe-mgmt'])
+    ['ui-rangeSlider', 'ui.select', 'ngRoute', 'app.main', 'app.table-mgmt', 'app.offer-mgmt', 'app.sales-mgmt', 'app.recipe-mgmt'])
     .config(function ($locationProvider, uiSelectConfig) {
         'use strict';
         $locationProvider.html5Mode(false);
