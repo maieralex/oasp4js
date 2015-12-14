@@ -9,10 +9,11 @@ angular.module('app.recipe-mgmt')
 
         $scope.search = {};  //only do this if $scope.course has not already been declared
         $scope.search.searchString = '';
+        $scope.search.categorySearchList = []; //Hier die Namen der Kategorien angeben z.B. "Vom Grill"
 
 
         $rootScope.reloadRecipes = function () {
-            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search.searchString).then(function (paginatedRecipes) {
+            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search.searchString,  $scope.search.categorySearchList).then(function (paginatedRecipes) {
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
@@ -75,7 +76,7 @@ angular.module('app.recipe-mgmt')
             if($scope.filterIsVisible) {
                 $scope.disbaleSidebar();
             }
-        }
+        };
 
         $scope.openEdit = function(recipe) {
             $rootScope.editRecipe = recipe;
