@@ -75,10 +75,11 @@ angular
                 link: function($scope, elm, attrs, ctrl) {
                     elm.on('blur', function() {
                         ctrl.$setViewValue(elm.html());
+                        console.log($scope.selectedRecipes[0].modificationCounter);
+                        // modification counter im scope anpassen
                         $scope.updateRecipe($scope.selectedRecipes[0]);
-                        //$scope.recipesList.clear;
-                        //$scope.reloadRecipes();
-                        //console.log($scope.selectedRecipes[0]);
+                        $scope.selectedRecipes[0].modificationCounter++;
+                        console.log($scope.selectedRecipes[0].modificationCounter);
                     });
                     ctrl.$render = function () {
                         elm.html(ctrl.$viewValue);

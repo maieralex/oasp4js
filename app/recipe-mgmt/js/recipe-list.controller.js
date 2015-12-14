@@ -109,7 +109,6 @@ angular.module('app.recipe-mgmt')
 
 
         $scope.updateRecipe = function (recipe) {
-            recipes.updateRecipe(recipe).then(function () {
-            });
+            recipes.updateRecipe(recipe);
         }
     });

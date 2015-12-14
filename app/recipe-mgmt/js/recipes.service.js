@@ -44,7 +44,7 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
             var recipeDto = angular.copy(recipe);
             delete recipeDto.image;
             return recipeManagementRestService.saveRecipe(recipeDto).then(function(response) {
-                //return response.data;
+                return response.data;
             });
         },
 
