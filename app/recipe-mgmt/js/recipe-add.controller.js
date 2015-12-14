@@ -21,7 +21,8 @@ angular.module('app.recipe-mgmt')
             difficulty: null,
             calories: null,
             category: null,
-            image: null
+            image: null,
+            rating: null
         };
 
         // ToDo: Remove once categories are fully implemented
