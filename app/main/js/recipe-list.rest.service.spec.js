@@ -22,7 +22,7 @@ describe('Module: app.main, Service: recipeListRestService', function () {
     }));
 
     it('should call $http.get when recipeListRestService.getRecipePictureBytes is called', inject(function ($http) {
-        var params = {id: '0'};
+        var params = {id: 0};
         var transformResponse = {
             transformResponse: [function (data) {
                 return data;
