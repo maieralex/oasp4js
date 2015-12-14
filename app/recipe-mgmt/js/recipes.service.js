@@ -40,6 +40,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
         	});
         },
 
+        /**
+         * Created by Marc Schwede on 14.12.2015.
+         * Functionality to change recipies with inline editing - without beeing able to change the image.
+         * @param recipe
+         */
         updateRecipe: function(recipe) {
             var recipeDto = angular.copy(recipe);
             delete recipeDto.image;

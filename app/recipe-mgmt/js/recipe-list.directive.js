@@ -63,7 +63,18 @@ angular.module('app.recipe-mgmt').directive('sidebarMaxHeight', function ($windo
         changeHeight(); // when page loads
     };
 });
-//compare to https://docs.angularjs.org/guide/forms
+
+/**
+ * Created by Marc Schwede on 14.12.2015.
+ * compare to https://docs.angularjs.org/guide/forms
+ *
+ * Every element with the contenteditable flag can be used to change values of a given recipe.
+ * After changing and leaving the focus of this element, the whole selectedRecipe[0] will be send to the server
+ * and the local modificationCouter will be increased to work with optimistic locking.
+ * It could be needed to check if changes to an element have occured - but this is not implemented yet.
+ *
+ */
+
 angular
     .module('app.recipe-mgmt')
     .directive(
@@ -75,11 +86,8 @@ angular
                 link: function($scope, elm, attrs, ctrl) {
                     elm.on('blur', function() {
                         ctrl.$setViewValue(elm.html());
-                        console.log($scope.selectedRecipes[0].modificationCounter);
-                        // modification counter im scope anpassen
                         $scope.updateRecipe($scope.selectedRecipes[0]);
                         $scope.selectedRecipes[0].modificationCounter++;
-                        console.log($scope.selectedRecipes[0].modificationCounter);
                     });
                     ctrl.$render = function () {
                         elm.html(ctrl.$viewValue);

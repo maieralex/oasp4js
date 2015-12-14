@@ -106,8 +106,11 @@ angular.module('app.recipe-mgmt')
             };
         })();
 
-
-
+        /**
+         * Created by Marc Schwede on 14.12.2015.
+         * Functionality to change recipies with inline editing.
+         * @param recipe
+         */
         $scope.updateRecipe = function (recipe) {
             recipes.updateRecipe(recipe);
         }
