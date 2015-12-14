@@ -37,19 +37,27 @@
         <br>
         <h4 translate>RECIPE_MGMT.PRICE</h4>
         <div class="row">
-            <div class="col-md-2">{{priceMin}} €</div>
-            <div class="col-md-8">
-                <div range-slider min="0" max="30" model-min="priceMin" model-max="priceMax" attach-handle-values="true"></div>
+            <div class="col-md-2">
+                <span class="badge">{{priceMin}} €</span>
             </div>
-            <div class="col-md-2">{{priceMax}} €</div>
+            <div class="col-md-8">
+                <div range-slider min="0" max="30" model-min="priceMin" model-max="priceMax" style="margin: 0px;"></div>
+            </div>
+            <div class="col-md-2">
+                <span class="badge">{{priceMax}} €</span>
+            </div>
         </div>
         <h4 translate>RECIPE_MGMT.RATING</h4>
         <div class="row">
-            <div class="col-md-2">{{ratingMin}}</div>
-            <div class="col-md-8">
-                <div range-slider min="1" max="5" model-min="ratingMin" model-max="ratingMax" attach-handle-values="true"></div>
+            <div class="col-md-2">
+                <span class="badge">{{ratingMin}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
             </div>
-            <div class="col-md-2">{{ratingMax}}</div>
+            <div class="col-md-8">
+                <div range-slider min="1" max="5" model-min="ratingMin" model-max="ratingMax" style="margin: 0px;"></div>
+            </div>
+            <div class="col-md-2">
+                <span class="badge">{{ratingMax}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
+            </div>
         </div>
     </div>
 </div>
