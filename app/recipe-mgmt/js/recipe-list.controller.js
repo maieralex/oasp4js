@@ -105,4 +105,11 @@ angular.module('app.recipe-mgmt')
                 timer = setTimeout(callback, ms);
             };
         })();
+
+
+
+        $scope.updateRecipe = function (recipe) {
+            recipes.updateRecipe(recipe).then(function () {
+            });
+        }
     });

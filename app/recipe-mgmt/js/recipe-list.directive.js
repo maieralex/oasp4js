@@ -73,13 +73,17 @@ angular
             return {
                 require: 'ngModel',
                 link: function($scope, elm, attrs, ctrl) {
-                  elm.on('blur', function() {
-                      ctrl.$setViewValue(elm.html());
-                  });
-                  ctrl.$render = function () {
-                      elm.html(ctrl.$viewValue);
-                  };
-                  ctrl.$setViewValue(elm.html());
+                    elm.on('blur', function() {
+                        ctrl.$setViewValue(elm.html());
+                        $scope.updateRecipe($scope.selectedRecipes[0]);
+                        //$scope.recipesList.clear;
+                        //$scope.reloadRecipes();
+                        //console.log($scope.selectedRecipes[0]);
+                    });
+                    ctrl.$render = function () {
+                        elm.html(ctrl.$viewValue);
+                    };
+                    ctrl.$setViewValue(elm.html());
                 }
             };
         }

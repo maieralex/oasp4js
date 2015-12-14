@@ -40,6 +40,14 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
         	});
         },
 
+        updateRecipe: function(recipe) {
+            var recipeDto = angular.copy(recipe);
+            delete recipeDto.image;
+            return recipeManagementRestService.saveRecipe(recipeDto).then(function(response) {
+                //return response.data;
+            });
+        },
+
         getPaginatedRecipes: function (pagenumber, pagesize, searchString) {
             return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, searchString).then(function (response) {
                 var promises = [];
