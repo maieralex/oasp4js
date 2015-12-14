@@ -88,3 +88,26 @@ angular
             };
         }
     );
+
+/*
+angular.module('ui-rangeSlider').config(['$provide', function($provide) {
+    $provide.decorator('rangeSliderDirective', function($delegate) {
+        var dir = $delegate[0];
+
+        dir.template = ['<div class="ngrs-range-slider">',
+            '<div class="ngrs-runner">',
+            '<div class="ngrs-handle-x ngrs-handle-min"><i></i></div>',
+            '<div class="ngrs-handle-x ngrs-handle-max"><i></i></div>',
+            '<div class="ngrs-join"></div>',
+            '</div>',
+            '<div class="ngrs-value-runner">',
+            '<div class="ngrs-value ngrs-value-min" ng-show="showValues"><div>{{filteredModelMin}}</div></div>',
+            '<div class="ngrs-value ngrs-value-max" ng-show="showValues"><div>{{filteredModelMax}}</div></div>',
+            '</div>',
+            '</div>'
+        ].join('');
+
+        return $delegate;
+    })
+}]);
+*/
