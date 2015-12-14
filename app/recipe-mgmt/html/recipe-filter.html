@@ -1,7 +1,16 @@
 <div class="panel panel-default recipe-list-sidebar" sidebar-max-height>
-    <div class="panel-heading" translate>
-        RECIPE_MGMT.FILTEROPTS
-    </div>
+    <nav class="navbar navbar-default recipe-list-sidebar-toolbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand" translate>RECIPE_MGMT.FILTEROPTS</span>
+            </div>
+            <div class="btn-group navbar-btn pull-right" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" aria-label="Hide filter" ng-click="toggleFilterbar();">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
     <div class="panel-body">
         <h4 translate>RECIPE_MGMT.CATEGORIES</h4>
         <div class="checkbox">
