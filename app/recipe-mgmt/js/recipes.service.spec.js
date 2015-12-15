@@ -34,6 +34,8 @@ describe('Service: recipes', function ($http) {
         listOfRecipes,
         contextPath = '/oasp-app/',
         mockPaginatedRecipeResponse = function () {
+            $httpBackend.expectGET('/oasp-app/services/rest/recipemanagement/v1/recipe/0/picture')
+                .respond('iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQSURBVBhXY/iPCijj//8PAK09SrZrfO6mAAAAAElFTkSuQmCC', 'jpeg');
             $httpBackend.whenPOST(contextPath + 'services/rest/recipemanagement/v1/recipe/search', recipeSearchCriteria).respond(
                 {
                     pagination: {
@@ -73,11 +75,11 @@ describe('Service: recipes', function ($http) {
                 }
             );
         },
-    /*mockgetRecipePicture = function () {
-        $httpBackend.whenGET(contextPath + 'services/rest/recipemanagement/v1/recipe/0/picture').respond(
+    mockgetRecipePicture = function () {
+        /*$httpBackend.whenGET(contextPath + 'services/rest/recipemanagement/v1/recipe/0/picture').respond(
             'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQSURBVBhXY/iPCijj//8PAK09SrZrfO6mAAAAAElFTkSuQmCC'
-        );
-    },*/
+        );*/
+    },
 
     mockSaveRecipe = function () {
         $httpBackend.whenPOST(contextPath + 'services/rest/recipemanagement/v1/recipe/', recipe).respond(
@@ -103,9 +105,9 @@ describe('Service: recipes', function ($http) {
         );
     },
 
-/*    //TODO
+    /*//TODO
     mocksaveRecipePicture = function () {
-        $httpBackend.whenPOST(contextPath + '/recipe/0/picture',,{headers:{'Content-Type': 'multipart/mixed'}}).respond(
+        $httpBackend.whenPOST(contextPath + '/recipe/0/picture',{headers:{'Content-Type': 'multipart/mixed'}}).respond(
 
         )
     },*/
@@ -151,7 +153,6 @@ describe('Service: recipes', function ($http) {
             savedrecipe = result.result;
         });
         $httpBackend.flush();
-
     });
     afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
