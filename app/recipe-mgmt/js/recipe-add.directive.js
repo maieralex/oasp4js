@@ -1,15 +1,7 @@
-angular
-    .module('app.recipe-mgmt')
-    .directive('navigatable', navigatable)
-    .directive('starRating', starRating);
-
 function navigatable() {
-    return function (scope, element, attr) {
-        element.on('keypress.mynavigation', 'input[type="text"]', handleNavigation);
-
-
+    'use strict';
+    return function (scope, element) {
         function handleNavigation(e) {
-
             var arrow = {left: 37, up: 38, right: 39, down: 40};
 
             // select all on focus
@@ -28,14 +20,14 @@ function navigatable() {
 
                     case arrow.left:
                     {
-                        if (input.selectionStart == 0) {
+                        if (input.selectionStart === 0) {
                             moveTo = td.prev('td:has(input,textarea)');
                         }
                         break;
                     }
                     case arrow.right:
                     {
-                        if (input.selectionEnd == input.value.length) {
+                        if (input.selectionEnd === input.value.length) {
                             moveTo = td.next('td:has(input,textarea)');
                         }
                         break;
@@ -49,10 +41,10 @@ function navigatable() {
                         var pos = td[0].cellIndex;
 
                         var moveToRow = null;
-                        if (e.which == arrow.down) {
+                        if (e.which === arrow.down) {
                             moveToRow = tr.next('tr');
                         }
-                        else if (e.which == arrow.up) {
+                        else if (e.which === arrow.up) {
                             moveToRow = tr.prev('tr');
                         }
 
@@ -91,10 +83,12 @@ function navigatable() {
                 }
             }
         }
+        element.on('keypress.mynavigation', 'input[type="text"]', handleNavigation);
     };
 }
 
 function starRating() {
+    'use strict';
     return {
         restrict: 'EA',
         template:
@@ -109,8 +103,8 @@ function starRating() {
             onRatingSelect: '&?',
             readonly: '=?'
         },
-        link: function(scope, element, attributes) {
-            if (scope.max == undefined) {
+        link: function(scope) {
+            if (scope.max === undefined) {
                 scope.max = 5;
             }
             function updateStars() {
@@ -120,9 +114,9 @@ function starRating() {
                         filled: i < scope.ratingValue
                     });
                 }
-            };
+            }
             scope.toggle = function(index) {
-                if (scope.readonly == undefined || scope.readonly === false){
+                if (scope.readonly === undefined || scope.readonly === false){
                     scope.ratingValue = index + 1;
                     scope.onRatingSelect({
                         rating: index + 1
@@ -137,3 +131,8 @@ function starRating() {
         }
     };
 }
+
+angular
+    .module('app.recipe-mgmt')
+    .directive('navigatable', navigatable)
+    .directive('starRating', starRating);

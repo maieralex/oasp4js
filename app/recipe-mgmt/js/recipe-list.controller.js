@@ -54,30 +54,30 @@ angular.module('app.recipe-mgmt')
             $rootScope.reloadRecipes();
         });
 
-        $scope.$watch("search.searchString", function (newValue, oldValue) {
-            if (newValue != oldValue) {
+        $scope.$watch('search.searchString', function (newValue, oldValue) {
+            if (newValue !== oldValue) {
                 $scope.delay(function () {
                     $rootScope.reloadRecipes();
                 }, 1000);
             }
         });
 
-        $scope.$watch("checkboxModel", function (newValue, oldValue) {
-            if (newValue != oldValue) {
+        $scope.$watch('checkboxModel', function (newValue, oldValue) {
+            if (newValue !== oldValue) {
                 $rootScope.reloadRecipes();
             }
         }, true);
 
-        $scope.$watch("search.price", function (newValue, oldValue) {
-            if (newValue != oldValue) {
+        $scope.$watch('search.price', function (newValue, oldValue) {
+            if (newValue !== oldValue) {
                 $scope.delay(function () {
                     $rootScope.reloadRecipes();
                 }, 1000);
             }
         }, true);
 
-        $scope.$watch("search.rating", function (newValue, oldValue) {
-            if (newValue != oldValue) {
+        $scope.$watch('search.rating', function (newValue, oldValue) {
+            if (newValue !== oldValue) {
                 $scope.delay(function () {
                     $rootScope.reloadRecipes();
                 }, 1000);
@@ -98,7 +98,7 @@ angular.module('app.recipe-mgmt')
                     i++;
                 }
             }
-        }
+        };
 
         $scope.selectedRecipes = [];
 
@@ -161,5 +161,5 @@ angular.module('app.recipe-mgmt')
          */
         $scope.updateRecipe = function (recipe) {
             recipes.updateRecipe(recipe);
-        }
+        };
     });
