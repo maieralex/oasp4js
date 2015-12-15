@@ -25,6 +25,11 @@ angular.module('app.recipe-mgmt')
             rating: null
         };
 
+        $scope.existingIngredients = [];
+        recipes.getIngredients().then(function(ings) {
+            $scope.existingIngredients = ings;
+        });
+
         categories.getAllCategories().then(function (response) {
             $scope.categories = response;
         });
@@ -34,6 +39,7 @@ angular.module('app.recipe-mgmt')
 
         if ($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
+            console.log($scope.recipe);
             $scope.recipe.ingredients = []; // ToDo: Remove once ingredients are fully implemented
             $scope.editmode = 'edit';
         }
@@ -42,7 +48,6 @@ angular.module('app.recipe-mgmt')
             $scope.$apply(function () {
                 $scope.recipe.image = event.target.files[0];
                 if ($scope.recipe.image.size < $scope.maxImgSize) {
-                    $log.log('yop!');
                     $scope.imageDirty = true;
                 }
             });
@@ -67,6 +72,7 @@ angular.module('app.recipe-mgmt')
             $scope.newIngredient = {};
             $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
         };
+        
         $scope.ingredientAddControls = function (e) {
             // keyCode 13 = Enter key
             if (e.keyCode === 13) {
@@ -111,6 +117,12 @@ angular.module('app.recipe-mgmt')
                 $rootScope.updateSelectedRecipe();
                 $scope.$close();
             });
+
+        };
+
+        $scope.closeModal = function () {
+            $scope.$close();
+            $rootScope.reloadRecipes();
 
         };
     });

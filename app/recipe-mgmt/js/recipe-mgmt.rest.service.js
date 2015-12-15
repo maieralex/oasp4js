@@ -57,6 +57,9 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
                 responseType: 'blob'
             });
         },
+        getIngredients: function() {
+            return $http.get(servicePath + '/ingredient');
+        },
         getAllCategories: function () {
             return $http.get(servicePath + '/categories');
         }

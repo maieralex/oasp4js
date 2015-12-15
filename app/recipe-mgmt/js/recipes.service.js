@@ -80,6 +80,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                     return response.data;
                 });
             });
+        },
+        getIngredients: function() {
+            return recipeManagementRestService.getIngredients().then(function(response) {
+                return response.data;
+            });
         }
     };
 });
