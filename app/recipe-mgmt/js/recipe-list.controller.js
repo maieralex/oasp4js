@@ -10,15 +10,37 @@ angular.module('app.recipe-mgmt')
         $scope.search = {};  //only do this if $scope.course has not already been declared
         $scope.search.searchString = '';
 
+        $scope.checkboxModel = {
+            value1 : 'false',
+            value2 : 'false',
+            value3 : 'false',
+            value4 : 'false',
+            value5 : 'false',
+            value6 : 'false',
+            value7 : 'false'
+        };
+
+        $scope.search.price = {
+          min: 0,
+          max: 30
+        };
+
+        $scope.search.rating = {
+            min: 0,
+            max: 5
+        };
 
         $rootScope.reloadRecipes = function () {
-            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search.searchString).then(function (paginatedRecipes) {
+            $scope.search.selectedCategories = [];
+            $scope.getSelectedCategories();
+            console.log($scope.selectedCategories);
+            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
-                for(var i = 0; i < $scope.selectedRecipes.length; i++) {
-                    for(var j = 0; j < $scope.recipesList.length; j++) {
-                        if($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
+                for (var i = 0; i < $scope.selectedRecipes.length; i++) {
+                    for (var j = 0; j < $scope.recipesList.length; j++) {
+                        if ($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
                             $scope.selectedRecipes[i] = $scope.recipesList[j];
                             break;
                         }
@@ -32,21 +54,62 @@ angular.module('app.recipe-mgmt')
             $rootScope.reloadRecipes();
         });
 
+        $scope.$watch("search.searchString", function (newValue, oldValue) {
+            if (newValue != oldValue) {
+                $scope.delay(function () {
+                    $rootScope.reloadRecipes();
+                }, 1000);
+            }
+        });
+
+        $scope.$watch("checkboxModel", function (newValue, oldValue) {
+            if (newValue != oldValue) {
+                $rootScope.reloadRecipes();
+            }
+        }, true);
+
+        $scope.$watch("search.price", function (newValue, oldValue) {
+            if (newValue != oldValue) {
+                $scope.delay(function () {
+                    $rootScope.reloadRecipes();
+                }, 1000);
+            }
+        }, true);
+
+        $scope.$watch("search.rating", function (newValue, oldValue) {
+            if (newValue != oldValue) {
+                $scope.delay(function () {
+                    $rootScope.reloadRecipes();
+                }, 1000);
+            }
+        }, true);
+
         $scope.setNumPerPage = function (numPerPage) {
             $scope.numPerPage = numPerPage;
             $rootScope.reloadRecipes();
         };
 
+        $scope.getSelectedCategories = function () {
+            var key, value, i = 0;
+            for(key in $scope.checkboxModel) {
+                value = $scope.checkboxModel[key];
+                if(value !== 'false') {
+                    $scope.search.selectedCategories[i] = value;
+                    i++;
+                }
+            }
+        }
+
         $scope.selectedRecipes = [];
 
-        $rootScope.updateSelectedRecipe = function() {
+        $rootScope.updateSelectedRecipe = function () {
             $scope.selectRecipe($scope.selectedRecipes[0]);
         };
 
-        $scope.selectRecipe = function(recipe, multisel) {
+        $scope.selectRecipe = function (recipe, multisel) {
             var idx = $scope.selectedRecipes.indexOf(recipe);
-            if(idx === -1) {
-                if(!multisel) {
+            if (idx === -1) {
+                if (!multisel) {
                     $scope.selectedRecipes.pop();
                 }
                 $scope.selectedRecipes.push(recipe);
@@ -57,23 +120,46 @@ angular.module('app.recipe-mgmt')
 
             // disable sidebar if more than 1 item is selected or no item is selected
             $scope.sidebarIsVisible = $scope.selectedRecipes.length === 1;
+
+            // disable filter if item is selected
+            if ($scope.sidebarIsVisible) {
+                $scope.filterIsVisible = false;
+            }
         };
-        
-        $scope.disbaleSidebar = function () {
+
+        $scope.disableSidebar = function () {
             $scope.sidebarIsVisible = false;
             $scope.selectedRecipes = [];
         };
 
-        $scope.openEdit = function(recipe) {
+        $scope.toggleFilterbar = function () {
+            $scope.filterIsVisible = !$scope.filterIsVisible;
+            if ($scope.filterIsVisible) {
+                $scope.disableSidebar();
+            }
+        };
+
+        $scope.openEdit = function (recipe) {
             $rootScope.editRecipe = recipe;
             $modal.open({
                 templateUrl: 'recipe-mgmt/html/recipe-add.html'
             });
         };
 
-        $scope.searchEnter = function(keyEvent) {
-            if (keyEvent.which === 13){
-                $rootScope.reloadRecipes();
-            }
-        };
+        $scope.delay = (function () {
+            var timer = 0;
+            return function (callback, ms) {
+                clearTimeout(timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
+
+        /**
+         * Created by Marc Schwede on 14.12.2015.
+         * Functionality to change recipies with inline editing.
+         * @param recipe
+         */
+        $scope.updateRecipe = function (recipe) {
+            recipes.updateRecipe(recipe);
+        }
     });

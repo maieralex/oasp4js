@@ -123,11 +123,17 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group" >
-                <label class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORIES</label>
+            <div class="form-group">
+                <label for="category" class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORY</label>
                 <div class="col-md-9">
-                    <input ng-model="recipe.categories" class="form-control" type="text" name="categories">
+                    <select ng-model="recipe.category" ng-options="category as category.name for category in categories track by category.name"
+                            class="form-control" name="category" id="category">
+                    </select>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="rating" class="col-md-3 control-label" translate>RECIPE_MGMT.RATING</label>
+                <div class="col-md-9" star-rating ng-model="recipe.rating" max="5" name="rating" id="rating"></div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.IMAGE</label>

@@ -17,7 +17,8 @@
         "DIFFICULTY_HARD" : "anspruchsvoll",
         "DIFFICULTY_VERY_HARD" : "sehr anspruchsvoll",
         "CALORIES" : "Kalorien",
-        "CATEGORIES" : "Kategorie",
+        "CATEGORY" : "Kategorie",
+        "RATING" : "Bewertung",
         "SUBMIT_RECIPE": "Rezept hinzufügen",
         "EDIT_RECIPE": "Rezept aktualisieren",
         "CANCEL": "Abbrechen",
@@ -28,6 +29,9 @@
         "ADD": "Hinzufügen",
         "LANGUAGE": "Sprache",
         "MAXIMGSIZE_WARNING":"Die Bilddateigröße darf 5 MB nicht überschreiten.",
-        "SELECT_IMAGE":"Bild auswählen..."
+        "SELECT_IMAGE":"Bild auswählen...",
+        "FILTEROPTS": "Filteroptionen",
+        "CATEGORIES": "Kategorien",
+        "RATING": "Bewertung"
     }
 }

@@ -29,14 +29,20 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
 
             return deferred.promise;
         },
-        getPaginatedRecipes: function (pagenumber, pagesize, searchString) {
+        getPaginatedRecipes: function (pagenumber, pagesize, search) {
             var recipeSearchCriteria = {
                 pagination: {
                     size: pagesize,
                     page: pagenumber,
                     total: true
                 },
-                searchString: searchString
+                searchString: search.searchString,
+                categories: search.selectedCategories,
+                priceFrom: search.price.min,
+                priceTo: search.price.max,
+                ratingFrom: search.rating.min,
+                ratingTo: search.rating.max
+
             };
             return $http.post(servicePath + '/recipe/search', recipeSearchCriteria);
         },
