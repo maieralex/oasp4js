@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window) {
+    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window, categories) {
         'use strict';
 
         //maximum image size to upload in bytes
@@ -30,16 +30,9 @@ angular.module('app.recipe-mgmt')
             $scope.existingIngredients = ings;
         });
 
-        // ToDo: Remove once categories are fully implemented
-        $scope.categories = [
-            {name: 'Vorspeisen'},
-            {name: 'Für den kleinen Hunger'},
-            {name: 'Vom Grill'},
-            {name: 'Fisch'},
-            {name: 'Pasta'},
-            {name: 'Pizza'},
-            {name: 'Nachspeisen'}
-        ];
+        categories.getAllCategories().then(function (response) {
+            $scope.categories = response;
+        });
 
         $scope.imageBusy = false;
         $scope.imageDirty = false;
@@ -48,7 +41,6 @@ angular.module('app.recipe-mgmt')
             $scope.recipe = $rootScope.editRecipe;
             console.log($scope.recipe);
             $scope.recipe.ingredients = []; // ToDo: Remove once ingredients are fully implemented
-            $scope.recipe.category = {name: $scope.recipe.category}; // ToDo: Remove once categories are fully implemented
             $scope.editmode = 'edit';
         }
 
@@ -112,14 +104,13 @@ angular.module('app.recipe-mgmt')
             if (removeIndex > -1) {
                 $scope.recipe.ingredients.splice(removeIndex, 1);
             }
-        }
+        };
 
         $scope.saveRecipe = function () {
             if (!$scope.imageDirty) {
                 $scope.recipe.image = null;
             }
             $scope.recipe.ingredients = null; // Remove this, once ingredients can be saved!!!
-            $scope.recipe.category = $scope.recipe.category.name; // ToDo: Remove once categories are fully implemented
             recipes.saveRecipe($scope.recipe).then(function () {
                 $rootScope.reloadRecipes();
                 $scope.image = null;
@@ -129,4 +120,8 @@ angular.module('app.recipe-mgmt')
 
         };
 
+        $scope.closeModal = function () {
+            $rootScope.reloadRecipes();
+            $scope.$close();
+        };
     });
