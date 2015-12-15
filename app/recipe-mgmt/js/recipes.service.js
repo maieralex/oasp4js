@@ -40,8 +40,21 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
         	});
         },
 
-        getPaginatedRecipes: function (pagenumber, pagesize, searchString) {
-            return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, searchString).then(function (response) {
+        /**
+         * Created by Marc Schwede on 14.12.2015.
+         * Functionality to change recipies with inline editing - without beeing able to change the image.
+         * @param recipe
+         */
+        updateRecipe: function(recipe) {
+            var recipeDto = angular.copy(recipe);
+            delete recipeDto.image;
+            return recipeManagementRestService.saveRecipe(recipeDto).then(function(response) {
+                return response.data;
+            });
+        },
+        
+        getPaginatedRecipes: function (pagenumber, pagesize, search) {
+            return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, search).then(function (response) {
                 var promises = [];
                 angular.forEach(response.data.result, function(recipe) {
                     var deferred = $q.defer();
@@ -66,6 +79,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                     console.log('ready');
                     return response.data;
                 });
+            });
+        },
+        getIngredients: function() {
+            return recipeManagementRestService.getIngredients().then(function(response) {
+                return response.data;
             });
         }
     };

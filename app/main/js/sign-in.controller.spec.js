@@ -49,7 +49,7 @@ describe('Module: main, Controller: sign-in', function () {
         // then
         expect($scope.errorMessage.text).toEqual('');
     });
-    it('exposes signIn() on $scope which changes to the user\'s home dialog on success', inject(function ($q) {
+    it('exposes signIn() on $scope which changes to the user\'s home dialog on success', inject(function ($q, $http) {
         // given
         userHomeDialogPath = '/some-module/home';
         spyOn(oaspSecurityService, 'logIn').and.callFake(function () {
@@ -63,8 +63,8 @@ describe('Module: main, Controller: sign-in', function () {
         $scope.signIn();
         $scope.$apply();
         // then
+        //not working ... expect($http.get).toHaveBeenCalledWith("/context.html/services/rest/recipemanagement/v1/recipe/randomList/3/en");
         expect($location.path()).toEqual(userHomeDialogPath);
-        expect();
 
     }));
     it('exposes signIn() on $scope which adds an error message and clears the form on failure', inject(function ($q) {

@@ -1,5 +1,10 @@
-angular.module('app.recipe-mgmt').directive('navigatable', function() {
-    return function(scope, element, attr) {
+angular
+    .module('app.recipe-mgmt')
+    .directive('navigatable', navigatable)
+    .directive('starRating', starRating);
+
+function navigatable() {
+    return function (scope, element, attr) {
         element.on('keypress.mynavigation', 'input[type="text"]', handleNavigation);
 
 
@@ -8,7 +13,7 @@ angular.module('app.recipe-mgmt').directive('navigatable', function() {
             var arrow = {left: 37, up: 38, right: 39, down: 40};
 
             // select all on focus
-            element.find('input').keydown(function(e) {
+            element.find('input').keydown(function (e) {
 
                 // shortcut for key other than arrow keys
                 if ($.inArray(e.which, [arrow.left, arrow.up, arrow.right, arrow.down]) < 0) {
@@ -64,7 +69,7 @@ angular.module('app.recipe-mgmt').directive('navigatable', function() {
 
                     e.preventDefault();
 
-                    moveTo.find('input,textarea').each(function(i, input) {
+                    moveTo.find('input,textarea').each(function (i, input) {
                         input.focus();
                         input.select();
                     });
@@ -87,4 +92,48 @@ angular.module('app.recipe-mgmt').directive('navigatable', function() {
             }
         }
     };
-})
+}
+
+function starRating() {
+    return {
+        restrict: 'EA',
+        template:
+        '<ul class="star-rating" ng-class="{readonly: readonly}">' +
+        '  <li ng-repeat="star in stars" class="glyphicon" ng-class="{filled: glyphicon-star}" ng-click="toggle($index)">' +
+        '    <i class="glyphicon-star-empty"></i>' + // or &#9733
+        '  </li>' +
+        '</ul>',
+        scope: {
+            ratingValue: '=ngModel',
+            max: '=?', // optional (default is 5)
+            onRatingSelect: '&?',
+            readonly: '=?'
+        },
+        link: function(scope, element, attributes) {
+            if (scope.max == undefined) {
+                scope.max = 5;
+            }
+            function updateStars() {
+                scope.stars = [];
+                for (var i = 0; i < scope.max; i++) {
+                    scope.stars.push({
+                        filled: i < scope.ratingValue
+                    });
+                }
+            };
+            scope.toggle = function(index) {
+                if (scope.readonly == undefined || scope.readonly === false){
+                    scope.ratingValue = index + 1;
+                    scope.onRatingSelect({
+                        rating: index + 1
+                    });
+                }
+            };
+            scope.$watch('ratingValue', function(oldValue, newValue) {
+                if (newValue) {
+                    updateStars();
+                }
+            });
+        }
+    };
+}

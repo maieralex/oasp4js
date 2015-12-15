@@ -1,67 +1,8 @@
-
-<!--
-<div class="recipe-list-topbar-container-sticky">
-    <nav class="navbar navbar-default recipe-list-topbar">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <span class="navbar-brand">Recipes</span>
-            </div>
-            <div class="pull-right">
-                <button type="button" class="btn btn-default navbar-btn btn-success"  style="margin-right: 5px;" aria-label="Add recipe">Add</button>
-                <div class="btn-group navbar-btn" role="group" aria-label="..." style="margin-right: 5px;">
-                    <button type="button" class="btn btn-default" aria-label="Print recipe(s)">
-                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                    </button>
-                    <button type="button" class="btn btn-default" aria-label="Remove recipe(s)">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <ul class="nav navbar-nav pull-right">
-                    <li class="dropdown" dropdown>
-                        <a class="dropdown-toggle"
-                           dropdown-toggle
-                           data-toggle="dropdown"
-                           role="button"
-                           aria-haspopup="true"
-                           aria-expanded="false">{{numPerPage}} item(s) <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a data-ng-click="setNumPerPage(1);">1 item(s)</a></li>
-                            <li><a data-ng-click="setNumPerPage(3);">3 item(s)</a></li>
-                            <li><a data-ng-click="setNumPerPage(5);">5 item(s)</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a data-ng-click="setNumPerPage(totalItems);">Show all</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
--->
-<!--
-<button type="button" class="btn btn-default btn-primary" aria-label="Add recipe" ng-click="isSbVisible = !isSbVisible;">Tgl</button>
-<br><br>
-<div class="row" style="overflow-x: hidden;">
-    <div ng-class="isSbVisible ? 'col-md-9' : 'col-md-12'" style="transition: width 0.3s ease;">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                Blubb
-            </div>
-        </div>
-    </div>
-    <div ng-class="isSbVisible ? 'col-md-3' : 'col-md-3 collapsed'" style="transition: margin 0.3s ease;">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                Blubb
-            </div>
-        </div>
-    </div>
-</div>
--->
 <div class="spacer-top" id="spacerTop"></div>
 <div class="row recipe-list-main-row">
-    <div data-ng-class="sidebarIsVisible ? 'col-md-8' : 'col-md-12'" style="padding: 0px; padding-right: 15px; transition: width 0.2s ease;">
+    <div data-ng-class="filterIsVisible ? 'col-md-4' : 'col-md-4 collapsed-left'" style="padding: 0px; transition: margin 0.2s ease;" ng-include src="'recipe-mgmt/html/recipe-filter.html'">
+    </div>
+    <div data-ng-class="(filterIsVisible || sidebarIsVisible) ? 'col-md-8' : 'col-md-12'" style="padding: 0px; padding-right: 15px; padding-left: 15px; transition: width 0.2s ease;">
         <nav class="navbar navbar-default recipe-list-toolbar" id="recipeListToolbar">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -69,7 +10,7 @@
                 </div>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="input-group" translate>
-                        <input type="text" class="form-control" placeholder="{{'RECIPE_MGMT.SEARCH' | translate}}" ng-model="search.searchString" ng-keypress="searchEnter($event)" ng-change="reloadRecipes()">
+                        <input type="text" class="form-control" placeholder="{{'RECIPE_MGMT.SEARCH' | translate}}" ng-model="search.searchString">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" ng-click="reloadRecipes()">
                                 <span class="glyphicon glyphicon-search" aria-hidden="true" aria-label="{{'RECIPE_MGMT.SEARCH' | translate}}"></span>
@@ -77,16 +18,14 @@
                         </span>
                     </div>
                 </form>
+                <div class="btn-group navbar-btn" role="group" aria-label="..." style="margin-right: 5px;">
+                    <button type="button" class="btn btn-default" aria-label="Show/Hide Filter"
+                            ng-click="toggleFilterbar();">
+                        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    </button>
+                </div>
                 <div class="pull-right">
                     <button type="button" class="btn btn-default navbar-btn btn-primary"  style="margin-right: 5px;" aria-label="Add recipe" ng-click="openEdit(null);" translate>RECIPE_MGMT.ADD</button>
-                    <div class="btn-group navbar-btn" role="group" aria-label="..." style="margin-right: 5px;">
-                        <button type="button" class="btn btn-default" aria-label="Print recipe(s)">
-                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default" aria-label="Remove recipe(s)">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </button>
-                    </div>
                     <ul class="nav navbar-nav pull-right">
                         <li class="dropdown" dropdown>
                             <a class="dropdown-toggle"

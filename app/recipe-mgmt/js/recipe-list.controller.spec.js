@@ -13,10 +13,11 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
             $scope = $rootScope.$new();
 
             $window = {
-                document:jasmine.createSpyObj('document',['getElementById'])
+                //location: jasmine.createSpyObj('location', ['href', 'reload']),
+                document: jasmine.createSpyObj('document',['getElementById'])
             };
 
-            var mockHtmlElement = $window.document.createElement('div');
+            var mockHtmlElement = document.createElement('div');
             $window.document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
 
             recipeListController = $controller('RecipeListCntl',{
