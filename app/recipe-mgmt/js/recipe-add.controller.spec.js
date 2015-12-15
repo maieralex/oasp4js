@@ -1,4 +1,4 @@
-describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
+describe('Module:recipe-mgmt, Controller: recipe-add',function() {
     'use strict';
     beforeEach(module('app.recipe-mgmt'));
 
@@ -14,11 +14,10 @@ describe('Modul:recipe-mgmt, Controller: recipe-add',function() {
             $scope = $rootScope.$new();
 
             $window = {
-                //location: jasmine.createSpyObj('location', ['href', 'reload']),
-                document:jasmine.createSpyObj('document',['getElementById'])
+                document: jasmine.createSpyObj('document',['getElementById'])
             };
 
-            var mockHtmlElement = $window.document.createElement('div');
+            var mockHtmlElement = document.createElement('div');
             $window.document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
 
             addRecipeController = $controller('RecipeAddCntl',{

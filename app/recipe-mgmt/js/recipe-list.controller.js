@@ -138,7 +138,7 @@ angular.module('app.recipe-mgmt')
             if ($scope.filterIsVisible) {
                 $scope.disableSidebar();
             }
-        }
+        };
 
         $scope.openEdit = function (recipe) {
             $rootScope.editRecipe = recipe;
@@ -154,4 +154,13 @@ angular.module('app.recipe-mgmt')
                 timer = setTimeout(callback, ms);
             };
         })();
+
+        /**
+         * Created by Marc Schwede on 14.12.2015.
+         * Functionality to change recipies with inline editing.
+         * @param recipe
+         */
+        $scope.updateRecipe = function (recipe) {
+            recipes.updateRecipe(recipe);
+        }
     });
