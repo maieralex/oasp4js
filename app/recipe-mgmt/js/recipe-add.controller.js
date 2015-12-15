@@ -121,8 +121,7 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.closeModal = function () {
-            $scope.$close();
             $rootScope.reloadRecipes();
-
+            $scope.$close();
         };
     });
