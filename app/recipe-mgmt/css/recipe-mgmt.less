@@ -182,37 +182,39 @@
     color: #555555;
     font-size: 1em;
 }
-#ingredientTable td input {
+#ingredientTable td input,
+#ingredientTable th input {
     width: 100%;
 }
-#ingredientTable td + td input {
+#ingredientTable td + td + td input {
     text-align: right;
 }
-#ingredientTable td + td + td input {
+#ingredientTable td + td + td + td input {
     text-align: left;
 }
 #ingredientTable td {
-    width: 5%
+    width: 14px;
+    padding: 8px 8px;
+}
+#ingredientTable td:first-child > span {
+    width: 14px;
 }
 #ingredientTable td + td,
-#ingredientInput input {
+#ingredientInput th + th {
     width: 50%;
 }
 #ingredientTable td + td + td,
-#ingredientInput input + input {
+#ingredientInput th + th {
     width: 20%;
 }
 #ingredientTable td + td + td + td,
-#ingredientInput input + input + input {
+#ingredientInput th + th + th {
     width: 15%;
 }
 #ingredientTable td + td + td + td + td,
-#ingredientInput input + input + input + span {
+#ingredientInput th + th + th + th {
     width: 10%;
     padding-right: 8px;
-}
-#ingredientInput button.btn-success {
-    transform: translateX(-3px);
 }
 
 text.title{
