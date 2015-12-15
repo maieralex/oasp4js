@@ -18,6 +18,7 @@
         "DIFFICULTY_VERY_HARD" : "sehr anspruchsvoll",
         "CALORIES" : "Kalorien",
         "CATEGORY" : "Kategorie",
+        "RATING" : "Bewertung",
         "SUBMIT_RECIPE": "Rezept hinzufügen",
         "EDIT_RECIPE": "Rezept aktualisieren",
         "CANCEL": "Abbrechen",

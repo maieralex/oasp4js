@@ -17,6 +17,9 @@ angular.module('app.main').factory('recipeListRestService', function ($http, cur
         },
         getRandomRecipes: function (numberOfEntities, languageFlag) {
             return $http.get(servicePath + '/recipe/randomList/' + numberOfEntities + '/' + languageFlag);
+        },
+        getIngredients: function() {
+            return $http.get(servicePath + '/ingredient');
         }
     };
 });

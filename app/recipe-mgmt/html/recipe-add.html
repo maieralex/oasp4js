@@ -38,15 +38,29 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                 <div class="col-md-9">
-                    <div id="ingredientInput">
-                        <input type="text" placeholder="Ingredient" ng-model="newIngredient.name" ng-keydown="ingredientAddControls($event)">
-                        <input type="text" placeholder="Amount" ng-model="newIngredient.amount" ng-keydown="ingredientAddControls($event)">
-                        <input type="text" placeholder="Unit" ng-model="newIngredient.unit" ng-keydown="ingredientAddControls($event)">
-                        <span>
-                        <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
-                        </span>
-                    </div>
                     <table class="table table-striped" id="ingredientTable" navigatable>
+                        <thead id="ingredientInput">
+                        <tr>
+                            <th><span></span></th>
+                            <th>
+                                <input type="text" placeholder="Ingredient" ng-model="newIngredient.name" ng-keydown="ingredientAddControls($event)" list="existingIngredients">
+                                <datalist id="existingIngredients">
+                                    <option ng-repeat="eIng in existingIngredients" value="{{eIng.name}}">
+                                </datalist>
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Amount" ng-pattern="/^[0-9]+(.[0-9]+)?$/" ng-model="newIngredient.amount" ng-keydown="ingredientAddControls($event)">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Unit" ng-model="newIngredient.unit" ng-keydown="ingredientAddControls($event)">
+                            </th>
+                            <th>
+                                <span>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
+                                </span>
+                            </th>
+                        </tr>
+                        </thead>
                         <tbody ui-sortable ng:model="recipe.ingredients">
                         <tr ng-repeat="ingredient in recipe.ingredients track by $index">
                             <td>
@@ -122,12 +136,15 @@
             </div>
             <div class="form-group">
                 <label for="category" class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORY</label>
-
                 <div class="col-md-9">
                     <select ng-model="recipe.category" ng-options="category as category.name for category in categories track by category.name"
                             class="form-control" name="category" id="category">
                     </select>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="rating" class="col-md-3 control-label" translate>RECIPE_MGMT.RATING</label>
+                <div class="col-md-9" star-rating ng-model="recipe.rating" max="5" name="rating" id="rating"></div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.IMAGE</label>

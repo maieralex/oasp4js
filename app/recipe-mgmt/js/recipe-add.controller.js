@@ -21,17 +21,24 @@ angular.module('app.recipe-mgmt')
             difficulty: null,
             calories: null,
             category: null,
-            image: null
+            image: null,
+            rating: null
         };
+
+        $scope.existingIngredients = [];
+        recipes.getIngredients().then(function(ings) {
+            $scope.existingIngredients = ings;
+        });
 
         // ToDo: Remove once categories are fully implemented
         $scope.categories = [
-            {name: "beef"},
-            {name: "Lamm"},
-            {name: "meat"},
-            {name: "pizza"},
-            {name: "vegan"},
-            {name: "saisonal"}
+            {name: 'Vorspeisen'},
+            {name: 'Für den kleinen Hunger'},
+            {name: 'Vom Grill'},
+            {name: 'Fisch'},
+            {name: 'Pasta'},
+            {name: 'Pizza'},
+            {name: 'Nachspeisen'}
         ];
 
         $scope.imageBusy = false;
@@ -39,6 +46,7 @@ angular.module('app.recipe-mgmt')
 
         if ($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
+            console.log($scope.recipe);
             $scope.recipe.ingredients = []; // ToDo: Remove once ingredients are fully implemented
             $scope.recipe.category = {name: $scope.recipe.category}; // ToDo: Remove once categories are fully implemented
             $scope.editmode = 'edit';
@@ -48,7 +56,6 @@ angular.module('app.recipe-mgmt')
             $scope.$apply(function () {
                 $scope.recipe.image = event.target.files[0];
                 if ($scope.recipe.image.size < $scope.maxImgSize) {
-                    $log.log('yop!');
                     $scope.imageDirty = true;
                 }
             });
@@ -73,6 +80,7 @@ angular.module('app.recipe-mgmt')
             $scope.newIngredient = {};
             $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
         };
+        
         $scope.ingredientAddControls = function (e) {
             // keyCode 13 = Enter key
             if (e.keyCode === 13) {
@@ -104,7 +112,7 @@ angular.module('app.recipe-mgmt')
             if (removeIndex > -1) {
                 $scope.recipe.ingredients.splice(removeIndex, 1);
             }
-        };
+        }
 
         $scope.saveRecipe = function () {
             if (!$scope.imageDirty) {

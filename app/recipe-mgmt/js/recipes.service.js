@@ -52,9 +52,9 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                 return response.data;
             });
         },
-
-        getPaginatedRecipes: function (pagenumber, pagesize, searchString, searchCategoryList) {
-            return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, searchString, searchCategoryList).then(function (response) {
+        
+        getPaginatedRecipes: function (pagenumber, pagesize, search) {
+            return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, search).then(function (response) {
                 var promises = [];
                 angular.forEach(response.data.result, function(recipe) {
                     var deferred = $q.defer();
@@ -79,6 +79,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                     console.log('ready');
                     return response.data;
                 });
+            });
+        },
+        getIngredients: function() {
+            return recipeManagementRestService.getIngredients().then(function(response) {
+                return response.data;
             });
         }
     };

@@ -49,7 +49,7 @@ describe('Module: main, Controller: sign-in', function () {
         // then
         expect($scope.errorMessage.text).toEqual('');
     });
-    it('exposes signIn() on $scope which changes to the user\'s home dialog on success', inject(function ($q, $http) {
+    it('exposes signIn() on $scope which changes to the user\'s home dialog on success', inject(function ($q) {
         // given
         userHomeDialogPath = '/some-module/home';
         spyOn(oaspSecurityService, 'logIn').and.callFake(function () {

@@ -32,7 +32,7 @@ describe('Module: app.main, Service: recipeListRestService', function () {
 
         spyOn($http, 'get');
         recipeListRestService.getRecipePictureBytes(params);
-        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/' + params + '/picture', transformResponse)
+        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/' + params + '/picture', transformResponse);
     }));
 
     it('should call $http.get when recipeListRestService.getRandomRecipe is called', inject(function ($http) {
