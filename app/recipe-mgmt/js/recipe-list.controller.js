@@ -26,7 +26,7 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.search.rating = {
-            min: 0,
+            min: 1,
             max: 5
         };
 
