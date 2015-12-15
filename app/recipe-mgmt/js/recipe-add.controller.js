@@ -84,8 +84,6 @@ angular.module('app.recipe-mgmt')
         $scope.ingredientAddControls = function (e) {
             // keyCode 13 = Enter key
             if (e.keyCode === 13) {
-
-            }
                 $scope.addIngredient();
             }
         };
