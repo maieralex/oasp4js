@@ -84,6 +84,8 @@ angular.module('app.recipe-mgmt')
         $scope.ingredientAddControls = function (e) {
             // keyCode 13 = Enter key
             if (e.keyCode === 13) {
+
+            }
                 $scope.addIngredient();
             }
         };
@@ -112,7 +114,7 @@ angular.module('app.recipe-mgmt')
             if (removeIndex > -1) {
                 $scope.recipe.ingredients.splice(removeIndex, 1);
             }
-        };
+        }
 
         $scope.saveRecipe = function () {
             if (!$scope.imageDirty) {
