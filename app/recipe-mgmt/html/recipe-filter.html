@@ -14,49 +14,49 @@
     <div class="panel-body">
         <h4 translate>RECIPE_MGMT.CATEGORIES</h4>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="checkboxModel.value1">Vorspeisen</label>
+            <label><input type="checkbox" ng-model="checkboxModel.value1" ng-true-value="'Vorspeisen'" ng-false-value="'false'">Vorspeisen</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="checkboxModel.value2">Für den kleinen Hunger</label>
+            <label><input type="checkbox" ng-model="checkboxModel.value2" ng-true-value="'Für den kleinen Hunger'" ng-false-value="'false'">Für den kleinen Hunger</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="checkboxModel.value3">Vom Grill</label>
+            <label><input type="checkbox" ng-model="checkboxModel.value3" ng-true-value="'Vom Grill'" ng-false-value="'false'">Vom Grill</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="checkboxModel.value4">Fisch</label>
+            <label><input type="checkbox" ng-model="checkboxModel.value4" ng-true-value="'Fisch'" ng-false-value="'false'">Fisch</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="checkboxModel.value5">Pasta</label>
+            <label><input type="checkbox" ng-model="checkboxModel.value5" ng-true-value="'Pasta'" ng-false-value="'false'">Pasta</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="checkboxModel.value6">Pizza</label>
+            <label><input type="checkbox" ng-model="checkboxModel.value6" ng-true-value="'Pizza'" ng-false-value="'false'">Pizza</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="checkboxModel.value7">Nachspeisen</label>
+            <label><input type="checkbox" ng-model="checkboxModel.value7" ng-true-value="'Nachspeisen'" ng-false-value="'false'">Nachspeisen</label>
         </div>
         <br>
         <h4 translate>RECIPE_MGMT.PRICE</h4>
         <div class="row">
             <div class="col-md-2">
-                <span class="badge">{{priceMin}} €</span>
+                <span class="badge">{{search.price.min}} €</span>
             </div>
             <div class="col-md-8">
-                <div range-slider min="0" max="30" model-min="priceMin" model-max="priceMax" style="margin: 0px;"></div>
+                <div range-slider min="0" max="30" model-min="search.price.min" model-max="search.price.max" style="margin: 0px;"></div>
             </div>
             <div class="col-md-2">
-                <span class="badge">{{priceMax}} €</span>
+                <span class="badge">{{search.price.max}} €</span>
             </div>
         </div>
         <h4 translate>RECIPE_MGMT.RATING</h4>
         <div class="row">
             <div class="col-md-2">
-                <span class="badge">{{ratingMin}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
+                <span class="badge">{{search.rating.min}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
             </div>
             <div class="col-md-8">
-                <div range-slider min="1" max="5" model-min="ratingMin" model-max="ratingMax" style="margin: 0px;"></div>
+                <div range-slider min="0" max="5" model-min="search.rating.min" model-max="search.rating.max" style="margin: 0px;"></div>
             </div>
             <div class="col-md-2">
-                <span class="badge">{{ratingMax}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
+                <span class="badge">{{search.rating.max}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
             </div>
         </div>
     </div>

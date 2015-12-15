@@ -40,8 +40,8 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
         	});
         },
 
-        getPaginatedRecipes: function (pagenumber, pagesize, searchString) {
-            return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, searchString).then(function (response) {
+        getPaginatedRecipes: function (pagenumber, pagesize, search) {
+            return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, search).then(function (response) {
                 var promises = [];
                 angular.forEach(response.data.result, function(recipe) {
                     var deferred = $q.defer();
