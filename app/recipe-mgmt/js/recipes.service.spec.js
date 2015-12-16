@@ -30,6 +30,7 @@ describe('Service: recipes', function ($http) {
         recipes,
         receivedrecipe,
         savedrecipe,
+        search = {},
         $httpBackend,
         listOfRecipes,
         contextPath = '/oasp-app/',
@@ -143,7 +144,19 @@ describe('Service: recipes', function ($http) {
         mockPaginatedRecipeResponse();
         mockSaveRecipe();
         mockgetRecipe();
-        recipes.getPaginatedRecipes(1, 3).then(function (paginatedRecipes) {
+
+        search.searchString = '';
+        search.selectedCategories = [];
+        search.price = {
+            min: 0,
+            max: 30
+        };
+        search.rating = {
+            min: 1,
+            max: 5
+        };
+
+        recipes.getPaginatedRecipes(1, 3, search).then(function (paginatedRecipes) {
             listOfRecipes = paginatedRecipes.result;
         });
         recipes.getRecipe(0).then(function(result){
