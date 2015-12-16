@@ -82,7 +82,7 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
             });
         },
         getIngredients: function() {
-            return recipeManagementRestService.getIngredients().then(function(response) {
+            return recipeManagementRestService.getIngredients().then( function (response) {
                 return response.data;
             });
         }

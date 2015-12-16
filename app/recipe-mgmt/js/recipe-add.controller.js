@@ -26,7 +26,7 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.existingIngredients = [];
-        recipes.getIngredients().then(function(ings) {
+        recipes.getIngredients().then(function (ings) {
             $scope.existingIngredients = ings;
         });
 
