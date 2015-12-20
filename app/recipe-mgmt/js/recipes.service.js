@@ -81,6 +81,34 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                 });
             });
         },
+        /**
+         * Created by Marc Schwede on 20.12.2015.
+         * Return a paginated list like getPaginatedRecipes with the difference, that the recipe.image doesn't contain the raw base64 data. Instead it includes the URI where the image can be found.
+         * @param pagenumber
+         * @param pagesize
+         * @param search
+         * @returns {*}
+         */
+        getPaginatedRecipesWithURL: function (pagenumber, pagesize, search) {
+            return recipeManagementRestService.getPaginatedRecipes(pagenumber, pagesize, search).then(function (response) {
+                var promises = [];
+                angular.forEach(response.data.result, function (recipe) {
+                    var deferred = $q.defer();
+                    promises.push(deferred.promise);
+                    console.log(recipe.imageId);
+                    if (recipe.imageId != null) {
+                        recipe.image = recipeManagementRestService.getRecipePicture(recipe.imageId);
+                        console.log(recipe.image);
+                    }
+                    deferred.resolve();
+                });
+                    return $q.all(promises).then(function() {
+                        console.log('paginatedRecipesWithURL');
+                        return response.data;
+                    });
+            });
+        },
+
         getIngredients: function() {
             return recipeManagementRestService.getIngredients().then( function (response) {
                 return response.data;

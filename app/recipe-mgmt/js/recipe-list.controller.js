@@ -34,7 +34,11 @@ angular.module('app.recipe-mgmt')
             $scope.search.selectedCategories = [];
             $scope.getSelectedCategories();
             console.log($scope.selectedCategories);
-            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
+            /**
+             * use recipes.getPaginatedRecipes if you want the base64 stuff
+             * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
+             */
+            $scope.recipePromise = recipes.getPaginatedRecipesWithURL($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
