@@ -22,18 +22,17 @@ angular.module('app.recipe-mgmt')
 
         $scope.search.price = {
           min: 0,
-          max: 30
+          max: 150
         };
 
         $scope.search.rating = {
-            min: 1,
+            min: 0,
             max: 5
         };
 
         $rootScope.reloadRecipes = function () {
             $scope.search.selectedCategories = [];
             $scope.getSelectedCategories();
-            console.log($scope.selectedCategories);
             /**
              * use recipes.getPaginatedRecipes if you want the base64 stuff
              * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
@@ -51,8 +50,6 @@ angular.module('app.recipe-mgmt')
                     }
                 }
                 $scope.totalItems = res.pagination.total;
-                console.log($scope.numPerPage);
-                console.log($scope.totalItems);
             });
         };
 
