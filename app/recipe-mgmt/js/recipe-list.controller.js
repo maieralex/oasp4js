@@ -51,6 +51,8 @@ angular.module('app.recipe-mgmt')
                     }
                 }
                 $scope.totalItems = res.pagination.total;
+                console.log($scope.numPerPage);
+                console.log($scope.totalItems);
             });
         };
 
