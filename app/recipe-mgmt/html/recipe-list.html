@@ -55,9 +55,10 @@
                  data-ng-class="selectedRecipes.indexOf(recipe) != -1 ? 'active' : 'inactive'">
                 <div class="col-md-2" style="padding: 0px;">
                     <img class="list-group-item-text img-responsive" ng-show="{{recipe.image.length > 0}}" data-ng-src="{{recipe.image}}" alt="{{recipe.name}}">
+                    <!-- <img class="list-goup-item-text img-responsive" src="{{ recipe.image }}" alt="{{recipe.name}}" /> -->
                 </div>
                 <div class="col-md-6" style="padding: 15px; max-height: 100px;">
-                    <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+                    <h4 class="list-group-item-heading">{{recipe.id}} - {{recipe.name}}</h4>
                     <p class="list-group-item-text">{{recipe.description}}</p>
                 </div>
                 <div class="col-md-4" style="padding: 15px;">

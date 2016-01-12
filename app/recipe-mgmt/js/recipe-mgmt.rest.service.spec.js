@@ -1,7 +1,7 @@
 /*globals oasp*/
 describe('Module: recipeMgmt, Service: recipeManagementRestService', function () {
     'use strict';
-    var recipeManagementRestService, contextPath = '/contextPath/';
+    var recipeManagementRestService, contextPath = '/contextPath/', search = {};
 
     beforeEach(module('app.recipe-mgmt', function ($provide) {
         $provide.value('currentContextPath', oasp.mock.currentContextPathReturning(contextPath));
@@ -27,7 +27,19 @@ describe('Module: recipeMgmt, Service: recipeManagementRestService', function ()
         //given
         spyOn($http, 'post');
         //when
-        recipeManagementRestService.getPaginatedRecipes(1, 3);
+
+        search.searchString = '';
+        search.selectedCategories = [];
+        search.price = {
+            min: 0,
+            max: 30
+        };
+        search.rating = {
+            min: 1,
+            max: 5
+        };
+
+        recipeManagementRestService.getPaginatedRecipes(1, 3, search);
         //then
         expect($http.post).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/search',
             {
@@ -36,8 +48,12 @@ describe('Module: recipeMgmt, Service: recipeManagementRestService', function ()
                     page: 1,
                     total: true
                 },
-                searchString: undefined,
-                searchCategoryList: undefined
+                searchString: '',
+                categories: [],
+                priceFrom: 0,
+                priceTo: 30,
+                ratingFrom: 1,
+                ratingTo: 5
             });
     }));
 

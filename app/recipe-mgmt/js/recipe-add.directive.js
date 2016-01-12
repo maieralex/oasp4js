@@ -93,8 +93,8 @@ function starRating() {
         restrict: 'EA',
         template:
         '<ul class="star-rating" ng-class="{readonly: readonly}">' +
-        '  <li ng-repeat="star in stars" class="glyphicon" ng-class="{filled: glyphicon-star}" ng-click="toggle($index)">' +
-        '    <i class="glyphicon-star-empty"></i>' + // or &#9733
+        '  <li ng-repeat="star in stars" class="star" ng-class="{filled: star.filled}" ng-click="toggle($index)">' +
+        '    <i class="fa fa-star"></i>' +
         '  </li>' +
         '</ul>',
         scope: {

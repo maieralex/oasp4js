@@ -46,8 +46,14 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
             };
             return $http.post(servicePath + '/recipe/search', recipeSearchCriteria);
         },
+        /**
+         * Created/Changed by Marc Schwede on 20.12.2015.
+         * This returns the URI to a given picture id.
+         * @param id Id which images needs to be shown.
+         * @returns {string} URI of the picture with the given {id}.
+         */
         getRecipePicture: function (id) {
-            return $http.get(servicePath + '/recipe/' + id + '/picture');
+            return (servicePath + '/recipe/' + id + '/picture');
         },
         getRecipePictureBytes: function (id) {
             return $http.get(servicePath + '/recipe/' + id + '/picture', {
@@ -59,6 +65,9 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         },
         getIngredients: function() {
             return $http.get(servicePath + '/ingredient');
+        },
+        getAllCategories: function () {
+            return $http.get(servicePath + '/categories');
         }
     };
 });

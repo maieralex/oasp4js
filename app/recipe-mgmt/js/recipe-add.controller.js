@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window) {
+    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window, categories) {
         'use strict';
 
         //maximum image size to upload in bytes
@@ -28,28 +28,21 @@ angular.module('app.recipe-mgmt')
         };
 
         $scope.existingIngredients = [];
-        recipes.getIngredients().then(function(ings) {
+        recipes.getIngredients().then(function (ings) {
             $scope.existingIngredients = ings;
         });
 
-        // ToDo: Remove once categories are fully implemented
-        $scope.categories = [
-            {name: 'Vorspeisen'},
-            {name: 'Für den kleinen Hunger'},
-            {name: 'Vom Grill'},
-            {name: 'Fisch'},
-            {name: 'Pasta'},
-            {name: 'Pizza'},
-            {name: 'Nachspeisen'}
-        ];
+        categories.getAllCategories().then(function (response) {
+            $scope.categories = response;
+        });
 
         $scope.imageBusy = false;
         $scope.imageDirty = false;
 
         if ($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
-            console.log($scope.recipe);
             $scope.recipe.category = {name: $scope.recipe.category}; // ToDo: Remove once categories are fully implemented
+            $scope.recipe.ingredients = []; // ToDo: Remove once ingredients are fully implemented
             $scope.editmode = 'edit';
         }
 
@@ -149,7 +142,7 @@ angular.module('app.recipe-mgmt')
             if (removeIndex > -1) {
                 $scope.recipe.recipeIngredients.splice(removeIndex, 1);
             }
-        }
+        };
 
         $scope.saveRecipe = function () {
             if (!$scope.imageDirty) {
@@ -165,4 +158,8 @@ angular.module('app.recipe-mgmt')
 
         };
 
+        $scope.closeModal = function () {
+            $rootScope.reloadRecipes();
+            $scope.$close();
+        };
     });
