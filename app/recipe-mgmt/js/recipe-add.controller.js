@@ -42,7 +42,6 @@ angular.module('app.recipe-mgmt')
         if ($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
             $scope.recipe.category = {name: $scope.recipe.category}; // ToDo: Remove once categories are fully implemented
-            $scope.recipe.ingredients = []; // ToDo: Remove once ingredients are fully implemented
             $scope.editmode = 'edit';
         }
 
@@ -80,7 +79,7 @@ angular.module('app.recipe-mgmt')
                     measuringUnit: $scope.newIngredient.unit,
                     amount: parseInt($scope.newIngredient.amount),
                     position: parseInt($scope.recipe.recipeIngredients.length) + 1,
-                    ingredientId: 1,
+                    ingredientId: null,
                     modificationCounter: 0,
                     revision: null
                 });
