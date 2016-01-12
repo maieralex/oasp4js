@@ -9,6 +9,7 @@ angular.module('app.recipe-mgmt')
 
         $scope.search = {};  //only do this if $scope.course has not already been declared
         $scope.search.searchString = '';
+        $scope.selectedRecipes = [];
 
         $scope.checkboxModel = {
             value1 : 'false',
@@ -33,7 +34,6 @@ angular.module('app.recipe-mgmt')
         $rootScope.reloadRecipes = function () {
             $scope.search.selectedCategories = [];
             $scope.getSelectedCategories();
-            console.log($scope.selectedCategories);
             /**
              * use recipes.getPaginatedRecipes if you want the base64 stuff
              * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
@@ -51,8 +51,6 @@ angular.module('app.recipe-mgmt')
                     }
                 }
                 $scope.totalItems = res.pagination.total;
-                console.log($scope.numPerPage);
-                console.log($scope.totalItems);
             });
         };
 
@@ -106,10 +104,9 @@ angular.module('app.recipe-mgmt')
             }
         };
 
-        $scope.selectedRecipes = [];
 
         $rootScope.updateSelectedRecipe = function () {
-            $scope.selectRecipe($scope.selectedRecipes[0]);
+            $scope.selectRecipe($scope.recipesList[0]);
         };
 
         $scope.selectRecipe = function (recipe, multisel) {
