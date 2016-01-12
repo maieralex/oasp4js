@@ -38,18 +38,29 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                 <div class="col-md-9">
-                    <div id="ingredientInput">
-                        <input type="text" placeholder="Ingredient" ng-model="newIngredient.name" ng-keydown="ingredientAddControls($event)" list="existingIngredients">
-                        <input type="text" placeholder="Amount" ng-pattern="/^[0-9]+(.[0-9]+)?$/" ng-model="newIngredient.amount" ng-keydown="ingredientAddControls($event)">
-                        <input type="text" placeholder="Unit" ng-model="newIngredient.unit" ng-keydown="ingredientAddControls($event)">
-                        <span>
-                            <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
-                        </span>
-                        <datalist id="existingIngredients">
-                            <option ng-repeat="eIng in existingIngredients" value="{{eIng.name}}">
-                        </datalist>
-                    </div>
                     <table class="table table-striped" id="ingredientTable" navigatable>
+                        <thead id="ingredientInput">
+                        <tr>
+                            <th><span></span></th>
+                            <th>
+                                <input type="text" placeholder="Ingredient" ng-model="newIngredient.name" ng-keydown="ingredientAddControls($event)" list="existingIngredients">
+                                <datalist id="existingIngredients">
+                                    <option ng-repeat="eIng in existingIngredients" value="{{eIng.name}}">
+                                </datalist>
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Amount" ng-pattern="/^[0-9]+(.[0-9]+)?$/" ng-model="newIngredient.amount" ng-keydown="ingredientAddControls($event)">
+                            </th>
+                            <th>
+                                <input type="text" placeholder="Unit" ng-model="newIngredient.unit" ng-keydown="ingredientAddControls($event)">
+                            </th>
+                            <th>
+                                <span>
+                                    <button type="button" class="btn btn-success btn-xs" ng-click="addIngredient()"><i class="glyphicon glyphicon-plus"></i></button>
+                                </span>
+                            </th>
+                        </tr>
+                        </thead>
                         <tbody ui-sortable="{update: updateSorting()}" ng:model="recipe.recipeIngredients">
                         <tr ng-repeat="ingredient in recipe.recipeIngredients | orderBy: 'position' track by $index">
                             <td>

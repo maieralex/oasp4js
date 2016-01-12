@@ -85,8 +85,11 @@ angular.module('app.recipe-mgmt')
                         name: $scope.newIngredient.name
                     },
                     measuringUnit: $scope.newIngredient.unit,
-                    amount: $scope.newIngredient.amount,
-                    position: $scope.recipe.recipeIngredients.length + 1
+                    amount: parseInt($scope.newIngredient.amount),
+                    position: parseInt($scope.recipe.recipeIngredients.length) + 1,
+                    ingredientId: 1,
+                    modificationCounter: 0,
+                    revision: null
                 });
                 $scope.newIngredient = {};
                 $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
@@ -112,7 +115,7 @@ angular.module('app.recipe-mgmt')
                         break;
                     }
                 }
-                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position-1].getElementsByTagName('input')[0].focus();
+                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
             else if (e.keyCode === 40 && e.shiftKey && !isLastIngredient) {
                 for(var i = 0; i < $scope.recipe.recipeIngredients.length; i++) {
@@ -122,7 +125,7 @@ angular.module('app.recipe-mgmt')
                         break;
                     }
                 }
-                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position-1].getElementsByTagName('input')[0].focus();
+                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
             // We need to wait for angular process the changes,
             // else the drag-n-drop callback will break it completely
@@ -152,7 +155,6 @@ angular.module('app.recipe-mgmt')
             if (!$scope.imageDirty) {
                 $scope.recipe.image = null;
             }
-            $scope.recipe.recipeIngredients = null; // Remove this, once ingredients can be saved!!!
             $scope.recipe.category = $scope.recipe.category.name; // ToDo: Remove once categories are fully implemented
             recipes.saveRecipe($scope.recipe).then(function () {
                 $rootScope.reloadRecipes();
