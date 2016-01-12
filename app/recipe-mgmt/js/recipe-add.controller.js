@@ -80,6 +80,7 @@ angular.module('app.recipe-mgmt')
                     amount: parseInt($scope.newIngredient.amount),
                     position: parseInt($scope.recipe.recipeIngredients.length) + 1,
                     ingredientId: null,
+                    recipeId: $scope.recipe.id,
                     modificationCounter: 0,
                     revision: null
                 });
