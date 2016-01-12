@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window, categories) {
+    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window, categories, $translate) {
         'use strict';
 
         //maximum image size to upload in bytes
@@ -32,7 +32,8 @@ angular.module('app.recipe-mgmt')
             $scope.existingIngredients = ings;
         });
 
-        categories.getAllCategories().then(function (response) {
+        var language = $translate.use();
+        categories.getAllCategories(language).then(function (response) {
             $scope.categories = response;
         });
 
