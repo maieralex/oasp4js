@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                 <div class="col-md-9">
-                    <table class="table table-striped" id="ingredientTable" navigatable>
+                    <table class="table table-striped" id="ingredientTable">
                         <thead id="ingredientInput">
                         <tr>
                             <th><span></span></th>
@@ -61,7 +61,7 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody ui-sortable="{update: updateSorting()}" ng:model="recipe.recipeIngredients">
+                        <tbody ui-sortable="{update: updateSorting()}" ng:model="recipe.recipeIngredients" navigatable>
                         <tr ng-repeat="ingredient in recipe.recipeIngredients | orderBy: 'position' track by $index">
                             <td>
                                 <span class="glyphicon glyphicon-option-vertical" style="cursor:pointer">&nbsp;</span>
