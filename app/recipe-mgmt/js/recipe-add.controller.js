@@ -72,14 +72,19 @@ angular.module('app.recipe-mgmt')
             if($scope.newIngredient.name.length > 0 &&
             $scope.newIngredient.unit.length > 0 &&
             $scope.newIngredient.amount.length > 0) {
+                var ingredientId = null;
+                for(var i = 0; i < existingIngredients.length; i++)
+                    if(existingIngredients[i].name === $scope.newIngredient.name)
+                        ingredientId = $scope.existingIngredients.id;
+                    
                 $scope.recipe.recipeIngredients.push({
                     ingredient: {
-                        name: $scope.newIngredient.name
+                        name: $scope.newIngredient.name,
+                        id: ingredientId
                     },
                     measuringUnit: $scope.newIngredient.unit,
                     amount: parseInt($scope.newIngredient.amount),
                     position: parseInt($scope.recipe.recipeIngredients.length) + 1,
-                    ingredientId: null,
                     recipeId: $scope.recipe.id,
                     modificationCounter: 0,
                     revision: null
