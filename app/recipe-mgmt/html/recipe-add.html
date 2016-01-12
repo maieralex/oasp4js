@@ -137,7 +137,7 @@
             <div class="form-group">
                 <label for="category" class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORY</label>
                 <div class="col-md-9">
-                    <select ng-model="recipe.category" ng-options="category as category.name for category in categories | orderBy: 'name' track by category.name"
+                    <select ng-model="recipe.categoryEntity" ng-options="category as category.name for category in categories | orderBy: 'name' track by category.languageId"
                             class="form-control" name="category" id="category">
                     </select>
                 </div>
