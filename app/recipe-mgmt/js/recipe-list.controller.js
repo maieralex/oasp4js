@@ -10,6 +10,7 @@ angular.module('app.recipe-mgmt')
         $scope.search = {};  //only do this if $scope.course has not already been declared
         $scope.search.searchString = '';
         $scope.selectedRecipes = [];
+        $scope.oldValues = [];
 
         $scope.checkboxModel = {
             value1 : 'false',
@@ -128,11 +129,14 @@ angular.module('app.recipe-mgmt')
             if ($scope.sidebarIsVisible) {
                 $scope.filterIsVisible = false;
             }
+
+            $scope.oldValues[0] = angular.copy($scope.selectedRecipes[0]);
         };
 
         $scope.disableSidebar = function () {
             $scope.sidebarIsVisible = false;
             $scope.selectedRecipes = [];
+            $scope.oldValues = [];
         };
 
         $scope.toggleFilterbar = function () {
@@ -165,4 +169,35 @@ angular.module('app.recipe-mgmt')
         $scope.updateRecipe = function (recipe) {
             recipes.updateRecipe(recipe);
         };
+
+        $scope.validateValues = function () {
+            var validateCurrenyFormat  = /^\d+(?:\.\d{0,2})$/;
+
+            if ($scope.selectedRecipes[0].name == '') {
+                $scope.selectedRecipes[0].name = $scope.oldValues[0].name;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].name = $scope.selectedRecipes[0].name;
+            }
+
+            if ($scope.selectedRecipes[0].description == '') {
+                $scope.selectedRecipes[0].description = $scope.oldValues[0].description;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].description = $scope.selectedRecipes[0].description;
+            }
+
+            if ($scope.selectedRecipes[0].price == '' || !(validateCurrenyFormat.test($scope.selectedRecipes[0].price))) {
+                $scope.selectedRecipes[0].price = $scope.oldValues[0].price;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].price = $scope.selectedRecipes[0].price;
+            }
+
+            return true;
+        }
+
     });
