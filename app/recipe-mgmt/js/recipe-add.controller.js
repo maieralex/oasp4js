@@ -30,7 +30,15 @@ angular.module('app.recipe-mgmt')
         $scope.existingIngredients = [];
         recipes.getIngredients().then(function (ings) {
             $scope.existingIngredients = ings;
+
         });
+
+
+        $scope.updateCosts = function(){
+            recipes.getCosts($scope.recipe.recipeIngredients).then(function (costs){
+                $scope.costs = costs;
+            });
+        }
 
         var language = $translate.use();
         categories.getAllCategories(language).then(function (response) {
@@ -44,7 +52,9 @@ angular.module('app.recipe-mgmt')
             $scope.recipe = $rootScope.editRecipe;
             $scope.recipe.category = {name: $scope.recipe.category}; // ToDo: Remove once categories are fully implemented
             $scope.editmode = 'edit';
+            $scope.updateCosts();
         }
+
 
         $window.document.getElementById('recipeImage').addEventListener('change', function (event) {
             $scope.$apply(function () {
@@ -73,19 +83,25 @@ angular.module('app.recipe-mgmt')
             if($scope.newIngredient.name.length > 0 &&
             $scope.newIngredient.unit.length > 0 &&
             $scope.newIngredient.amount.length > 0) {
+                var ingredientId = null;
+                for(var i = 0; i < $scope.existingIngredients.length; i++)
+                    if($scope.existingIngredients[i].name === $scope.newIngredient.name)
+                        ingredientId = $scope.existingIngredients[i].id;
+                    
                 $scope.recipe.recipeIngredients.push({
                     ingredient: {
-                        name: $scope.newIngredient.name
+                        name: $scope.newIngredient.name,
+                        id: ingredientId
                     },
                     measuringUnit: $scope.newIngredient.unit,
                     amount: parseInt($scope.newIngredient.amount),
                     position: parseInt($scope.recipe.recipeIngredients.length) + 1,
-                    ingredientId: null,
                     recipeId: $scope.recipe.id,
                     modificationCounter: 0,
                     revision: null
                 });
                 $scope.newIngredient = {};
+                $scope.updateCosts();
                 $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
             }
         };
@@ -121,6 +137,8 @@ angular.module('app.recipe-mgmt')
                 }
                 $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
+
+            $scope.updateCosts();
             // We need to wait for angular process the changes,
             // else the drag-n-drop callback will break it completely
             $window.setTimeout(function() {
@@ -143,6 +161,7 @@ angular.module('app.recipe-mgmt')
             if (removeIndex > -1) {
                 $scope.recipe.recipeIngredients.splice(removeIndex, 1);
             }
+            $scope.updateCosts();
         };
 
         $scope.saveRecipe = function () {

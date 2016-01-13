@@ -76,7 +76,6 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                     }
                 });
                 return $q.all(promises).then(function() {
-                    console.log('ready');
                     return response.data;
                 });
             });
@@ -95,15 +94,12 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                 angular.forEach(response.data.result, function (recipe) {
                     var deferred = $q.defer();
                     promises.push(deferred.promise);
-                    console.log(recipe.imageId);
                     if (recipe.imageId != null) {
                         recipe.image = recipeManagementRestService.getRecipePicture(recipe.imageId);
-                        console.log(recipe.image);
                     }
                     deferred.resolve();
                 });
                     return $q.all(promises).then(function() {
-                        console.log('paginatedRecipesWithURL');
                         return response.data;
                     });
             });
@@ -111,6 +107,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
 
         getIngredients: function() {
             return recipeManagementRestService.getIngredients().then( function (response) {
+                return response.data;
+            });
+        },
+        getCosts: function(ingredients) {
+            return recipeManagementRestService.getCosts(ingredients).then( function (response) {
                 return response.data;
             });
         }

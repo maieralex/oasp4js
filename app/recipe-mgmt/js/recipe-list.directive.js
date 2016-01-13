@@ -86,8 +86,11 @@ angular
                 link: function($scope, elm, attrs, ctrl) {
                     elm.on('blur', function() {
                         ctrl.$setViewValue(elm.html());
-                        $scope.updateRecipe($scope.selectedRecipes[0]);
-                        $scope.selectedRecipes[0].modificationCounter++;
+                        if ($scope.validateValues($scope.selectedRecipes[0])) {
+                            $scope.updateRecipe($scope.selectedRecipes[0]);
+                            $scope.selectedRecipes[0].modificationCounter++;
+                        }
+
                     });
                     ctrl.$render = function () {
                         elm.html(ctrl.$viewValue);

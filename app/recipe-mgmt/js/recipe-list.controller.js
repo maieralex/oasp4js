@@ -9,6 +9,8 @@ angular.module('app.recipe-mgmt')
 
         $scope.search = {};  //only do this if $scope.course has not already been declared
         $scope.search.searchString = '';
+        $scope.selectedRecipes = [];
+        $scope.oldValues = [];
 
         $scope.checkboxModel = {
             value0 : true,
@@ -23,11 +25,11 @@ angular.module('app.recipe-mgmt')
 
         $scope.search.price = {
           min: 0,
-          max: 30
+          max: 150
         };
 
         $scope.search.rating = {
-            min: 1,
+            min: 0,
             max: 5
         };
 
@@ -61,7 +63,6 @@ angular.module('app.recipe-mgmt')
         $rootScope.reloadRecipes = function () {
             $scope.search.selectedCategories = [];
             $scope.getSelectedCategories();
-            console.log($scope.selectedCategories);
             /**
              * use recipes.getPaginatedRecipes if you want the base64 stuff
              * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
@@ -79,8 +80,6 @@ angular.module('app.recipe-mgmt')
                     }
                 }
                 $scope.totalItems = res.pagination.total;
-                console.log($scope.numPerPage);
-                console.log($scope.totalItems);
             });
         };
 
@@ -134,10 +133,9 @@ angular.module('app.recipe-mgmt')
             }
         };
 
-        $scope.selectedRecipes = [];
 
         $rootScope.updateSelectedRecipe = function () {
-            $scope.selectRecipe($scope.selectedRecipes[0]);
+            $scope.selectRecipe($scope.recipesList[0]);
         };
 
         $scope.selectRecipe = function (recipe, multisel) {
@@ -159,11 +157,14 @@ angular.module('app.recipe-mgmt')
             if ($scope.sidebarIsVisible) {
                 $scope.filterIsVisible = false;
             }
+
+            $scope.oldValues[0] = angular.copy($scope.selectedRecipes[0]);
         };
 
         $scope.disableSidebar = function () {
             $scope.sidebarIsVisible = false;
             $scope.selectedRecipes = [];
+            $scope.oldValues = [];
         };
 
         $scope.toggleFilterbar = function () {
@@ -196,4 +197,35 @@ angular.module('app.recipe-mgmt')
         $scope.updateRecipe = function (recipe) {
             recipes.updateRecipe(recipe);
         };
+
+        $scope.validateValues = function () {
+            var validateCurrenyFormat  = /^\d+(?:\.\d{0,2})$/;
+
+            if ($scope.selectedRecipes[0].name == '') {
+                $scope.selectedRecipes[0].name = $scope.oldValues[0].name;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].name = $scope.selectedRecipes[0].name;
+            }
+
+            if ($scope.selectedRecipes[0].description == '') {
+                $scope.selectedRecipes[0].description = $scope.oldValues[0].description;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].description = $scope.selectedRecipes[0].description;
+            }
+
+            if ($scope.selectedRecipes[0].price == '' || !(validateCurrenyFormat.test($scope.selectedRecipes[0].price))) {
+                $scope.selectedRecipes[0].price = $scope.oldValues[0].price;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].price = $scope.selectedRecipes[0].price;
+            }
+
+            return true;
+        }
+
     });
