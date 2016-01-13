@@ -109,6 +109,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
             return recipeManagementRestService.getIngredients().then( function (response) {
                 return response.data;
             });
+        },
+        getCosts: function(ingredients) {
+            return recipeManagementRestService.getCosts(ingredients).then( function (response) {
+                return response.data;
+            });
         }
     };
 });

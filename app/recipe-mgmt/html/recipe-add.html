@@ -61,6 +61,14 @@
                             </th>
                         </tr>
                         </thead>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td><span translate>RECIPE_MGMT.COSTS</span>:</td>
+                                <td ng-bind="costs"></td>
+                            </tr>
+                        </tfoot>
                         <tbody ui-sortable="{update: updateSorting()}" ng:model="recipe.recipeIngredients" navigatable>
                         <tr ng-repeat="ingredient in recipe.recipeIngredients | orderBy: 'position' track by $index">
                             <td>
@@ -70,7 +78,7 @@
                                 <input type="text" ng-model="ingredient.ingredient.name" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
                             <td>
-                                <input type="text" ng-model="ingredient.amount" ng-keydown="ingredientControls($event, ingredient)">
+                                <input type="text" ng-model="ingredient.amount" ng-keyup="updateCosts()" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
                             <td>
                                 <input type="text" ng-model="ingredient.measuringUnit" ng-keydown="ingredientControls($event, ingredient)">
