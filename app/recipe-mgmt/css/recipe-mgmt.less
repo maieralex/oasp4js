@@ -120,6 +120,19 @@
     }
 }
 
+@recipe-img-width: 150px;
+.recipe-img {
+    width: @recipe-img-width;
+    float: left
+}
+
+.recipe-text-container {
+    padding-left: calc(@recipe-img-width + 15px);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+}
+
 // Not used currently
 /*.recipe-list {
     margin-top: @top-padding;
