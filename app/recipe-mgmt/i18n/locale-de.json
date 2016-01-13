@@ -32,6 +32,13 @@
         "SELECT_IMAGE":"Bild auswählen...",
         "FILTEROPTS": "Filteroptionen",
         "CATEGORIES": "Kategorien",
-        "RATING": "Bewertung"
+        "RATING": "Bewertung",
+        "CATEGORY_0": "Vorspeisen",
+        "CATEGORY_1": "Für den kleinen Hunger",
+        "CATEGORY_2": "Vom Grill",
+        "CATEGORY_3": "Fisch",
+        "CATEGORY_4": "Pasta",
+        "CATEGORY_5": "Pizza",
+        "CATEGORY_6": "Nachspeisen"
     }
 }

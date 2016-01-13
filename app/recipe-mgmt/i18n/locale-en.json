@@ -32,6 +32,13 @@
         "SELECT_IMAGE":"Select picture...",
         "FILTEROPTS": "Filter Options",
         "CATEGORIES": "Categories",
-        "RATING": "Rating"
+        "RATING": "Rating",
+        "CATEGORY_0": "Appetizer",
+        "CATEGORY_1": "Snacks",
+        "CATEGORY_2": "Grilled",
+        "CATEGORY_3": "Fish",
+        "CATEGORY_4": "Pasta",
+        "CATEGORY_5": "Pizza",
+        "CATEGORY_6": "Dessert"
     }
 }
