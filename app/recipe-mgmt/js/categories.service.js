@@ -3,8 +3,8 @@ angular.module('app.recipe-mgmt').factory('categories', function (recipeManageme
     'use strict';
 
     return {
-        getAllCategories: function () {
-            return recipeManagementRestService.getAllCategories().then(function (response) {
+        getAllCategories: function (language) {
+            return recipeManagementRestService.getAllCategories(language).then(function (response) {
                 console.log(response.data);
                 return response.data;
             });

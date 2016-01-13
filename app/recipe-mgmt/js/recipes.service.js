@@ -76,7 +76,6 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
                     }
                 });
                 return $q.all(promises).then(function() {
-                    console.log('ready');
                     return response.data;
                 });
             });
@@ -108,6 +107,11 @@ angular.module('app.recipe-mgmt').factory('recipes', function (recipeManagementR
 
         getIngredients: function() {
             return recipeManagementRestService.getIngredients().then( function (response) {
+                return response.data;
+            });
+        },
+        getCosts: function(ingredients) {
+            return recipeManagementRestService.getCosts(ingredients).then( function (response) {
                 return response.data;
             });
         }

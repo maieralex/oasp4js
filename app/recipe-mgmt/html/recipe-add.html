@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label class="col-md-3 control-label" translate>RECIPE_MGMT.INGREDIENTS</label>
                 <div class="col-md-9">
-                    <table class="table table-striped" id="ingredientTable" navigatable>
+                    <table class="table table-striped" id="ingredientTable">
                         <thead id="ingredientInput">
                         <tr>
                             <th><span></span></th>
@@ -61,19 +61,27 @@
                             </th>
                         </tr>
                         </thead>
-                        <tbody ui-sortable ng:model="recipe.ingredients">
-                        <tr ng-repeat="ingredient in recipe.ingredients track by $index">
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td><span translate>RECIPE_MGMT.COSTS</span>:</td>
+                                <td ng-bind="costs"></td>
+                            </tr>
+                        </tfoot>
+                        <tbody ui-sortable="{update: updateSorting()}" ng:model="recipe.recipeIngredients" navigatable>
+                        <tr ng-repeat="ingredient in recipe.recipeIngredients | orderBy: 'position' track by $index">
                             <td>
                                 <span class="glyphicon glyphicon-option-vertical" style="cursor:pointer">&nbsp;</span>
                             </td>
                             <td>
-                                <input type="text" ng-model="ingredient.name" ng-keydown="ingredientControls($event, ingredient)">
+                                <input type="text" ng-model="ingredient.ingredient.name" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
                             <td>
-                                <input type="text" ng-model="ingredient.amount" ng-keydown="ingredientControls($event, ingredient)">
+                                <input type="text" ng-model="ingredient.amount" ng-keyup="updateCosts()" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
                             <td>
-                                <input type="text" ng-model="ingredient.unit" ng-keydown="ingredientControls($event, ingredient)">
+                                <input type="text" ng-model="ingredient.measuringUnit" ng-keydown="ingredientControls($event, ingredient)">
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-xs" ng-click="removeIngredient(ingredient)"><i class="glyphicon glyphicon-remove"></i></button>
@@ -137,7 +145,7 @@
             <div class="form-group">
                 <label for="category" class="col-md-3 control-label" translate>RECIPE_MGMT.CATEGORY</label>
                 <div class="col-md-9">
-                    <select ng-model="recipe.category" ng-options="category as category.name for category in categories | orderBy: 'name' track by category.name"
+                    <select ng-model="recipe.categoryEntity" ng-options="category as category.name for category in categories | orderBy: 'name' track by category.languageId"
                             class="form-control" name="category" id="category">
                     </select>
                 </div>

@@ -1,11 +1,13 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window, categories) {
+    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window, categories, $translate) {
         'use strict';
 
         //maximum image size to upload in bytes
         $scope.maxImgSize = 5000000;
         $scope.showMaxImgSizeWarning = false;
+
+        $scope.sortingBusy = false;
 
         $scope.recipe = {
             id: null,
@@ -13,7 +15,7 @@ angular.module('app.recipe-mgmt')
             description: null,
             language: null,
             price: null,
-            ingredients: [],
+            recipeIngredients: [],
             cookingInstructions: null,
             portions: null,
             cookTimeMinutes: null,
@@ -28,9 +30,18 @@ angular.module('app.recipe-mgmt')
         $scope.existingIngredients = [];
         recipes.getIngredients().then(function (ings) {
             $scope.existingIngredients = ings;
+
         });
 
-        categories.getAllCategories().then(function (response) {
+
+        $scope.updateCosts = function(){
+            recipes.getCosts($scope.recipe.recipeIngredients).then(function (costs){
+                $scope.costs = costs;
+            });
+        }
+
+        var language = $translate.use();
+        categories.getAllCategories(language).then(function (response) {
             $scope.categories = response;
         });
 
@@ -39,10 +50,11 @@ angular.module('app.recipe-mgmt')
 
         if ($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
-            console.log($scope.recipe);
-            $scope.recipe.ingredients = []; // ToDo: Remove once ingredients are fully implemented
+            $scope.recipe.category = {name: $scope.recipe.category}; // ToDo: Remove once categories are fully implemented
             $scope.editmode = 'edit';
+            $scope.updateCosts();
         }
+
 
         $window.document.getElementById('recipeImage').addEventListener('change', function (event) {
             $scope.$apply(function () {
@@ -55,8 +67,8 @@ angular.module('app.recipe-mgmt')
 
         $scope.emptyIngredientExists = function () {
             var emptyIngredient = false;
-            for (var i = 0; i < $scope.recipe.ingredients.length; i++) {
-                var ing = $scope.recipe.ingredients[i];
+            for (var i = 0; i < $scope.recipe.recipeIngredients.length; i++) {
+                var ing = $scope.recipe.recipeIngredients[i];
                 if ((ing.name === null || ing.name === '') ||
                     (ing.unit === null || ing.unit === '') ||
                     (ing.amount === null || ing.amount === '' || ing.amount === 0)) {
@@ -68,9 +80,30 @@ angular.module('app.recipe-mgmt')
 
         $scope.newIngredient = {};
         $scope.addIngredient = function () {
-            $scope.recipe.ingredients.push($scope.newIngredient);
-            $scope.newIngredient = {};
-            $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
+            if($scope.newIngredient.name.length > 0 &&
+            $scope.newIngredient.unit.length > 0 &&
+            $scope.newIngredient.amount.length > 0) {
+                var ingredientId = null;
+                for(var i = 0; i < $scope.existingIngredients.length; i++)
+                    if($scope.existingIngredients[i].name === $scope.newIngredient.name)
+                        ingredientId = $scope.existingIngredients[i].id;
+                    
+                $scope.recipe.recipeIngredients.push({
+                    ingredient: {
+                        name: $scope.newIngredient.name,
+                        id: ingredientId
+                    },
+                    measuringUnit: $scope.newIngredient.unit,
+                    amount: parseInt($scope.newIngredient.amount),
+                    position: parseInt($scope.recipe.recipeIngredients.length) + 1,
+                    recipeId: $scope.recipe.id,
+                    modificationCounter: 0,
+                    revision: null
+                });
+                $scope.newIngredient = {};
+                $scope.updateCosts();
+                $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
+            }
         };
         
         $scope.ingredientAddControls = function (e) {
@@ -80,37 +113,62 @@ angular.module('app.recipe-mgmt')
             }
         };
         $scope.ingredientControls = function (e, ingredient) {
-            var isFirstIngredient = ingredient === $scope.recipe.ingredients[0];
-            var isLastIngredient = ingredient === $scope.recipe.ingredients[$scope.recipe.ingredients.length - 1];
+            $scope.sortingBusy = true;
+            var isFirstIngredient = ingredient.position === 1;
+            var isLastIngredient = ingredient.position === $scope.recipe.recipeIngredients.length;
             var index = -1;
-            var tmp = null;
             if (e.keyCode === 38 && e.shiftKey && !isFirstIngredient) {
-                index = $scope.recipe.ingredients.indexOf(ingredient);
-                tmp = $scope.recipe.ingredients[index];
-                $scope.recipe.ingredients[index] = $scope.recipe.ingredients[index - 1];
-                $scope.recipe.ingredients[index - 1] = tmp;
-                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[index - 1].getElementsByTagName('input')[0].focus();
+                for(var i = 0; i < $scope.recipe.recipeIngredients.length; i++) {
+                    if($scope.recipe.recipeIngredients[i].position === ingredient.position-1) {
+                        $scope.recipe.recipeIngredients[i].position++;
+                        ingredient.position--;
+                        break;
+                    }
+                }
+                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
             else if (e.keyCode === 40 && e.shiftKey && !isLastIngredient) {
-                index = $scope.recipe.ingredients.indexOf(ingredient);
-                tmp = $scope.recipe.ingredients[index];
-                $scope.recipe.ingredients[index] = $scope.recipe.ingredients[index + 1];
-                $scope.recipe.ingredients[index + 1] = tmp;
-                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[index + 1].getElementsByTagName('input')[0].focus();
+                for(var i = 0; i < $scope.recipe.recipeIngredients.length; i++) {
+                    if($scope.recipe.recipeIngredients[i].position === ingredient.position+1) {
+                        $scope.recipe.recipeIngredients[i].position--;
+                        ingredient.position++;
+                        break;
+                    }
+                }
+                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
+
+            $scope.updateCosts();
+            // We need to wait for angular process the changes,
+            // else the drag-n-drop callback will break it completely
+            $window.setTimeout(function() {
+                $scope.sortingBusy = false;
+            }, 200);
         };
-        $scope.removeIngredient = function (ingredient) {
-            var removeIndex = $scope.recipe.ingredients.indexOf(ingredient);
-            if (removeIndex > -1) {
-                $scope.recipe.ingredients.splice(removeIndex, 1);
+
+        $scope.updateSorting = function() {
+            // This callback fires way too often which affects sorting by shortcut
+            // that's why we have to limit its execution
+            if(!$scope.sortingBusy) {
+                for(var i = 0; i < $scope.recipe.recipeIngredients.length; i++) {
+                    $scope.recipe.recipeIngredients[i].position = i+1;
+                }
             }
+        }
+
+        $scope.removeIngredient = function (ingredient) {
+            var removeIndex = $scope.recipe.recipeIngredients.indexOf(ingredient);
+            if (removeIndex > -1) {
+                $scope.recipe.recipeIngredients.splice(removeIndex, 1);
+            }
+            $scope.updateCosts();
         };
 
         $scope.saveRecipe = function () {
             if (!$scope.imageDirty) {
                 $scope.recipe.image = null;
             }
-            $scope.recipe.ingredients = null; // Remove this, once ingredients can be saved!!!
+            $scope.recipe.category = $scope.recipe.category.name; // ToDo: Remove once categories are fully implemented
             recipes.saveRecipe($scope.recipe).then(function () {
                 $rootScope.reloadRecipes();
                 $scope.image = null;

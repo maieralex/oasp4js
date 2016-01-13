@@ -9,6 +9,7 @@ angular.module('app.recipe-mgmt')
 
         $scope.search = {};  //only do this if $scope.course has not already been declared
         $scope.search.searchString = '';
+        $scope.selectedRecipes = [];
 
         $scope.checkboxModel = {
             value1 : 'false',
@@ -103,10 +104,9 @@ angular.module('app.recipe-mgmt')
             }
         };
 
-        $scope.selectedRecipes = [];
 
         $rootScope.updateSelectedRecipe = function () {
-            $scope.selectRecipe($scope.selectedRecipes[0]);
+            $scope.selectRecipe($scope.recipesList[0]);
         };
 
         $scope.selectRecipe = function (recipe, multisel) {

@@ -32,6 +32,7 @@
         "SELECT_IMAGE":"Bild auswählen...",
         "FILTEROPTS": "Filteroptionen",
         "CATEGORIES": "Kategorien",
-        "RATING": "Bewertung"
+        "RATING": "Bewertung",
+        "COSTS": "Kosten"
     }
 }

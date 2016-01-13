@@ -32,6 +32,7 @@
         "SELECT_IMAGE":"Select picture...",
         "FILTEROPTS": "Filter Options",
         "CATEGORIES": "Categories",
-        "RATING": "Rating"
+        "RATING": "Rating",
+        "COSTS": "Costs"
     }
 }
