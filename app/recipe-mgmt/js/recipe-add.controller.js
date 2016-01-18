@@ -24,7 +24,7 @@ angular.module('app.recipe-mgmt')
             calories: null,
             category: null,
             image: null,
-            rating: 0
+            rating: 1
         };
 
         $scope.existingIngredients = [];
