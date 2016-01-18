@@ -1,11 +1,11 @@
-<div class="panel panel-default recipe-list-sidebar" sidebar-max-height>
+<div class="panel panel-default recipe-list-sidebar" sidebar-max-height tabindex="{{filterIsVisible ? 0 : -1}}">
     <nav class="navbar navbar-default recipe-list-sidebar-toolbar">
         <div class="container-fluid">
             <div class="navbar-header">
                 <span class="navbar-brand" translate>RECIPE_MGMT.FILTEROPTS</span>
             </div>
             <div class="btn-group navbar-btn pull-right" role="group" aria-label="...">
-                <button type="button" class="btn btn-default" aria-label="Hide filter" ng-click="toggleFilterbar();">
+                <button type="button" class="btn btn-default" aria-label="Hide filter" ng-click="toggleFilterbar();" tabindex="{{filterIsVisible ? 0 : -1}}">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                 </button>
             </div>
@@ -15,42 +15,42 @@
         <h4 translate>RECIPE_MGMT.CATEGORIES</h4>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value0" ng-true-value="true" ng-false-value="false" ng-click="selectAllCategories()"><span translate>Select all</span>
+                <input type="checkbox" ng-model="checkboxModel.value0" ng-true-value="true" ng-false-value="false" ng-click="selectAllCategories()" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>Select all</span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value="0" ng-false-value="false"><span translate>RECIPE_MGMT.CATEGORY_0</span>
+                <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value="0" ng-false-value="false" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>RECIPE_MGMT.CATEGORY_0</span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value2" ng-true-value="1" ng-false-value="false"><span translate>RECIPE_MGMT.CATEGORY_1</span>
+                <input type="checkbox" ng-model="checkboxModel.value2" ng-true-value="1" ng-false-value="false" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>RECIPE_MGMT.CATEGORY_1</span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value3" ng-true-value="2" ng-false-value="false"><span translate>RECIPE_MGMT.CATEGORY_2</span>
+                <input type="checkbox" ng-model="checkboxModel.value3" ng-true-value="2" ng-false-value="false" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>RECIPE_MGMT.CATEGORY_2</span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value4" ng-true-value="3" ng-false-value="false"><span translate>RECIPE_MGMT.CATEGORY_3</span>
+                <input type="checkbox" ng-model="checkboxModel.value4" ng-true-value="3" ng-false-value="false" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>RECIPE_MGMT.CATEGORY_3</span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value5" ng-true-value="4" ng-false-value="false"><span translate>RECIPE_MGMT.CATEGORY_4</span>
+                <input type="checkbox" ng-model="checkboxModel.value5" ng-true-value="4" ng-false-value="false" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>RECIPE_MGMT.CATEGORY_4</span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value6" ng-true-value="5" ng-false-value="false"><span translate>RECIPE_MGMT.CATEGORY_5</span>
+                <input type="checkbox" ng-model="checkboxModel.value6" ng-true-value="5" ng-false-value="false" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>RECIPE_MGMT.CATEGORY_5</span>
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="checkboxModel.value7" ng-true-value="6" ng-false-value="false"><span translate>RECIPE_MGMT.CATEGORY_6</span>
+                <input type="checkbox" ng-model="checkboxModel.value7" ng-true-value="6" ng-false-value="false" tabindex="{{filterIsVisible ? 0 : -1}}"><span translate>RECIPE_MGMT.CATEGORY_6</span>
             </label>
         </div>
         <br>
@@ -60,7 +60,7 @@
                 <span class="badge">{{search.price.min}} €</span>
             </div>
             <div class="col-md-8">
-                <div range-slider min="0" max="150" model-min="search.price.min" model-max="search.price.max" style="margin: 0px;"></div>
+                <div range-slider min="0" max="150" model-min="search.price.min" model-max="search.price.max" style="margin: 0px;" tabindex="{{filterIsVisible ? 0 : -1}}"></div>
             </div>
             <div class="col-md-2">
                 <span class="badge">{{search.price.max}} €</span>
@@ -72,7 +72,7 @@
                 <span class="badge">{{search.rating.min}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
             </div>
             <div class="col-md-8">
-                <div range-slider min="0" max="5" model-min="search.rating.min" model-max="search.rating.max" style="margin: 0px;"></div>
+                <div range-slider min="0" max="5" model-min="search.rating.min" model-max="search.rating.max" style="margin: 0px;" tabindex="{{filterIsVisible ? 0 : -1}}"></div>
             </div>
             <div class="col-md-2">
                 <span class="badge">{{search.rating.max}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>

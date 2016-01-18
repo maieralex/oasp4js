@@ -1,47 +1,47 @@
-<div class="panel panel-default recipe-list-sidebar" sidebar-max-height>
+<div class="panel panel-default recipe-list-sidebar" sidebar-max-height tabindex="{{sidebarIsVisible ? 0 : -1}}">
     <div style="position: relative;">
-        <img class="img-responsive" ng-src="{{selectedRecipes[0].image}}" ng-show="selectedRecipes[0].image">
+        <img class="img-responsive" ng-src="{{selectedRecipes[0].image}}" ng-show="selectedRecipes[0].image" tabindex="{{sidebarIsVisible ? 0 : -1}}">
         <div class="form-group btn-group pull-right" role="group" aria-label="..." style="position: absolute; right: 15px; top: 15px;">
-            <button type="button" ng-click="openEdit(selectedRecipes[0])" class="btn btn-default" aria-label="Edit recipe(s)">
+            <button type="button" ng-click="openEdit(selectedRecipes[0])" class="btn btn-default" aria-label="Edit recipe(s)" tabindex="{{sidebarIsVisible ? 0 : -1}}">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </button>
-            <button type="button" class="btn btn-default" aria-label="Close sidebar" ng-click="disableSidebar();">
+            <button type="button" class="btn btn-default" aria-label="Close sidebar" ng-click="disableSidebar();" tabindex="{{sidebarIsVisible ? 0 : -1}}">
                 <span class="glyphicon  glyphicon-menu-right" aria-hidden="true"></span>
             </button>
         </div>
     <form class="panel-body form-horizontal" method="post" action="#">
         <div class="form-group form-group-sm">
             <div class="col-md-8">
-                <text class="title" ng-model="selectedRecipes[0].name" type="text" contenteditable="true" name="title" placeholder="{{'RECIPE_MGMT.TITLE' | translate}}">{{selectedRecipes[0].name}}</text>
+                <text class="title" ng-model="selectedRecipes[0].name" type="text" contenteditable="true" name="title" placeholder="{{'RECIPE_MGMT.TITLE' | translate}}" tabindex="{{sidebarIsVisible ? 0 : -1}}">{{selectedRecipes[0].name}}</text>
             </div>
             <div class="col-md-4">
-                <span class="badge price" ng-model="selectedRecipes[0].price" contenteditable="true">{{selectedRecipes[0].price}}</span>
+                <span class="badge price" ng-model="selectedRecipes[0].price" contenteditable="true" tabindex="{{sidebarIsVisible ? 0 : -1}}">{{selectedRecipes[0].price}}</span>
             </div>
             <div class="col-md-12">
-                <text class="text" ng-model="selectedRecipes[0].description" contenteditable="true" name="description">{{selectedRecipes[0].description}}</text>
+                <text class="text" ng-model="selectedRecipes[0].description" contenteditable="true" name="description" tabindex="{{sidebarIsVisible ? 0 : -1}}">{{selectedRecipes[0].description}}</text>
             </div>
             <div class="col-md-12">
                 <hr class="separator">
             </div>
             <div class="col-md-12">
-                <label class="radio-inline sidebar"><input type="radio" ng-model="selectedRecipes[0].language" name="language" value="en"><div class="icon icon-en-24"></div></label>
-                <label class="radio-inline"><input type="radio" ng-model="selectedRecipes[0].language" name="language" value="de"><div class="icon icon-de-24"></div></label>
+                <label class="radio-inline sidebar"><input type="radio" ng-model="selectedRecipes[0].language" name="language" value="en" tabindex="{{sidebarIsVisible ? 0 : -1}}"><div class="icon icon-en-24"></div></label>
+                <label class="radio-inline"><input type="radio" ng-model="selectedRecipes[0].language" name="language" value="de" tabindex="{{sidebarIsVisible ? 0 : -1}}"><div class="icon icon-de-24"></div></label>
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.PORTIONS</label>
-                <span class="badge" ng-model="selectedRecipes[0].portions"  contenteditable="true">{{selectedRecipes[0].portions}}</span>
+                <span class="badge" ng-model="selectedRecipes[0].portions"  contenteditable="true" tabindex="{{sidebarIsVisible ? 0 : -1}}">{{selectedRecipes[0].portions}}</span>
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.COOKTIMEMINUTES</label>
-                <span class="badge" ng-model="selectedRecipes[0].cookTimeMinutes"  contenteditable="true">{{selectedRecipes[0].cookTimeMinutes}}</span>
+                <span class="badge" ng-model="selectedRecipes[0].cookTimeMinutes"  contenteditable="true" tabindex="{{sidebarIsVisible ? 0 : -1}}">{{selectedRecipes[0].cookTimeMinutes}}</span>
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.PREPTIMEMINUTES</label>
-                <span class="badge" ng-model="selectedRecipes[0].prepTimeMinutes"  contenteditable="true">{{selectedRecipes[0].prepTimeMinutes  }}</span>
+                <span class="badge" ng-model="selectedRecipes[0].prepTimeMinutes"  contenteditable="true" tabindex="{{sidebarIsVisible ? 0 : -1}}">{{selectedRecipes[0].prepTimeMinutes  }}</span>
             </div>
             <div class="col-md-12">
                 <label class="col-md-6 control-label sidebar-control-label" translate>RECIPE_MGMT.CALORIES</label>
-                <span class="badge" ng-model="selectedRecipes[0].calories"  contenteditable="true">{{selectedRecipes[0].calories}}</span>
+                <span class="badge" ng-model="selectedRecipes[0].calories"  contenteditable="true" tabindex="{{sidebarIsVisible ? 0 : -1}}">{{selectedRecipes[0].calories}}</span>
             </div>
             <div class="col-md-12">
                 <hr class="separator">
