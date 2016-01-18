@@ -14,7 +14,7 @@ angular.module('app.recipe-mgmt')
             name: null,
             description: null,
             language: null,
-            price: null,
+            price: 0,
             recipeIngredients: [],
             cookingInstructions: null,
             portions: null,
@@ -24,7 +24,7 @@ angular.module('app.recipe-mgmt')
             calories: null,
             category: null,
             image: null,
-            rating: null
+            rating: 0
         };
 
         $scope.existingIngredients = [];
@@ -50,7 +50,6 @@ angular.module('app.recipe-mgmt')
 
         if ($rootScope.editRecipe !== null) {
             $scope.recipe = $rootScope.editRecipe;
-            $scope.recipe.category = {name: $scope.recipe.category}; // ToDo: Remove once categories are fully implemented
             $scope.editmode = 'edit';
             $scope.updateCosts();
         }
@@ -168,7 +167,6 @@ angular.module('app.recipe-mgmt')
             if (!$scope.imageDirty) {
                 $scope.recipe.image = null;
             }
-            $scope.recipe.category = $scope.recipe.category.name; // ToDo: Remove once categories are fully implemented
             recipes.saveRecipe($scope.recipe).then(function () {
                 $rootScope.reloadRecipes();
                 $scope.image = null;
