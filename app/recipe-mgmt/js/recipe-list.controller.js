@@ -13,14 +13,13 @@ angular.module('app.recipe-mgmt')
         $scope.oldValues = [];
 
         $scope.checkboxModel = {
-            value0 : true,
-            value1 : 0,
-            value2 : 1,
-            value3 : 2,
-            value4 : 3,
-            value5 : 4,
-            value6 : 5,
-            value7 : 6
+            value1 : false,
+            value2 : false,
+            value3 : false,
+            value4 : false,
+            value5 : false,
+            value6 : false,
+            value7 : false
         };
 
         $scope.search.price = {
@@ -31,33 +30,6 @@ angular.module('app.recipe-mgmt')
         $scope.search.rating = {
             min: 0,
             max: 5
-        };
-
-        $scope.selectAllCategories = function () {
-            if ($scope.checkboxModel.value0) {
-                $scope.checkboxModel = {
-                    value0 : true,
-                    value1 : 0,
-                    value2 : 1,
-                    value3 : 2,
-                    value4 : 3,
-                    value5 : 4,
-                    value6 : 5,
-                    value7 : 6
-                };
-            }
-            else {
-                $scope.checkboxModel = {
-                    value0 : false,
-                    value1 : false,
-                    value2 : false,
-                    value3 : false,
-                    value4 : false,
-                    value5 : false,
-                    value6 : false,
-                    value7 : false
-                };
-            }
         };
 
         $rootScope.reloadRecipes = function () {
@@ -126,7 +98,7 @@ angular.module('app.recipe-mgmt')
             var key, value, i = 0;
             for(key in $scope.checkboxModel) {
                 value = $scope.checkboxModel[key];
-                if(value !== true && value !== false) {
+                if(value !== false) {
                     $scope.search.selectedCategories[i] = value;
                     i++;
                 }
