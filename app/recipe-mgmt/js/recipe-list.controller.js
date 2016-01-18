@@ -170,8 +170,21 @@ angular.module('app.recipe-mgmt')
             recipes.updateRecipe(recipe);
         };
 
+        /**
+         * Check recipe values after Inline Editing
+         */
         $scope.validateValues = function () {
             var validateCurrenyFormat  = /^\d+(?:\.\d{0,2})$/;
+
+            if ($scope.selectedRecipes[0].calories == $scope.oldValues[0].calories &&
+                $scope.selectedRecipes[0].prepTimeMinutes == $scope.oldValues[0].prepTimeMinutes &&
+                $scope.selectedRecipes[0].cookTimeMinutes == $scope.oldValues[0].cookTimeMinutes &&
+                $scope.selectedRecipes[0].portions == $scope.oldValues[0].portions &&
+                $scope.selectedRecipes[0].price == $scope.oldValues[0].price &&
+                $scope.selectedRecipes[0].description == $scope.oldValues[0].description &&
+                $scope.selectedRecipes[0].name == $scope.oldValues[0].name) {
+                return false;
+            }
 
             if ($scope.selectedRecipes[0].name == '') {
                 $scope.selectedRecipes[0].name = $scope.oldValues[0].name;
@@ -195,6 +208,38 @@ angular.module('app.recipe-mgmt')
             }
             else {
                 $scope.oldValues[0].price = $scope.selectedRecipes[0].price;
+            }
+
+            if ($scope.selectedRecipes[0].portions == '' || isNaN($scope.selectedRecipes[0].portions)) {
+                $scope.selectedRecipes[0].portions = $scope.oldValues[0].portions;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].portions = $scope.selectedRecipes[0].portions;
+            }
+
+            if ($scope.selectedRecipes[0].cookTimeMinutes == '' || isNaN($scope.selectedRecipes[0].cookTimeMinutes)) {
+                $scope.selectedRecipes[0].cookTimeMinutes = $scope.oldValues[0].cookTimeMinutes;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].cookTimeMinutes = $scope.selectedRecipes[0].cookTimeMinutes;
+            }
+
+            if ($scope.selectedRecipes[0].prepTimeMinutes == '' || isNaN($scope.selectedRecipes[0].prepTimeMinutes)) {
+                $scope.selectedRecipes[0].prepTimeMinutes = $scope.oldValues[0].prepTimeMinutes;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].prepTimeMinutes = $scope.selectedRecipes[0].prepTimeMinutes;
+            }
+
+            if ($scope.selectedRecipes[0].calories == '' || isNaN($scope.selectedRecipes[0].calories)) {
+                $scope.selectedRecipes[0].calories = $scope.oldValues[0].calories;
+                return false;
+            }
+            else {
+                $scope.oldValues[0].calories = $scope.selectedRecipes[0].calories;
             }
 
             return true;
