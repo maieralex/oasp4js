@@ -40,7 +40,7 @@ angular.module('app.recipe-mgmt')
              * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
              */
             globalSpinner.decorateCallOfFunctionReturningPromise(function () {
-                return $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
+                return $scope.recipePromise = recipes.getPaginatedRecipesWithURL($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
                     return paginatedRecipes;
                 }).then(function (res) {
                     $scope.recipesList = res.result;
