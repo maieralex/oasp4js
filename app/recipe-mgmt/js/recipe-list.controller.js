@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeListCntl', function ($rootScope, $scope, $modal, $log, offers, recipes) {
+    .controller('RecipeListCntl', function ($rootScope, $scope, $modal, $log, offers, recipes, globalSpinner) {
         'use strict';
         $scope.numPerPage = 5;
         $scope.currentPage = 1;
@@ -39,19 +39,23 @@ angular.module('app.recipe-mgmt')
              * use recipes.getPaginatedRecipes if you want the base64 stuff
              * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
              */
-            $scope.recipePromise = recipes.getPaginatedRecipesWithURL($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
-                return paginatedRecipes;
-            }).then(function (res) {
-                $scope.recipesList = res.result;
-                for (var i = 0; i < $scope.selectedRecipes.length; i++) {
-                    for (var j = 0; j < $scope.recipesList.length; j++) {
-                        if ($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
-                            $scope.selectedRecipes[i] = $scope.recipesList[j];
-                            break;
+            globalSpinner.decorateCallOfFunctionReturningPromise(function () {
+                return $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
+                    return paginatedRecipes;
+                }).then(function (res) {
+                    $scope.recipesList = res.result;
+                    for (var i = 0; i < $scope.selectedRecipes.length; i++) {
+                        for (var j = 0; j < $scope.recipesList.length; j++) {
+                            if ($scope.selectedRecipes[i].id === $scope.recipesList[j].id) {
+                                $scope.selectedRecipes[i] = $scope.recipesList[j];
+                                break;
+                            }
                         }
                     }
-                }
-                $scope.totalItems = res.pagination.total;
+                    $scope.totalItems = res.pagination.total;
+                });
+            }).then(function () {
+
             });
         };
 
