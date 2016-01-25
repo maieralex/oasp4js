@@ -39,7 +39,7 @@ angular.module('app.recipe-mgmt')
              * use recipes.getPaginatedRecipes if you want the base64 stuff
              * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
              */
-            $scope.recipePromise = recipes.getPaginatedRecipesWithURL($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
+            $scope.recipePromise = recipes.getPaginatedRecipes($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
                 return paginatedRecipes;
             }).then(function (res) {
                 $scope.recipesList = res.result;
