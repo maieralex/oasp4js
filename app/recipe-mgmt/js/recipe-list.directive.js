@@ -86,6 +86,11 @@ angular
                 link: function($scope, elm, attrs, ctrl) {
                     elm.on('blur', function() {
                         ctrl.$setViewValue(elm.html());
+
+                        $scope.selectedRecipes[0].name = $scope.selectedRecipes[0].name.replace(/[<]br[^>]*[>]/gi,"");
+                        $scope.selectedRecipes[0].description = $scope.selectedRecipes[0].description.replace(/[<]br[^>]*[>]/gi,"");
+                        $scope.selectedRecipes[0].price = $scope.selectedRecipes[0].price.replace(/[<]br[^>]*[>]/gi,"");
+
                         if ($scope.validateValues($scope.selectedRecipes[0])) {
                             $scope.updateRecipe($scope.selectedRecipes[0]);
                             $scope.selectedRecipes[0].modificationCounter++;
