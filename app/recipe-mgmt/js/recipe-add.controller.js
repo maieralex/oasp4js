@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, recipes, categories, $translate) {
+    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, recipes, $document, categories, $translate) {
         'use strict';
 
         //maximum image size to upload in bytes
@@ -55,7 +55,7 @@ angular.module('app.recipe-mgmt')
         }
 
 
-        document.getElementById('recipeImage').addEventListener('change', function (event) {
+        $document[0].getElementById('recipeImage').addEventListener('change', function (event) {
             $scope.$apply(function () {
                 $scope.recipe.image = event.target.files[0];
                 if ($scope.recipe.image.size < $scope.maxImgSize) {
@@ -101,7 +101,7 @@ angular.module('app.recipe-mgmt')
                 });
                 $scope.newIngredient = {};
                 $scope.updateCosts();
-                document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
+                $document[0].getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
             }
         };
         
@@ -124,7 +124,7 @@ angular.module('app.recipe-mgmt')
                         break;
                     }
                 }
-                document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
+                $document[0].getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
             else if (e.keyCode === 40 && e.shiftKey && !isLastIngredient) {
                 for(var i = 0; i < $scope.recipe.recipeIngredients.length; i++) {
@@ -134,7 +134,7 @@ angular.module('app.recipe-mgmt')
                         break;
                     }
                 }
-                document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
+                $document[0].getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
 
             $scope.updateCosts();
