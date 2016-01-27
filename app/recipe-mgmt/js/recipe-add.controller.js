@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 angular.module('app.recipe-mgmt')
-    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, offers, recipes, $window, categories, $translate) {
+    .controller('RecipeAddCntl', function ($rootScope, $scope, $log, recipes, categories, $translate) {
         'use strict';
 
         //maximum image size to upload in bytes
@@ -38,7 +38,7 @@ angular.module('app.recipe-mgmt')
             recipes.getCosts($scope.recipe.recipeIngredients).then(function (costs){
                 $scope.costs = costs;
             });
-        }
+        };
 
         var language = $translate.use();
         categories.getAllCategories(language).then(function (response) {
@@ -55,7 +55,7 @@ angular.module('app.recipe-mgmt')
         }
 
 
-        $window.document.getElementById('recipeImage').addEventListener('change', function (event) {
+        document.getElementById('recipeImage').addEventListener('change', function (event) {
             $scope.$apply(function () {
                 $scope.recipe.image = event.target.files[0];
                 if ($scope.recipe.image.size < $scope.maxImgSize) {
@@ -101,7 +101,7 @@ angular.module('app.recipe-mgmt')
                 });
                 $scope.newIngredient = {};
                 $scope.updateCosts();
-                $window.document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
+                document.getElementById('ingredientInput').getElementsByTagName('input')[0].focus();
             }
         };
         
@@ -124,7 +124,7 @@ angular.module('app.recipe-mgmt')
                         break;
                     }
                 }
-                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
+                document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
             else if (e.keyCode === 40 && e.shiftKey && !isLastIngredient) {
                 for(var i = 0; i < $scope.recipe.recipeIngredients.length; i++) {
@@ -134,7 +134,7 @@ angular.module('app.recipe-mgmt')
                         break;
                     }
                 }
-                $window.document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
+                document.getElementById('ingredientTable').getElementsByTagName('tr')[ingredient.position].getElementsByTagName('input')[0].focus();
             }
 
             $scope.updateCosts();
@@ -153,7 +153,7 @@ angular.module('app.recipe-mgmt')
                     $scope.recipe.recipeIngredients[i].position = i+1;
                 }
             }
-        }
+        };
 
         $scope.removeIngredient = function (ingredient) {
             var removeIndex = $scope.recipe.recipeIngredients.indexOf(ingredient);

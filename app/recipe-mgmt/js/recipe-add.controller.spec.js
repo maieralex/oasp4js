@@ -1,45 +1,96 @@
-describe('Module:recipe-mgmt, Controller: recipe-add',function() {
+describe('Module:recipe-mgmt, Controller: recipe-add', function () {
     'use strict';
     beforeEach(module('app.recipe-mgmt'));
 
-    var addRecipeController,
-        allOffersMock = {},
-        recipesMock = {},
-        $window,
-        $scope;
+    module(function ($provide) {
+
+        //mocking recipes service
+        $provide.value('recipes', {
+            getRecipe: function (recipeId) {
+            },
+            saveRecipe: function (recipe) {
+                return {
+                    then: function (callback) {
+
+                    }
+                };
+            },
+            updateRecipe: function (recipe) {
+            },
+            getPaginatedRecipes: function (pagenumber, pagesize, search) {
+            },
+            getPaginatedRecipesWithURL: function (pagenumber, pagesize, search) {
+            },
+            getIngredients: function () {
+                return {
+                    then: function (callback) {
+                        return callback([{"id":1,"modificationCounter":0,"revision":null,"name":"Pfeffer"},
+                            {"id":2,"modificationCounter":0,"revision":null,"name":"Salz"}]);
+                    }
+                };
+            },
+            getCosts: function (ingredients) {
+                return {
+                    then: function (callback) {
+
+                    }
+                };
+            }
+        });
+
+        //mocking category service
+        $provide.value('categories', {
+            getAllCategories: function (language) {
+                return {
+                    then: function(callback) {
+                        return callback([{"id":7,"modificationCounter":0,"revision":null,"name":"Appetizer","language":"en","languageId":0},
+                            {"id":8,"modificationCounter":0,"revision":null,"name":"Snacks","language":"en","languageId":1},
+                            {"id":9,"modificationCounter":0,"revision":null,"name":"Grilled","language":"en","languageId":2},
+                            {"id":10,"modificationCounter":0,"revision":null,"name":"Fish","language":"en","languageId":3},
+                            {"id":11,"modificationCounter":0,"revision":null,"name":"Pasta","language":"en","languageId":4},
+                            {"id":12,"modificationCounter":0,"revision":null,"name":"Pizza","language":"en","languageId":5},
+                            {"id":13,"modificationCounter":0,"revision":null,"name":"Dessert","language":"en","languageId":6}]);
+                    }
+                }
+            }
+        })
+
+    });
 
 
+    beforeEach(inject(function ($rootScope, $controller, recipes, categories) {
+            var $scope = $rootScope.$new();
 
-    beforeEach(inject(function($rootScope, $controller){
-            $scope = $rootScope.$new();
-
-            $window = {
-                document: jasmine.createSpyObj('document',['getElementById'])
-            };
-
-            var mockHtmlElement = document.createElement('div');
-            document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
-
-            addRecipeController = $controller('RecipeAddCntl',{
-                $scope: $scope, offers: allOffersMock, recipes: recipesMock, $window: $window
-            });
-
-            $scope.recipe = {
+            $rootScope.editRecipe = {
                 id: null,
                 name: null,
                 description: null,
                 language: null,
                 price: null,
-                ingredients: null,
+                recipeIngredients: [],
                 cookingInstructions: null,
                 portions: null,
                 cookTimeMinutes: null,
                 prepTimeMinutes: null,
                 difficulty: null,
                 calories: null,
-                categories: null,
-                image: null
+                category: {name:"Testkategorie"},
+                image: null,
+                rating: null
             };
+
+
+            var $window = {
+                document: jasmine.createSpyObj('document', ['getElementById'])
+            };
+
+            var mockHtmlElement = document.createElement('div');
+            document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
+
+            $controller('RecipeAddCntl', {
+                $scope: $scope, recipes: recipes, categories:categories
+            });
+            console.log($scope);
         }
     ));
 
@@ -56,7 +107,7 @@ describe('Module:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipe.cookTimeMinutes).toBeNull();
             expect($scope.recipe.difficulty).toBeNull();
             expect($scope.recipe.calories).toBeNull();
-            expect($scope.recipe.categories).toBeNull();
+            expect($scope.recipe.category).toBeNull();
             expect($scope.recipe.image).toBeNull();
         });
 
@@ -90,7 +141,7 @@ describe('Module:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipe.prepTimeMinutes).toBe(10);
             expect($scope.recipe.difficulty).toBe('easy');
             expect($scope.recipe.calories).toBe(250);
-            expect($scope.recipe.categories).toBe('default categories');
+            expect($scope.recipe.category).toBe('default categories');
             expect($scope.recipe.image).toBe('/imagePath');
         });
 
