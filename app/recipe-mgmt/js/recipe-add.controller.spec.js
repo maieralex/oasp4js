@@ -1,4 +1,4 @@
-describe('Module:recipe-mgmt, Controller: recipe-add',function() {
+describe('Module:recipe-mgmt, Controller: recipe-add', function () {
     'use strict';
     beforeEach(module('app.recipe-mgmt'));
 
@@ -9,18 +9,17 @@ describe('Module:recipe-mgmt, Controller: recipe-add',function() {
         $scope;
 
 
-
-    beforeEach(inject(function($rootScope, $controller){
+    beforeEach(inject(function ($rootScope, $controller) {
             $scope = $rootScope.$new();
 
             $window = {
-                document: jasmine.createSpyObj('document',['getElementById'])
+                document: jasmine.createSpyObj('document', ['getElementById'])
             };
 
             var mockHtmlElement = document.createElement('div');
             document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
 
-            addRecipeController = $controller('RecipeAddCntl',{
+            addRecipeController = $controller('RecipeAddCntl', {
                 $scope: $scope, offers: allOffersMock, recipes: recipesMock, $window: $window
             });
 
@@ -37,7 +36,7 @@ describe('Module:recipe-mgmt, Controller: recipe-add',function() {
                 prepTimeMinutes: null,
                 difficulty: null,
                 calories: null,
-                categories: null,
+                category: null,
                 image: null
             };
         }
@@ -56,7 +55,7 @@ describe('Module:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipe.cookTimeMinutes).toBeNull();
             expect($scope.recipe.difficulty).toBeNull();
             expect($scope.recipe.calories).toBeNull();
-            expect($scope.recipe.categories).toBeNull();
+            expect($scope.recipe.category).toBeNull();
             expect($scope.recipe.image).toBeNull();
         });
 
@@ -74,7 +73,13 @@ describe('Module:recipe-mgmt, Controller: recipe-add',function() {
                 prepTimeMinutes: 10,
                 difficulty: 'easy',
                 calories: 250,
-                categories: 'default categories',
+                category: {
+                    id: 0,
+                    languageId: 0,
+                    modificationCounter: 0,
+                    name: 'Vorspeisen',
+                    language: 'de'
+                },
                 image: '/imagePath'
             };
 
@@ -90,7 +95,7 @@ describe('Module:recipe-mgmt, Controller: recipe-add',function() {
             expect($scope.recipe.prepTimeMinutes).toBe(10);
             expect($scope.recipe.difficulty).toBe('easy');
             expect($scope.recipe.calories).toBe(250);
-            expect($scope.recipe.categories).toBe('default categories');
+            expect($scope.recipe.category.id).toBe(0);
             expect($scope.recipe.image).toBe('/imagePath');
         });
 

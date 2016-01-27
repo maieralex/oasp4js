@@ -37,7 +37,7 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
                 prepTimeMinutes: null,
                 difficulty: null,
                 calories: null,
-                categories: null,
+                category: null,
                 image: null
             };
 
@@ -59,7 +59,7 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
             expect($scope.recipe.cookTimeMinutes).toBeNull();
             expect($scope.recipe.difficulty).toBeNull();
             expect($scope.recipe.calories).toBeNull();
-            expect($scope.recipe.categories).toBeNull();
+            expect($scope.recipe.category).toBeNull();
             expect($scope.recipe.image).toBeNull();
         });
 
@@ -77,7 +77,13 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
                 prepTimeMinutes: 10,
                 difficulty: 'easy',
                 calories: 250,
-                categories: 'default categories',
+                category: {
+                    id: 0,
+                    languageId: 0,
+                    modificationCounter: 0,
+                    name: 'Vorspeisen',
+                    language: 'de'
+                },
                 image: '/imagePath'
             };
 
@@ -93,7 +99,7 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
             expect($scope.recipe.prepTimeMinutes).toBe(10);
             expect($scope.recipe.difficulty).toBe('easy');
             expect($scope.recipe.calories).toBe(250);
-            expect($scope.recipe.categories).toBe('default categories');
+            expect($scope.recipe.category.id).toBe(0);
             expect($scope.recipe.image).toBe('/imagePath');
         });
 
@@ -111,7 +117,13 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
                 prepTimeMinutes: 10,
                 difficulty: 'easy',
                 calories: 250,
-                categories: 'default categories',
+                category: {
+                    id: 0,
+                    languageId: 0,
+                    modificationCounter: 0,
+                    name: 'Vorspeisen',
+                    language: 'de'
+                },
                 image: '/imagePath'
             };
 
@@ -128,7 +140,13 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
                 prepTimeMinutes: 20,
                 difficulty: 'easy',
                 calories: 2500,
-                categories: 'default categories',
+                category: {
+                    id: 0,
+                    languageId: 0,
+                    modificationCounter: 0,
+                    name: 'Vorspeisen',
+                    language: 'de'
+                },
                 image: '/imagePath'
             };
 
@@ -200,7 +218,13 @@ describe('Module:recipe-mgmt, Controller: recipe-list',function() {
             prepTimeMinutes: 10,
             difficulty: 'easy',
             calories: 250,
-            categories: 'default categories',
+            category: {
+                id: 0,
+                languageId: 0,
+                modificationCounter: 0,
+                name: 'Vorspeisen',
+                language: 'de'
+            },
             image: '/imagePath'
         };
         $scope.recipesList.push($scope.recipe);

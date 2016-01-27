@@ -1,4 +1,3 @@
-/*globals oasp*/
 describe('Module: recipeMgmt, Service: recipeManagementRestService', function () {
     'use strict';
     var recipeManagementRestService, contextPath = '/contextPath/', search = {};
@@ -57,4 +56,15 @@ describe('Module: recipeMgmt, Service: recipeManagementRestService', function ()
             });
     }));
 
+    it('should call $http.get when recipeManagementRestService.getAllCategories is called', inject(function ($http) {
+        //given
+        var language = 'de';
+        spyOn($http, 'get');
+        //when
+        recipeManagementRestService.getAllCategories(language);
+        //then
+        expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/categories/' + language);
+    }));
+
 });
+/*globals oasp*/
