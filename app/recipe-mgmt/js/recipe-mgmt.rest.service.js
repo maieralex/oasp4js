@@ -49,6 +49,7 @@ angular.module('app.recipe-mgmt').factory('recipeManagementRestService', functio
         /**
          * Created/Changed by Marc Schwede on 20.12.2015.
          * This returns the URI to a given picture id.
+         * This does not return the content of the URI to a given picture id.
          * @param id Id which images needs to be shown.
          * @returns {string} URI of the picture with the given {id}.
          */

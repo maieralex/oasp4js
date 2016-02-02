@@ -9,7 +9,10 @@ angular.module('app.main').directive('menu', function($window){
     };
 });
 
-//Change the height of menuItems to fit the screen
+/**
+ * directive to change the menu items to fit the screen.
+ * not refering to mobile devices!
+ */
 angular.module('app.main').directive('menuitem', function($window){
     'use strict';
     return function (scope, element) {

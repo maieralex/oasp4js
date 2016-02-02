@@ -21,7 +21,11 @@ angular.module('app.recipe-mgmt')
             value6 : false,
             value7 : false
         };
-
+        /**
+         * Price range right now set statically.
+         * Should be set dynamically. Based on the data which is in the database.
+         * @type {{min: number, max: number}}
+         */
         $scope.search.price = {
           min: 0,
           max: 150
@@ -36,8 +40,9 @@ angular.module('app.recipe-mgmt')
             $scope.search.selectedCategories = [];
             $scope.getSelectedCategories();
             /**
-             * use recipes.getPaginatedRecipes if you want the base64 stuff
-             * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image
+             * use recipes.getPaginatedRecipes if you want the base64 returned by the server
+             * use recipes.getPaginatedRecipesWithURL if you want the URI of an Image returned by the server
+             * Wrapped with the globalSpinner to give a good feedback to the user
              */
             globalSpinner.decorateCallOfFunctionReturningPromise(function () {
                 return $scope.recipePromise = recipes.getPaginatedRecipesWithURL($scope.currentPage, $scope.numPerPage, $scope.search).then(function (paginatedRecipes) {
@@ -167,7 +172,7 @@ angular.module('app.recipe-mgmt')
 
         /**
          * Created by Marc Schwede on 14.12.2015.
-         * Functionality to change recipies with inline editing.
+         * Functionality to update recipies from inline editing.
          * @param recipe
          */
         $scope.updateRecipe = function (recipe) {
