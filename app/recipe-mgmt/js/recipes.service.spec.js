@@ -35,7 +35,7 @@ describe('Service: recipes', function ($http) {
         listOfRecipes,
         contextPath = '/oasp-app/',
         mockPaginatedRecipeResponse = function () {
-            $httpBackend.expectGET('/oasp-app/services/rest/recipemanagement/v1/recipe/0/picture')
+            $httpBackend.whenGET('/oasp-app/services/rest/recipemanagement/v1/recipe/0/picture')
                 .respond('iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAQSURBVBhXY/iPCijj//8PAK09SrZrfO6mAAAAAElFTkSuQmCC', 'jpeg');
             $httpBackend.whenPOST(contextPath + 'services/rest/recipemanagement/v1/recipe/search', recipeSearchCriteria).respond(
                 {
@@ -106,7 +106,7 @@ describe('Service: recipes', function ($http) {
         );
     },
 
-    /*//TODO
+    /*!//TODO
     mocksaveRecipePicture = function () {
         $httpBackend.whenPOST(contextPath + '/recipe/0/picture',{headers:{'Content-Type': 'multipart/mixed'}}).respond(
 
@@ -119,7 +119,7 @@ describe('Service: recipes', function ($http) {
                 id: 0,
                 modificationCounter: 0,
                 description: 'Schnitzel Wiener Art',
-                imageId : null,
+                imageId : 1,
                 name: 'Wienerschnitzel',
                 price: 7.99,
                 revision: null
@@ -184,5 +184,7 @@ describe('Service: recipes', function ($http) {
         expect(receivedrecipe.name).toBe('Wienerschnitzel');
         expect($http.get).toHaveBeenCalledWith(contextPath + 'services/rest/recipemanagement/v1/recipe/0/picture');
     });
+
+
 
 });

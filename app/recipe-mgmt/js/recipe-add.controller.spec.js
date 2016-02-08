@@ -2,9 +2,9 @@ describe('Module:recipe-mgmt, Controller: recipe-add', function () {
     'use strict';
     beforeEach(module('app.recipe-mgmt'));
 
-    var $scope;
+    var $scope,$q,deferred;
 
-    module(function ($provide) {
+    /*module(function ($provide) {
 
         //mocking recipes service
         $provide.value('recipes', {
@@ -57,11 +57,14 @@ describe('Module:recipe-mgmt, Controller: recipe-add', function () {
             }
         })
 
-    });
+    });*/
 
 
-    beforeEach(inject(function ($rootScope, $controller, recipes, categories) {
+    beforeEach(inject(function (_$q_,$rootScope, $controller, recipes, categories) {
             $scope = $rootScope.$new();
+            $q = _$q_;
+            deferred = _$q_.defer();
+
 
             $rootScope.editRecipe = {
                 id: 786,
@@ -89,6 +92,12 @@ describe('Module:recipe-mgmt, Controller: recipe-add', function () {
             var mockHtmlElement = document.createElement('div');
             document.getElementById = jasmine.createSpy('HTML Element').and.returnValue(mockHtmlElement);
 
+
+            spyOn(recipes,'getIngredients').and.returnValue(deferred.promise);
+            deferred.resolve([{"id":1,"modificationCounter":0,"revision":null,"name":"Pfeffer"},
+                {"id":2,"modificationCounter":0,"revision":null,"name":"Salz"}]);
+
+
             $controller('RecipeAddCntl', {
                 $scope: $scope, recipes: recipes, categories:categories
             });
@@ -111,6 +120,10 @@ describe('Module:recipe-mgmt, Controller: recipe-add', function () {
             expect($scope.recipe.difficulty).toEqual('easy');
             expect($scope.recipe.category).toEqual({"id":3,"name":"Fisch","language":"de","languageId":3});
             expect($scope.recipe.image).toBeNull();
+
+            expect($scope.existingIngredients).toBeDefined();
+            expect($scope.existingIngredients).not.toBeDefined();
+
         });
 
 
@@ -118,8 +131,9 @@ describe('Module:recipe-mgmt, Controller: recipe-add', function () {
             expect($scope.saveRecipe).toBeDefined();
             spyOn($scope, 'saveRecipe');
             expect($scope.saveRecipe).not.toHaveBeenCalled();
-            $scope.saveRecipe(null);
+            $scope.saveRecipe();
             expect($scope.saveRecipe).toHaveBeenCalled();
+            expect($scope.recipes.saveRecipe).not.toHaveBeenCalled();
         });
 
         it('should check updateCosts function', function () {
